@@ -1,0 +1,124 @@
+<section class="space-y-20">
+
+    <!-- Hero + New Arrivals -->
+    <div class="text-center h-[90vh] px-4 bg-[url('/images/home-hero-bg.jpg')] bg-cover bg-center py-20 relative">
+        <div class="bg-black/50 absolute top-0 left-0 right-0 h-full flex flex-col items-center justify-center">
+            <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Timeless Fashion for the Modern Wardrobe
+            </h1>
+            <p class="text-gray-700 mt-4">Discover Men, Women & Kids collections—designed for comfort and style.</p>
+            <button
+                class="mt-6 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:scale-105 transition">
+                Explore the Collection
+            </button>
+        </div>
+
+    </div>
+
+    <div class="mt-16 max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-semibold mb-8">New Arrivals</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            @for (product of newArrivals; track product.id) {
+            <div class="group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition">
+                <img [src]="product.image" alt="{{product.name}}"
+                    class="w-full h-64 object-cover group-hover:scale-105 transition-transform">
+                <div class="p-4 text-center">
+                    <h3 class="font-medium">{{product.name}}</h3>
+                    <p class="text-gray-500 mt-1">{{product.price}}</p>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="mt-20 max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-semibold mb-8 text-center">Our Categories</h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+            @for (cat of categories; track cat.name) {
+            <a href="#" class="relative group rounded-lg overflow-hidden">
+                <img [src]="cat.image" [alt]="cat.name"
+                    class="w-full h-48 object-cover group-hover:scale-110 transition">
+                <div
+                    class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                    <span class="text-white text-xl font-semibold">{{cat.name}}</span>
+                </div>
+            </a>
+            }
+        </div>
+    </div>
+
+    <!-- Bestsellers -->
+    <div class="mt-20 max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-semibold mb-8">Bestsellers</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            @for (best of bestsellers; track best.id) {
+            <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition p-4 relative">
+                <img [src]="best.image" [alt]="best.name" class="w-full h-52 object-cover rounded-lg">
+                @if (best.tag) {
+                <span class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 text-xs rounded">
+                    {{best.tag}}
+                </span>
+                }
+                <div class="mt-4 text-center">
+                    <h3>{{best.name}}</h3>
+                    <p class="text-gray-600 mt-1">{{best.price}}</p>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- Promo Banner -->
+    <div class="mt-20">
+        <div class="relative text-center rounded-2xl overflow-hidden max-w-4xl mx-auto">
+            <img src="images/counter-bg.jpg" alt="Sale Banner" class="w-full h-64 object-cover opacity-70 bg-center">
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-600/80 to-blue-600/80"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
+                <h2 class="text-4xl font-bold">Hurry Up! Get Up to 50% Off</h2>
+                <button
+                    class="mt-4 px-6 py-2 bg-white text-blue-600 font-semibold rounded-full shadow hover:bg-gray-100">Shop
+                    the Summer Sale</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="mt-20 bg-gray-50 py-16">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-semibold mb-10">What Our Shoppers Say</h2>
+            <div class="space-y-8">
+                @for (t of testimonials; track t.name) {
+                <div class="text-left">
+                    <p class="italic text-gray-700">"{{t.quote}}"</p>
+                    <div class="flex items-center mt-4">
+                        <img [src]="t.avatar" alt="{{t.name}}" class="w-10 h-10 rounded-full mr-3">
+                        <span class="font-semibold">{{t.name}}, <span
+                                class="text-sm text-gray-500">{{t.location}}</span></span>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="mt-20 max-w-5xl mx-auto px-4 text-center mb-10">
+        <h2 class="text-3xl font-semibold mb-10">How It Works</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div class="space-y-3"><i class="fas fa-shopping-bag text-3xl text-blue-600"></i>
+                <h4 class="font-medium">Shop Styles</h4>
+                <p class="text-gray-600">Browse curated collections easily.</p>
+            </div>
+            <div class="space-y-3"><i class="fas fa-ruler-combined text-3xl text-blue-600"></i>
+                <h4 class="font-medium">Pick Your Fit</h4>
+                <p class="text-gray-600">Use our fit guides for perfect sizing.</p>
+            </div>
+            <div class="space-y-3"><i class="fas fa-credit-card text-3xl text-blue-600"></i>
+                <h4 class="font-medium">Checkout Fast</h4>
+                <p class="text-gray-600">Quick, secure checkout experience.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
