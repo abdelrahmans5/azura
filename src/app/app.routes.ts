@@ -11,6 +11,7 @@ import { DetailsComponent } from './features/details/details.component';
 import { CategoriesComponent } from './features/categories/categories.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
 import { BrandsComponent } from './features/brands/brands.component';
+import { AboutComponent } from './features/about/about.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,7 +29,8 @@ export const routes: Routes = [
             { path: 'cart', component: CartComponent, title: 'Cart' },
             { path: 'checkout', component: CheckoutComponent, title: 'Checkout' },
             { path: 'details', component: DetailsComponent, title: 'Details' },
-            { path: 'categories', component: CategoriesComponent, title: 'Categories' }
+            { path: 'categories', component: CategoriesComponent, title: 'Categories' },
+            { path: 'about', component: AboutComponent, title: 'About' }
         ]
     },
     { path: '**', component: NotFoundComponent, title: 'Not Found' }

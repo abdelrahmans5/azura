@@ -1,0 +1,8 @@
+:host {
+    display: block;
+}
+
+/* Smooth fade animations */
+.fade-item {
+    transition: all 0.6s ease-in-out;
+}
