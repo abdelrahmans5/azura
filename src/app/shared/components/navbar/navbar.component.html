@@ -1,250 +1,406 @@
-<!-- Navbar Component Template -->
+<!-- Futuristic Navbar Component -->
 <nav
-    class="bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 sticky top-0 z-50 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    class="bg-gradient-to-r from-slate-900/95 via-blue-900/95 to-purple-900/95 backdrop-blur-xl border-b border-cyan-400/20 sticky top-0 z-50 transition-all duration-500 shadow-2xl shadow-cyan-500/10">
+    <!-- Animated Background Lines -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+            class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-30 animate-pulse">
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent opacity-30 animate-pulse"
+            style="animation-delay: 1s;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div class="flex justify-between items-center h-16 lg:h-20">
 
-            <!-- Logo Section (Left) -->
+            <!-- Futuristic Logo Section -->
             <div class="flex items-center">
                 <a href="#" class="flex items-center group">
-                    <div
-                        class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center mr-3 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300 group-hover:scale-105">
-                        <i class="fas fa-shopping-bag text-white text-lg"></i>
+                    <div class="relative w-12 h-12 mr-4">
+                        <!-- Glowing outer ring -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-xl opacity-75 group-hover:opacity-100 transition-all duration-300 animate-pulse">
+                        </div>
+                        <!-- Inner container -->
+                        <div
+                            class="relative w-full h-full bg-gradient-to-br from-cyan-500 via-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-xl group-hover:shadow-cyan-500/50 transition-all duration-300 group-hover:scale-110">
+                            <i
+                                class="fas fa-cube text-white text-lg transform group-hover:rotate-12 transition-transform duration-300"></i>
+                            <!-- Scanning line effect -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent h-full w-full rounded-xl opacity-0 group-hover:opacity-100 transform translate-y-full group-hover:translate-y-0 transition-all duration-1000">
+                            </div>
+                        </div>
                     </div>
-                    <span
-                        class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">ShopHub</span>
+                    <div class="flex flex-col">
+                        <span
+                            class="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent tracking-wider">NEXUS</span>
+                        <span class="text-xs text-cyan-400/80 font-mono">COMMERCE</span>
+                    </div>
                 </a>
             </div>
 
-            <!-- Navigation Links (Center) - Desktop -->
+            <!-- Futuristic Navigation Links (Center) - Desktop -->
             @if (isLogin === true) {
             <div class="hidden lg:flex items-center space-x-8">
-                <a routerLink="/home" routerLinkActive="text-blue-600"
-                    class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
-                    <span>Home</span>
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                <a routerLink="/home" routerLinkActive="text-cyan-400"
+                    class="relative text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group cyber-link">
+                    <span class="relative z-10">Home</span>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-x-0 group-hover:scale-x-100">
+                    </div>
+                    <div
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:w-full transition-all duration-300">
+                    </div>
                 </a>
 
-                <!-- Categories Dropdown -->
+                <!-- Futuristic Categories Dropdown -->
                 <div class="relative group">
                     <button
-                        class="flex items-center text-gray-700 hover:text-blue-600 font-medium transition-all duration-300">
-                        <span>Categories</span>
+                        class="flex items-center text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 cyber-link">
+                        <span class="relative z-10">Categories</span>
                         <i
-                            class="fas fa-chevron-down ml-1 text-sm group-hover:rotate-180 transition-transform duration-300"></i>
+                            class="fas fa-chevron-down ml-2 text-sm group-hover:rotate-180 transition-transform duration-300 text-cyan-400"></i>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </button>
-                    <!-- Dropdown Menu -->
+                    <!-- Futuristic Dropdown Menu -->
                     <div
-                        class="absolute top-full left-0 mt-2 w-64 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                        <div class="p-4">
-                            <div class="grid grid-cols-1 gap-2">
+                        class="absolute top-full left-0 mt-4 w-80 bg-gradient-to-br from-slate-900/95 to-blue-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-cyan-400/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                        <!-- Glowing border effect -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-cyan-400/20 rounded-2xl animate-pulse">
+                        </div>
+
+                        <div class="relative p-6">
+                            <h3 class="text-cyan-400 font-bold mb-4 text-sm uppercase tracking-wider">Product Categories
+                            </h3>
+                            <div class="grid grid-cols-1 gap-3">
                                 <a href="#"
-                                    class="flex items-center p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200 group">
-                                    <i class="fas fa-tshirt text-blue-500 mr-3"></i>
-                                    <span class="text-gray-700 group-hover:text-blue-600">Fashion</span>
+                                    class="flex items-center p-4 rounded-xl hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-500/10 transition-all duration-300 group border border-transparent hover:border-cyan-400/30">
+                                    <div
+                                        class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                        <i class="fas fa-tshirt text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <span
+                                            class="text-gray-300 group-hover:text-cyan-400 font-medium transition-colors duration-300">Fashion</span>
+                                        <p class="text-xs text-gray-500 mt-1">Clothing & Accessories</p>
+                                    </div>
+                                    <i
+                                        class="fas fa-arrow-right text-cyan-400 ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0"></i>
                                 </a>
                                 <a href="#"
-                                    class="flex items-center p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200 group">
-                                    <i class="fas fa-laptop text-blue-500 mr-3"></i>
-                                    <span class="text-gray-700 group-hover:text-blue-600">Electronics</span>
+                                    class="flex items-center p-4 rounded-xl hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-500/10 transition-all duration-300 group border border-transparent hover:border-cyan-400/30">
+                                    <div
+                                        class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                        <i class="fas fa-laptop text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <span
+                                            class="text-gray-300 group-hover:text-cyan-400 font-medium transition-colors duration-300">Electronics</span>
+                                        <p class="text-xs text-gray-500 mt-1">Tech & Gadgets</p>
+                                    </div>
+                                    <i
+                                        class="fas fa-arrow-right text-cyan-400 ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0"></i>
                                 </a>
                                 <a href="#"
-                                    class="flex items-center p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200 group">
-                                    <i class="fas fa-home text-blue-500 mr-3"></i>
-                                    <span class="text-gray-700 group-hover:text-blue-600">Home & Living</span>
-                                </a>
-                                <a href="#"
-                                    class="flex items-center p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200 group">
-                                    <i class="fas fa-dumbbell text-blue-500 mr-3"></i>
-                                    <span class="text-gray-700 group-hover:text-blue-600">Sports</span>
+                                    class="flex items-center p-4 rounded-xl hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-500/10 transition-all duration-300 group border border-transparent hover:border-cyan-400/30">
+                                    <div
+                                        class="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                        <i class="fas fa-home text-white text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <span
+                                            class="text-gray-300 group-hover:text-cyan-400 font-medium transition-colors duration-300">Home
+                                            & Living</span>
+                                        <p class="text-xs text-gray-500 mt-1">Furniture & Decor</p>
+                                    </div>
+                                    <i
+                                        class="fas fa-arrow-right text-cyan-400 ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a routerLink="/products" routerLinkActive="text-blue-600"
-                    class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
-                    <span>Products</span>
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                <a routerLink="/products" routerLinkActive="text-cyan-400"
+                    class="relative text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group cyber-link">
+                    <span class="relative z-10">Products</span>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-x-0 group-hover:scale-x-100">
+                    </div>
+                    <div
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:w-full transition-all duration-300">
+                    </div>
                 </a>
 
-                <a routerLink="/brands" routerLinkActive="text-blue-600"
-                    class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
-                    <span>Brands</span>
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                <a routerLink="/brands" routerLinkActive="text-cyan-400"
+                    class="relative text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group cyber-link">
+                    <span class="relative z-10">Brands</span>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-x-0 group-hover:scale-x-100">
+                    </div>
+                    <div
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:w-full transition-all duration-300">
+                    </div>
                 </a>
 
-                <a routerLink="/about" routerLinkActive="text-blue-600"
-                    class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
-                    <span>About</span>
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-                </a>
-
-                <a href="#"
-                    class="relative text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
-                    <span>Contact</span>
-                    <span
-                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                <a routerLink="/about" routerLinkActive="text-cyan-400"
+                    class="relative text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group cyber-link">
+                    <span class="relative z-10">About</span>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-x-0 group-hover:scale-x-100">
+                    </div>
+                    <div
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:w-full transition-all duration-300">
+                    </div>
                 </a>
             </div>
             }
 
 
-            <!-- Right Section (Login/Register) -->
+            <!-- Futuristic Right Section (Auth/Actions) -->
             @if (isLogin===false) {
             <div class="flex items-center space-x-4">
-
-                <!-- Search Icon (Mobile) -->
-                <button class="lg:hidden p-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
-                    <i class="fas fa-search"></i>
+                <!-- Search Icon with glow effect -->
+                <button
+                    class="lg:hidden relative p-3 text-gray-400 hover:text-cyan-400 transition-all duration-300 group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <i class="fas fa-search relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
                 </button>
 
-                <!-- Login Button -->
-                <a routerLink="/login" routerLinkActive="text-blue-600"
-                    class="hidden sm:flex items-center px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
-                    <i class="fas fa-sign-in-alt mr-2 group-hover:scale-110 transition-transform duration-300"></i>
-                    <span>Login</span>
+                <!-- Futuristic Login Button -->
+                <a routerLink="/login" routerLinkActive="text-cyan-400"
+                    class="hidden sm:flex items-center px-6 py-3 text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group relative overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg">
+                    </div>
+                    <div
+                        class="absolute inset-0 border border-cyan-400/30 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <i
+                        class="fas fa-sign-in-alt mr-2 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="relative z-10">LOGIN</span>
                 </a>
 
-                <!-- Register Button -->
-                <a routerLink="/register" routerLinkActive="text-blue-600"
-                    class="hidden sm:flex items-center px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105">
-                    <i class="fas fa-user-plus mr-2"></i>
-                    <span>Register</span>
+                <!-- Futuristic Register Button -->
+                <a routerLink="/register" routerLinkActive="bg-gradient-to-r from-cyan-600 to-purple-600"
+                    class="hidden sm:flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold rounded-xl shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-105 relative overflow-hidden group">
+                    <!-- Animated background -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <!-- Scanning line effect -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-1000">
+                    </div>
+                    <i class="fas fa-user-plus mr-2 relative z-10"></i>
+                    <span class="relative z-10 tracking-wider">REGISTER</span>
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button class="lg:hidden p-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
-                    <i class="fas fa-bars text-lg"></i>
+                <button
+                    class="lg:hidden relative p-3 text-gray-400 hover:text-cyan-400 transition-all duration-300 group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <i
+                        class="fas fa-bars text-lg relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
                 </button>
             </div>
             }
             @else {
-            <!-- Cart Icon -->
-            <div class="flex space-x-2">
-                <button class="relative p-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
-                    <a routerLink="/cart" routerLinkActive="text-blue-600">
+            <!-- Futuristic Cart & Actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Cart Icon with holographic effect -->
+                <div class="flex space-x-3">
+                    <button class="relative p-3 text-gray-400 hover:text-cyan-400 transition-all duration-300 group">
+                        <a routerLink="/cart" routerLinkActive="text-cyan-400" class="relative">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            </div>
+                            <i
+                                class="fas fa-shopping-cart text-xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                            <!-- Futuristic badge -->
+                            <span
+                                class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-500 text-white text-xs rounded-full flex items-center justify-center font-bold shadow-lg animate-pulse">3</span>
+                            <!-- Glow effect -->
+                            <div
+                                class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-cyan-400/50 to-purple-500/50 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            </div>
+                        </a>
+                    </button>
+
+                    <!-- Wishlist Icon -->
+                    <button class="relative p-3 text-gray-400 hover:text-red-400 transition-all duration-300 group">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                         <i
-                            class="fas fa-shopping-cart text-lg group-hover:scale-110 transition-transform duration-300"></i>
+                            class="fas fa-heart text-xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
                         <span
-                            class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full flex items-center justify-center font-bold">3</span>
-                    </a>
-                </button>
+                            class="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-r from-red-400 to-pink-500 text-white text-xs rounded-full flex items-center justify-center font-bold shadow-lg animate-pulse">2</span>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-red-400/50 to-pink-500/50 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
+                    </button>
+                </div>
 
-                <!-- Wishlist Icon -->
-                <button class="relative p-2 text-gray-600 hover:text-red-500 transition-colors duration-300 group">
-                    <i class="fas fa-heart text-lg group-hover:scale-110 transition-transform duration-300"></i>
-                    <span
-                        class="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full flex items-center justify-center font-bold">2</span>
-                </button>
+                <!-- Futuristic Sign Out Button -->
+                <a routerLink="/login"
+                    class="hidden sm:flex items-center px-6 py-3 text-gray-300 hover:text-red-400 font-medium transition-all duration-300 group relative overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg">
+                    </div>
+                    <div
+                        class="absolute inset-0 border border-red-400/30 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <i
+                        class="fas fa-sign-out-alt mr-2 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                    <span class="relative z-10 tracking-wider">LOGOUT</span>
+                </a>
             </div>
-
-            <!-- Sign Out Button -->
-            <a routerLink="/login" routerLinkActive="text-blue-600"
-                class="hidden sm:flex items-center px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 group">
-                <i class="fas fa-sign-out-alt mr-2 group-hover:scale-110 transition-transform duration-300"></i>
-                <span>Sign Out</span>
-            </a>
             }
 
         </div>
     </div>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300"
+    <!-- Futuristic Mobile Menu Overlay -->
+    <div class="lg:hidden fixed inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/90 to-purple-900/90 backdrop-blur-lg z-40 opacity-0 invisible transition-all duration-500"
         id="mobile-menu-overlay">
+        <!-- Animated grid background -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="grid grid-cols-12 h-full">
+                @for (i of [1,2,3,4,5,6,7,8,9,10,11,12]; track i) {
+                <div class="border-r border-cyan-400/20"></div>
+                }
+            </div>
+        </div>
+
         <!-- Mobile Menu Panel -->
-        <div class="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl transform translate-x-full transition-transform duration-300"
+        <div class="fixed right-0 top-0 h-full w-80 bg-gradient-to-br from-slate-900/95 to-blue-900/95 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-500 border-l border-cyan-400/30"
             id="mobile-menu-panel">
-            <div class="p-6">
+            <!-- Glowing edge -->
+            <div
+                class="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-cyan-400 via-purple-400 to-cyan-400 animate-pulse">
+            </div>
+
+            <div class="p-6 relative">
                 <!-- Mobile Menu Header -->
                 <div class="flex justify-between items-center mb-8">
                     <h3
-                        class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        Menu</h3>
-                    <button class="p-2 text-gray-600 hover:text-blue-600 transition-colors duration-300">
-                        <i class="fas fa-times text-lg"></i>
+                        class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent tracking-wider">
+                        NEXUS MENU
+                    </h3>
+                    <button class="relative p-3 text-gray-400 hover:text-cyan-400 transition-all duration-300 group">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
+                        <i
+                            class="fas fa-times text-lg relative z-10 group-hover:rotate-90 transition-transform duration-300"></i>
                     </button>
                 </div>
 
-                <!-- Mobile Search -->
-                <div class="relative mb-6">
-                    <input type="text" placeholder="Search products..."
-                        class="w-full px-4 py-3 pl-10 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <!-- Futuristic Mobile Search -->
+                <div class="relative mb-8">
+                    <input type="text" placeholder="Search future products..."
+                        class="w-full px-6 py-4 pl-12 bg-gradient-to-r from-slate-800/50 to-blue-800/50 border border-cyan-400/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-gray-300 placeholder-gray-500 backdrop-blur-sm transition-all duration-300">
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-cyan-400"></i>
+                    <div
+                        class="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/0 via-cyan-400/10 to-cyan-400/0 opacity-0 focus-within:opacity-100 transition-all duration-300 pointer-events-none">
+                    </div>
                 </div>
 
-                <!-- Mobile Navigation Links -->
-                <nav class="space-y-4 mb-8">
+                <!-- Futuristic Mobile Navigation Links -->
+                <nav class="space-y-3 mb-8">
                     <a href="#"
-                        class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
-                        <i class="fas fa-home mr-3"></i>
-                        <span>Home</span>
+                        class="flex items-center p-4 text-gray-300 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-500/10 hover:text-cyan-400 rounded-xl transition-all duration-300 group border border-transparent hover:border-cyan-400/30">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-home text-white text-sm"></i>
+                        </div>
+                        <span class="font-medium">Home</span>
+                        <div
+                            class="ml-auto w-2 h-2 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
 
-                    <!-- Mobile Categories -->
-                    <div class="border-t pt-4">
-                        <p class="text-sm font-semibold text-gray-500 mb-2 px-3">CATEGORIES</p>
+                    <!-- Mobile Categories Section -->
+                    <div class="border-t border-cyan-400/20 pt-6">
+                        <p class="text-sm font-bold text-cyan-400 mb-4 px-4 uppercase tracking-wider">Categories</p>
+
                         <a href="#"
-                            class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
-                            <i class="fas fa-tshirt mr-3"></i>
-                            <span>Fashion</span>
+                            class="flex items-center p-4 text-gray-300 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-500/10 hover:text-cyan-400 rounded-xl transition-all duration-300 group border border-transparent hover:border-cyan-400/30">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-tshirt text-white text-sm"></i>
+                            </div>
+                            <span class="font-medium">Fashion</span>
+                            <div
+                                class="ml-auto w-2 h-2 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            </div>
                         </a>
+
                         <a href="#"
-                            class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
-                            <i class="fas fa-laptop mr-3"></i>
-                            <span>Electronics</span>
+                            class="flex items-center p-4 text-gray-300 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-500/10 hover:text-cyan-400 rounded-xl transition-all duration-300 group border border-transparent hover:border-cyan-400/30">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-laptop text-white text-sm"></i>
+                            </div>
+                            <span class="font-medium">Electronics</span>
+                            <div
+                                class="ml-auto w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            </div>
                         </a>
+
                         <a href="#"
-                            class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
-                            <i class="fas fa-home mr-3"></i>
-                            <span>Home & Living</span>
-                        </a>
-                        <a href="#"
-                            class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
-                            <i class="fas fa-dumbbell mr-3"></i>
-                            <span>Sports</span>
+                            class="flex items-center p-4 text-gray-300 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-500/10 hover:text-cyan-400 rounded-xl transition-all duration-300 group border border-transparent hover:border-cyan-400/30">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-home text-white text-sm"></i>
+                            </div>
+                            <span class="font-medium">Home & Living</span>
+                            <div
+                                class="ml-auto w-2 h-2 bg-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            </div>
                         </a>
                     </div>
 
                     <a href="#"
-                        class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
-                        <i class="fas fa-box mr-3"></i>
-                        <span>Products</span>
-                    </a>
-                    <a href="#"
-                        class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
-                        <i class="fas fa-fire mr-3"></i>
-                        <span>Deals</span>
-                    </a>
-                    <a href="#"
-                        class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
-                        <i class="fas fa-info-circle mr-3"></i>
-                        <span>About</span>
-                    </a>
-                    <a href="#"
-                        class="flex items-center p-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-200">
-                        <i class="fas fa-envelope mr-3"></i>
-                        <span>Contact</span>
+                        class="flex items-center p-4 text-gray-300 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-500/10 hover:text-cyan-400 rounded-xl transition-all duration-300 group border border-transparent hover:border-cyan-400/30">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-box text-white text-sm"></i>
+                        </div>
+                        <span class="font-medium">Products</span>
+                        <div
+                            class="ml-auto w-2 h-2 bg-indigo-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
                     </a>
                 </nav>
 
-                <!-- Mobile Login/Register -->
-                <div class="space-y-3 border-t pt-6">
+                <!-- Futuristic Mobile Auth Buttons -->
+                <div class="space-y-4 border-t border-cyan-400/20 pt-6">
                     <a href="#"
-                        class="flex items-center justify-center w-full px-4 py-3 border border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-600 rounded-lg transition-all duration-300">
-                        <i class="fas fa-sign-in-alt mr-2"></i>
-                        <span>Login</span>
+                        class="flex items-center justify-center w-full px-6 py-4 border border-cyan-400/30 text-gray-300 hover:border-cyan-400 hover:text-cyan-400 rounded-xl transition-all duration-300 relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
+                        <i class="fas fa-sign-in-alt mr-3 relative z-10"></i>
+                        <span class="relative z-10 font-medium tracking-wider">LOGIN</span>
                     </a>
+
                     <a href="#"
-                        class="flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg shadow-lg transition-all duration-300">
-                        <i class="fas fa-user-plus mr-2"></i>
-                        <span>Register</span>
+                        class="flex items-center justify-center w-full px-6 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white rounded-xl shadow-2xl transition-all duration-300 relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-1000">
+                        </div>
+                        <i class="fas fa-user-plus mr-3 relative z-10"></i>
+                        <span class="relative z-10 font-bold tracking-wider">REGISTER</span>
                     </a>
                 </div>
             </div>
