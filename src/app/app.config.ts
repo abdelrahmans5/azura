@@ -4,15 +4,18 @@ import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angu
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes,
-      withInMemoryScrolling({ scrollPositionRestoration: 'top' }),
-      withViewTransitions()
-    ), provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch())
+      withInMemoryScrolling({ scrollPositionRestoration: 'top' })
+    ),
+    // provideClientHydration(),
+    provideHttpClient(withFetch()),
+    provideAnimations()
   ]
 };

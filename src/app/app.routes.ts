@@ -28,7 +28,8 @@ export const routes: Routes = [
             { path: 'brands', component: BrandsComponent, title: 'Brands' },
             { path: 'cart', component: CartComponent, title: 'Cart' },
             { path: 'checkout', component: CheckoutComponent, title: 'Checkout' },
-            { path: 'details', component: DetailsComponent, title: 'Details' },
+            { path: 'details/:id', component: DetailsComponent, title: 'Details' },
+            { path: 'details/:slug/:id', component: DetailsComponent, title: 'Details' },
             { path: 'categories', component: CategoriesComponent, title: 'Categories' },
             { path: 'about', component: AboutComponent, title: 'About' }
         ]

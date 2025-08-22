@@ -1,20 +1,19 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ProductsService } from '../../core/services/products/products.service';
 import { Product } from '../../core/models/product.interface';
+import { CardComponent } from "../../shared/components/card/card.component";
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CardComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit {
 
   private readonly productsService = inject(ProductsService);
-  private readonly router = inject(Router);
 
   // Data properties
   productsList: Product[] = [];
@@ -51,7 +50,6 @@ export class ProductsComponent implements OnInit {
         this.isLoading = false;
       },
       error: (error) => {
-        console.error('Error fetching products:', error);
         this.error = 'Failed to load products. Please try again later.';
         this.isLoading = false;
       }
@@ -142,38 +140,4 @@ export class ProductsComponent implements OnInit {
     this.updatePagination();
   }
 
-  // Product interaction methods
-  addToCart(product: Product): void {
-    // TODO: Implement cart service
-    console.log('Adding to cart:', product.title);
-    // You can show a toast notification here
-    alert(`${product.title} added to cart!`);
-  }
-
-  addToWishlist(product: Product): void {
-    // TODO: Implement wishlist service
-    console.log('Adding to wishlist:', product.title);
-    alert(`${product.title} added to wishlist!`);
-  }
-
-  quickView(product: Product): void {
-    // TODO: Implement quick view modal
-    console.log('Quick view:', product.title);
-  }
-
-  goToProductDetails(productId: string): void {
-    this.router.navigate(['/product', productId]);
-  }
-
-  // Utility methods
-  isNewProduct(createdAt: string): boolean {
-    const productDate = new Date(createdAt);
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-    return productDate > thirtyDaysAgo;
-  }
-
-  onImageError(event: any): void {
-    event.target.src = '/images/placeholder-product.jpg'; // Fallback image
-  }
 }
