@@ -2,6 +2,8 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5.
 
+**🚀 PRODUCTION BUILD - All dependency conflicts resolved - Build: 2025-08-22 20:55**
+
 ## Development server
 
 To start a local development server, run:
