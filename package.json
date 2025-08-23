@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:e-commerce": "node dist/e-commerce/server/server.mjs"
+    "serve:ssr:e-commerce": "node dist/e-commerce/server/server.mjs",
+    "install:clean": "node install-clean.js"
   },
   "prettier": {
     "overrides": [
