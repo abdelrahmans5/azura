@@ -1,18 +1,18 @@
 {
-  "version": 2,
-  "buildCommand": "npm ci --legacy-peer-deps && npm run build",
-  "installCommand": "npm ci --legacy-peer-deps",
-  "outputDirectory": "dist/e-commerce/browser",
-  "framework": null,
-  "functions": {
-    "dist/e-commerce/server/server.mjs": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/dist/e-commerce/server/server.mjs"
-    }
-  ]
+    "version": 2,
+    "buildCommand": "npm ci --legacy-peer-deps && npm run build",
+    "installCommand": "npm ci --legacy-peer-deps",
+    "outputDirectory": "dist/e-commerce/browser",
+    "framework": null,
+    "functions": {
+        "dist/e-commerce/server/server.mjs": {
+            "runtime": "nodejs18.x"
+        }
+    },
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/dist/e-commerce/server/server.mjs"
+        }
+    ]
 }
