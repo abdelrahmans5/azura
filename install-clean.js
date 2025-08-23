@@ -39,7 +39,7 @@ try {
     console.log('✅ Ultra-clean install completed successfully!');
 } catch (error) {
     console.error('❌ Install failed:', error.message);
-    
+
     // Fallback: try with even more permissive flags
     console.log('🔄 Trying fallback install with --force...');
     try {
