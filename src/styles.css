@@ -1,7 +1,5 @@
-/* Import TailwindCSS */
-@import "tailwindcss/base";
-@import "tailwindcss/components"; 
-@import "tailwindcss/utilities";
+/* Import TailwindCSS 4.x */
+@import "tailwindcss";
 
 /* Import Flowbite theme */
 @import "flowbite/src/themes/default";
