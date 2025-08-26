@@ -19,7 +19,7 @@ export class BrandsComponent implements OnInit {
   customOptions: OwlOptions = {
     loop: true,
     autoplay: true,
-    autoplayTimeout: 2000,
+    autoplayTimeout: 3000,
     autoplayHoverPause: false,
     dots: false,
     nav: false,

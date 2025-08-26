@@ -1,0 +1,17 @@
+/* Custom Owl Carousel Navigation Styling */
+::ng-deep .owl-nav button {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+::ng-deep .owl-nav button:hover {
+    background: transparent !important;
+}
+
+::ng-deep .owl-nav button.owl-prev,
+::ng-deep .owl-nav button.owl-next {
+    background: transparent !important;
+    color: transparent !important;
+}
