@@ -1,11 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CategoriesService } from '../../core/services/categories/categories.service';
 import { Category } from '../../core/models/categories.interface';
 
 @Component({
   selector: 'app-categories',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css'
 })

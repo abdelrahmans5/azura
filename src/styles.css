@@ -1,8 +1,25 @@
+/* Import TailwindCSS 4.x */
 @import "tailwindcss";
-@import "flowbite/src/themes/default";
-@plugin "flowbite/plugin";
-@source "../node_modules/flowbite";
 
-@utility container {
+/* Import Flowbite theme */
+@import "flowbite/src/themes/default";
+
+/* Custom base styles for better performance */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Custom container utility */
+.container {
     margin-inline: auto;
 }
