@@ -24,7 +24,6 @@ export class CategoriesComponent implements OnInit {
         this.categoriesList = response.data;
       },
       error: (error) => {
-        // Handle error silently or show user-friendly message
       }
     });
   }
