@@ -1,1 +1,303 @@
-<p>register works!</p>
+<!-- Futuristic Register Component -->
+<main
+    class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden flex items-center justify-center">
+
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <!-- Grid Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="grid grid-cols-12 h-full">
+                @for (i of [1,2,3,4,5,6,7,8,9,10,11,12]; track i) {
+                <div class="border-r border-cyan-400/20"></div>
+                }
+            </div>
+        </div>
+        <!-- Floating Particles -->
+        <div class="absolute top-32 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-pulse opacity-60"></div>
+        <div class="absolute top-64 right-32 w-1 h-1 bg-purple-400 rounded-full animate-ping opacity-40"></div>
+        <div class="absolute bottom-32 left-1/3 w-1 h-1 bg-cyan-300 rounded-full animate-pulse opacity-50"></div>
+    </div>
+
+    <!-- Register Form Container -->
+    <div class="relative z-10 w-full max-w-md mx-auto px-6 my-5">
+
+        <!-- Quantum Header -->
+        <div class="text-center mb-8">
+            <div class="relative mb-6">
+                <h1
+                    class="text-4xl font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    QUANTUM REGISTER
+                </h1>
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-blue-400/20 to-purple-400/20 blur-2xl -z-10">
+                </div>
+            </div>
+            <p class="text-gray-300 text-sm">
+                Join the <span class="text-cyan-400 font-semibold">Digital Nexus</span>
+            </p>
+        </div>
+
+        <!-- Register Form -->
+        <div
+            class="bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-8 shadow-2xl shadow-cyan-500/10">
+
+            <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="space-y-6">
+
+                <!-- Name Field -->
+                <div class="relative">
+                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="fullName">
+                        <i class="fas fa-user mr-2"></i>Full Name
+                    </label>
+                    <input formControlName="name" type="text"
+                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
+                        [class.border-red-500]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+                        [class.border-cyan-400]="!registerForm.get('name')?.invalid || !registerForm.get('name')?.touched"
+                        placeholder="Enter your full name" id="fullName">
+
+                    <!-- Validation Alert Messages -->
+                    @if (registerForm.get('name')?.errors && registerForm.get('name')?.touched) {
+                    <div
+                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
+                            @if (registerForm.get('name')?.errors?.['required']) {
+                            <span class="text-red-300 text-xs font-medium">Name is required for quantum access</span>
+                            }
+                            @if (registerForm.get('name')?.errors?.['minlength']) {
+                            <span class="text-red-300 text-xs font-medium">Name must be at least 3 characters</span>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="relative">
+                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="email">
+                        <i class="fas fa-envelope mr-2"></i>Email Address
+                    </label>
+                    <input formControlName="email" type="email"
+                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
+                        [class.border-red-500]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                        [class.border-cyan-400]="!registerForm.get('email')?.invalid || !registerForm.get('email')?.touched"
+                        placeholder="Enter your email" id="email">
+
+                    <!-- Validation Alert Messages -->
+                    @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+                    <div
+                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
+                            @if (registerForm.get('email')?.errors?.['required']) {
+                            <span class="text-red-300 text-xs font-medium">Email is required for nexus
+                                connection</span>
+                            }
+                            @if (registerForm.get('email')?.errors?.['email']) {
+                            <span class="text-red-300 text-xs font-medium">Please enter a valid email format</span>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="relative">
+                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="password">
+                        <i class="fas fa-lock mr-2"></i>Password
+                    </label>
+                    <input formControlName="password" type="password"
+                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
+                        [class.border-red-500]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                        [class.border-cyan-400]="!registerForm.get('password')?.invalid || !registerForm.get('password')?.touched"
+                        placeholder="Create a secure password" id="password">
+
+                    <!-- Validation Alert Messages -->
+                    @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+                    <div
+                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
+                            @if (registerForm.get('password')?.errors?.['required']) {
+                            <span class="text-red-300 text-xs font-medium">Quantum password is required</span>
+                            }
+                            @if (registerForm.get('password')?.errors?.['minlength']) {
+                            <span class="text-red-300 text-xs font-medium">Password must be at least 8
+                                characters</span>
+                            }
+                            @if (registerForm.get('password')?.errors?.['pattern']) {
+                            <span class="text-red-300 text-xs font-medium">Password must contain uppercase, lowercase,
+                                number & special character</span>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="relative">
+                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="rePassword">
+                        <i class="fas fa-shield-alt mr-2"></i>Confirm Password
+                    </label>
+                    <input formControlName="rePassword" type="password"
+                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
+                        [class.border-red-500]="registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched"
+                        [class.border-cyan-400]="!registerForm.get('rePassword')?.invalid || !registerForm.get('rePassword')?.touched"
+                        placeholder="Confirm your password" id="rePassword">
+
+                    <!-- Validation Alert Messages -->
+                    @if (registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched) {
+                    <div
+                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
+                            @if (registerForm.get('rePassword')?.errors?.['required']) {
+                            <span class="text-red-300 text-xs font-medium">Password confirmation is required</span>
+                            }
+                            @if (registerForm.get('rePassword')?.errors?.['mismatch'] ||
+                            registerForm.errors?.['mismatch']) {
+                            <span class="text-red-300 text-xs font-medium">Passwords do not match - quantum sync
+                                failed</span>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                </div>
+
+                <!-- Phone Field -->
+                <div class="relative">
+                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="phone">
+                        <i class="fas fa-phone mr-2"></i>Phone Number
+                    </label>
+                    <input formControlName="phone" type="tel"
+                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
+                        [class.border-red-500]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
+                        [class.border-cyan-400]="!registerForm.get('phone')?.invalid || !registerForm.get('phone')?.touched"
+                        placeholder="Enter your phone number" id="phone">
+
+                    <!-- Validation Alert Messages -->
+                    @if (registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched) {
+                    <div
+                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
+                            @if (registerForm.get('phone')?.errors?.['required']) {
+                            <span class="text-red-300 text-xs font-medium">Phone number is required for nexus
+                                contact</span>
+                            }
+                            @if (registerForm.get('phone')?.errors?.['pattern']) {
+                            <span class="text-red-300 text-xs font-medium">Please enter a valid Egyptian phone number
+                                (01xxxxxxxxx)</span>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                </div>
+
+                <!-- Terms Checkbox -->
+                <div class="flex items-start space-x-3">
+                    <input type="checkbox" id="terms"
+                        class="mt-1 w-4 h-4 text-cyan-400 bg-slate-900 border-cyan-400/30 rounded focus:ring-cyan-400/50 focus:ring-2"
+                        required>
+                    <label for="terms" class="text-gray-300 text-sm">
+                        I agree to the <span class="text-cyan-400 hover:text-cyan-300 cursor-pointer">Terms of
+                            Service</span>
+                        and <span class="text-cyan-400 hover:text-cyan-300 cursor-pointer">Privacy Policy</span>
+                    </label>
+                </div>
+
+                <!-- Server Error Message -->
+                @if (msgError) {
+                <div class="relative overflow-hidden">
+                    <!-- Animated Background -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-red-600/20 via-pink-600/20 to-red-600/20 animate-pulse">
+                    </div>
+
+                    <!-- Error Alert -->
+                    <div
+                        class="relative bg-gradient-to-r from-red-500/30 to-pink-500/30 border border-red-400/50 rounded-xl p-4 backdrop-blur-sm">
+                        <!-- Glowing Border Effect -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-red-400/20 to-pink-400/20 rounded-xl blur-sm">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="relative flex items-center space-x-3">
+                            <!-- Animated Warning Icon -->
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-gradient-to-r from-red-400 to-pink-400 rounded-full flex items-center justify-center animate-pulse">
+                                    <i class="fas fa-exclamation-triangle text-white text-sm"></i>
+                                </div>
+                            </div>
+
+                            <!-- Error Message -->
+                            <div class="flex-1">
+                                <h4 class="text-red-300 font-semibold text-sm mb-1">
+                                    <i class="fas fa-wifi mr-2"></i>NEXUS CONNECTION ERROR
+                                </h4>
+                                <p class="text-red-200 text-xs leading-relaxed">
+                                    {{ msgError }}
+                                </p>
+                            </div>
+
+                            <!-- Close Button -->
+                            <button type="button" (click)="msgError = null"
+                                class="flex-shrink-0 text-red-300 hover:text-red-100 transition-colors duration-200">
+                                <i class="fas fa-times text-sm"></i>
+                            </button>
+                        </div>
+
+                        <!-- Bottom Glow Line -->
+                        <div
+                            class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent">
+                        </div>
+                    </div>
+                </div>
+                }
+
+                <!-- Register Button -->
+                <button [disabled]="isLoading" type="submit"
+                    class="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-900 font-bold py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-cyan-400/50 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400/50">
+                    <i class="fas fa-rocket mr-2"></i>
+                    REGISTER NOW
+                    @if (isLoading) {
+                    <i class="fas fa-spinner fa-spin"></i>
+                    }
+                </button>
+
+                <!-- Login Link -->
+                <div class="text-center pt-4">
+                    <p class="text-gray-400 text-sm">
+                        Already have an account?
+                        <a routerLink="/login"
+                            class="text-cyan-400 hover:text-cyan-300 font-semibold ml-1 transition-colors duration-300">
+                            Sign In
+                        </a>
+                    </p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</main>
