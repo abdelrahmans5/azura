@@ -119,6 +119,59 @@
                     </a>
                 </div>
 
+
+                <!-- Server Error Message -->
+                @if (msgError) {
+                <div class="relative overflow-hidden">
+                    <!-- Animated Background -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-red-600/20 via-pink-600/20 to-red-600/20 animate-pulse">
+                    </div>
+
+                    <!-- Error Alert -->
+                    <div
+                        class="relative bg-gradient-to-r from-red-500/30 to-pink-500/30 border border-red-400/50 rounded-xl p-4 backdrop-blur-sm">
+                        <!-- Glowing Border Effect -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-red-400/20 to-pink-400/20 rounded-xl blur-sm">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="relative flex items-center space-x-3">
+                            <!-- Animated Warning Icon -->
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="w-8 h-8 bg-gradient-to-r from-red-400 to-pink-400 rounded-full flex items-center justify-center animate-pulse">
+                                    <i class="fas fa-exclamation-triangle text-white text-sm"></i>
+                                </div>
+                            </div>
+
+                            <!-- Error Message -->
+                            <div class="flex-1">
+                                <h4 class="text-red-300 font-semibold text-sm mb-1">
+                                    <i class="fas fa-wifi mr-2"></i>NEXUS CONNECTION ERROR
+                                </h4>
+                                <p class="text-red-200 text-xs leading-relaxed">
+                                    {{ msgError }}
+                                </p>
+                            </div>
+
+                            <!-- Close Button -->
+                            <button type="button" (click)="msgError = null"
+                                class="flex-shrink-0 text-red-300 hover:text-red-100 transition-colors duration-200">
+                                <i class="fas fa-times text-sm"></i>
+                            </button>
+                        </div>
+
+                        <!-- Bottom Glow Line -->
+                        <div
+                            class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-red-400 to-transparent">
+                        </div>
+                    </div>
+                </div>
+                }
+
+
                 <!-- Login Button -->
                 <button [disabled]="isLoading" type="submit"
                     class="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-900 font-bold py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-cyan-400/50 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400/50">
