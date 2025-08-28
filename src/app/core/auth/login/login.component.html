@@ -45,6 +45,7 @@
 
                 <!-- Email Field -->
                 <div class="relative">
+                    @let emailControl = loginForm.get('email');
                     <label class="block text-cyan-400 text-sm font-semibold mb-2">
                         <i class="fas fa-envelope mr-2"></i>Email Address
                     </label>
@@ -52,16 +53,16 @@
                         class="w-full bg-slate-900/70 border border-cyan-400/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
                         placeholder="Enter your email">
 
-                    @if(loginForm.get('email')?.errors && loginForm.get('email')?.touched){
+                    @if(emailControl?.errors && emailControl?.touched){
                     <div
                         class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (loginForm.get('email')?.errors?.['required']) {
+                            @if (emailControl?.errors?.['required']) {
                             <span class="text-red-300 text-xs font-medium">Email is required for nexus
                                 connection</span>
                             }
-                            @if (loginForm.get('email')?.errors?.['email']) {
+                            @if (emailControl?.errors?.['email']) {
                             <span class="text-red-300 text-xs font-medium">Please enter a valid email format</span>
                             }
                         </div>
@@ -74,25 +75,26 @@
 
                 <!-- Password Field -->
                 <div class="relative">
+                    @let passwordControl = loginForm.get('password');
                     <label class="block text-cyan-400 text-sm font-semibold mb-2">
                         <i class="fas fa-lock mr-2"></i>Password
                     </label>
                     <input formControlName="password" type="password"
                         class="w-full bg-slate-900/70 border border-cyan-400/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
                         placeholder="Enter your password">
-                    @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                    @if (passwordControl?.invalid && passwordControl?.touched) {
                     <div
                         class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (loginForm.get('password')?.errors?.['required']) {
+                            @if (passwordControl?.errors?.['required']) {
                             <span class="text-red-300 text-xs font-medium">Quantum password is required</span>
                             }
-                            @if (loginForm.get('password')?.errors?.['minlength']) {
+                            @if (passwordControl?.errors?.['minlength']) {
                             <span class="text-red-300 text-xs font-medium">Password must be at least 8
                                 characters</span>
                             }
-                            @if (loginForm.get('password')?.errors?.['pattern']) {
+                            @if (passwordControl?.errors?.['pattern']) {
                             <span class="text-red-300 text-xs font-medium">Password must contain uppercase, lowercase,
                                 number & special character</span>
                             }

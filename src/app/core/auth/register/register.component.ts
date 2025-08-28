@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, AbstractControl, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
@@ -10,25 +10,33 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
   private readonly authService = inject(AuthService)
   private readonly router = inject(Router)
   private readonly fb = inject(FormBuilder)
 
+  ngOnInit(): void {
+    this.initForm();
+  }
+
 
   msgError: string | null = null;
   isLoading: boolean = false;
+  eyeFlag: boolean = true;
+  registerForm!: FormGroup;
 
-  registerForm: FormGroup = this.fb.group({
-    name: [null, [Validators.required, Validators.minLength(3)]],
-    email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/)]],
-    rePassword: [null, [Validators.required]],
-    phone: [null, [Validators.required, Validators.pattern(/^(01)[0-9]{9}$/)]],
-  }, { validators: this.passwordMatchValidator });
+  initForm() {
+    this.registerForm = this.fb.group({
+      name: [null, [Validators.required, Validators.minLength(3)]],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/)]],
+      rePassword: [null, [Validators.required]],
+      phone: [null, [Validators.required, Validators.pattern(/^(01)[0-9]{9}$/)]],
+    }, { validators: this.passwordMatchValidator });
+  }
 
-  // Custom validator for password matching
+
   passwordMatchValidator(control: AbstractControl) {
     return control.get('password')?.value === control.get('rePassword')?.value ? null : { mismatch: true };
   }
@@ -53,6 +61,7 @@ export class RegisterComponent {
         }
       });
     } else {
+      this.registerForm.markAllAsTouched();
       this.msgError = 'Form is invalid';
     }
   }

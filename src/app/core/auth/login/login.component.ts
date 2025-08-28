@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
@@ -10,18 +10,25 @@ import { FormBuilder, FormControl, FormGroup, Validators, FormsModule, ReactiveF
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private readonly authService = inject(AuthService)
   private readonly router = inject(Router)
   private readonly fb = inject(FormBuilder)
 
+  ngOnInit(): void {
+    this.initForm();
+  }
+
   msgError: string | null = null;
   isLoading: boolean = false;
+  loginForm!: FormGroup;
 
-  loginForm: FormGroup = this.fb.group({
-    email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/)]]
-  })
+  initForm() {
+    this.loginForm = this.fb.group({
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/)]]
+    })
+  }
 
 
   submitForm(): void {
@@ -45,6 +52,7 @@ export class LoginComponent {
 
     }
     else {
+      this.loginForm.markAllAsTouched();
       this.msgError = 'Form is invalid';
     }
 

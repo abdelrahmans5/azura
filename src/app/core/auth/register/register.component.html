@@ -45,25 +45,26 @@
 
                 <!-- Name Field -->
                 <div class="relative">
+                    @let nameControl = registerForm.get('name');
                     <label class="block text-cyan-400 text-sm font-semibold mb-2" for="fullName">
                         <i class="fas fa-user mr-2"></i>Full Name
                     </label>
                     <input formControlName="name" type="text"
                         class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        [class.border-red-500]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
-                        [class.border-cyan-400]="!registerForm.get('name')?.invalid || !registerForm.get('name')?.touched"
+                        [class.border-red-500]="nameControl?.invalid && nameControl?.touched"
+                        [class.border-cyan-400]="!nameControl?.invalid || !nameControl?.touched"
                         placeholder="Enter your full name" id="fullName">
 
                     <!-- Validation Alert Messages -->
-                    @if (registerForm.get('name')?.errors && registerForm.get('name')?.touched) {
+                    @if (nameControl?.errors && nameControl?.touched) {
                     <div
                         class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (registerForm.get('name')?.errors?.['required']) {
+                            @if (nameControl?.errors?.['required']) {
                             <span class="text-red-300 text-xs font-medium">Name is required for quantum access</span>
                             }
-                            @if (registerForm.get('name')?.errors?.['minlength']) {
+                            @if (nameControl?.errors?.['minlength']) {
                             <span class="text-red-300 text-xs font-medium">Name must be at least 3 characters</span>
                             }
                         </div>
@@ -77,26 +78,27 @@
 
                 <!-- Email Field -->
                 <div class="relative">
+                    @let emailControl = registerForm.get('email');
                     <label class="block text-cyan-400 text-sm font-semibold mb-2" for="email">
                         <i class="fas fa-envelope mr-2"></i>Email Address
                     </label>
                     <input formControlName="email" type="email"
                         class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        [class.border-red-500]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
-                        [class.border-cyan-400]="!registerForm.get('email')?.invalid || !registerForm.get('email')?.touched"
+                        [class.border-red-500]="emailControl?.invalid && emailControl?.touched"
+                        [class.border-cyan-400]="!emailControl?.invalid || !emailControl?.touched"
                         placeholder="Enter your email" id="email">
 
                     <!-- Validation Alert Messages -->
-                    @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+                    @if (emailControl?.invalid && emailControl?.touched) {
                     <div
                         class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (registerForm.get('email')?.errors?.['required']) {
+                            @if (emailControl?.errors?.['required']) {
                             <span class="text-red-300 text-xs font-medium">Email is required for nexus
                                 connection</span>
                             }
-                            @if (registerForm.get('email')?.errors?.['email']) {
+                            @if (emailControl?.errors?.['email']) {
                             <span class="text-red-300 text-xs font-medium">Please enter a valid email format</span>
                             }
                         </div>
@@ -110,29 +112,38 @@
 
                 <!-- Password Field -->
                 <div class="relative">
+                    @let passwordControl = registerForm.get('password');
                     <label class="block text-cyan-400 text-sm font-semibold mb-2" for="password">
                         <i class="fas fa-lock mr-2"></i>Password
                     </label>
-                    <input formControlName="password" type="password"
+                    <input formControlName="password" [type]="eyeFlag ? 'password' : 'text'"
                         class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        [class.border-red-500]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
-                        [class.border-cyan-400]="!registerForm.get('password')?.invalid || !registerForm.get('password')?.touched"
+                        [class.border-red-500]="passwordControl?.invalid && passwordControl?.touched"
+                        [class.border-cyan-400]="!passwordControl?.invalid || !passwordControl?.touched"
                         placeholder="Create a secure password" id="password">
+                    <span (click)="eyeFlag = !eyeFlag"
+                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer hover:text-cyan-400">
+                        @if (eyeFlag) {
+                        <i class="fas fa-eye"></i>
+                        } @else {
+                        <i class="fas fa-eye-slash"></i>
+                        }
+                    </span>
 
                     <!-- Validation Alert Messages -->
-                    @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+                    @if (passwordControl?.invalid && passwordControl?.touched) {
                     <div
                         class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (registerForm.get('password')?.errors?.['required']) {
+                            @if (passwordControl?.errors?.['required']) {
                             <span class="text-red-300 text-xs font-medium">Quantum password is required</span>
                             }
-                            @if (registerForm.get('password')?.errors?.['minlength']) {
+                            @if (passwordControl?.errors?.['minlength']) {
                             <span class="text-red-300 text-xs font-medium">Password must be at least 8
                                 characters</span>
                             }
-                            @if (registerForm.get('password')?.errors?.['pattern']) {
+                            @if (passwordControl?.errors?.['pattern']) {
                             <span class="text-red-300 text-xs font-medium">Password must contain uppercase, lowercase,
                                 number & special character</span>
                             }
@@ -147,25 +158,26 @@
 
                 <!-- Confirm Password Field -->
                 <div class="relative">
+                    @let rePasswordControl = registerForm.get('rePassword');
                     <label class="block text-cyan-400 text-sm font-semibold mb-2" for="rePassword">
                         <i class="fas fa-shield-alt mr-2"></i>Confirm Password
                     </label>
                     <input formControlName="rePassword" type="password"
                         class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        [class.border-red-500]="registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched"
-                        [class.border-cyan-400]="!registerForm.get('rePassword')?.invalid || !registerForm.get('rePassword')?.touched"
+                        [class.border-red-500]="rePasswordControl?.invalid && rePasswordControl?.touched"
+                        [class.border-cyan-400]="!rePasswordControl?.invalid || !rePasswordControl?.touched"
                         placeholder="Confirm your password" id="rePassword">
 
                     <!-- Validation Alert Messages -->
-                    @if (registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched) {
+                    @if (rePasswordControl?.invalid && rePasswordControl?.touched) {
                     <div
                         class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (registerForm.get('rePassword')?.errors?.['required']) {
+                            @if (rePasswordControl?.errors?.['required']) {
                             <span class="text-red-300 text-xs font-medium">Password confirmation is required</span>
                             }
-                            @if (registerForm.get('rePassword')?.errors?.['mismatch'] ||
+                            @if (rePasswordControl?.errors?.['mismatch'] ||
                             registerForm.errors?.['mismatch']) {
                             <span class="text-red-300 text-xs font-medium">Passwords do not match - quantum sync
                                 failed</span>
@@ -181,26 +193,27 @@
 
                 <!-- Phone Field -->
                 <div class="relative">
+                    @let phoneControl = registerForm.get('phone');
                     <label class="block text-cyan-400 text-sm font-semibold mb-2" for="phone">
                         <i class="fas fa-phone mr-2"></i>Phone Number
                     </label>
                     <input formControlName="phone" type="tel"
                         class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        [class.border-red-500]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
-                        [class.border-cyan-400]="!registerForm.get('phone')?.invalid || !registerForm.get('phone')?.touched"
+                        [class.border-red-500]="phoneControl?.invalid && phoneControl?.touched"
+                        [class.border-cyan-400]="!phoneControl?.invalid || !phoneControl?.touched"
                         placeholder="Enter your phone number" id="phone">
 
                     <!-- Validation Alert Messages -->
-                    @if (registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched) {
+                    @if (phoneControl?.invalid && phoneControl?.touched) {
                     <div
                         class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (registerForm.get('phone')?.errors?.['required']) {
+                            @if (phoneControl?.errors?.['required']) {
                             <span class="text-red-300 text-xs font-medium">Phone number is required for nexus
                                 contact</span>
                             }
-                            @if (registerForm.get('phone')?.errors?.['pattern']) {
+                            @if (phoneControl?.errors?.['pattern']) {
                             <span class="text-red-300 text-xs font-medium">Please enter a valid Egyptian phone number
                                 (01xxxxxxxxx)</span>
                             }
