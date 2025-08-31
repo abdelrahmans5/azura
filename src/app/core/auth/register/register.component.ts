@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
 
 
   passwordMatchValidator(control: AbstractControl) {
-    if (!control.get('password') || !control.get('rePassword')) {
+    if (control.get('password')?.value === control.get('rePassword')?.value) {
       return null;
     }else{
       control.get('rePassword')?.setErrors({ mismatch: true });
