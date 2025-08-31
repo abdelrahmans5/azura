@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, AbstractControl, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { InputComponent } from "../../../shared/components/input/input.component";
+import { group } from 'console';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, InputComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -38,7 +40,12 @@ export class RegisterComponent implements OnInit {
 
 
   passwordMatchValidator(control: AbstractControl) {
-    return control.get('password')?.value === control.get('rePassword')?.value ? null : { mismatch: true };
+    if (!control.get('password') || !control.get('rePassword')) {
+      return null;
+    }else{
+      control.get('rePassword')?.setErrors({ mismatch: true });
+      return { mismatch: true };
+    }
   }
 
   submitForm(): void {

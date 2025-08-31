@@ -44,67 +44,12 @@
             <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="submitForm()">
 
                 <!-- Email Field -->
-                <div class="relative">
-                    @let emailControl = loginForm.get('email');
-                    <label class="block text-cyan-400 text-sm font-semibold mb-2">
-                        <i class="fas fa-envelope mr-2"></i>Email Address
-                    </label>
-                    <input formControlName="email" type="email"
-                        class="w-full bg-slate-900/70 border border-cyan-400/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        placeholder="Enter your email">
-
-                    @if(emailControl?.errors && emailControl?.touched){
-                    <div
-                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (emailControl?.errors?.['required']) {
-                            <span class="text-red-300 text-xs font-medium">Email is required for nexus
-                                connection</span>
-                            }
-                            @if (emailControl?.errors?.['email']) {
-                            <span class="text-red-300 text-xs font-medium">Please enter a valid email format</span>
-                            }
-                        </div>
-                    </div>
-                    }
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
+                <app-input [control]="loginForm.get('email')" [label]="'Email'" [type]="'email'" [id]="'email'"></app-input>
 
                 <!-- Password Field -->
-                <div class="relative">
-                    @let passwordControl = loginForm.get('password');
-                    <label class="block text-cyan-400 text-sm font-semibold mb-2">
-                        <i class="fas fa-lock mr-2"></i>Password
-                    </label>
-                    <input formControlName="password" type="password"
-                        class="w-full bg-slate-900/70 border border-cyan-400/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        placeholder="Enter your password">
-                    @if (passwordControl?.invalid && passwordControl?.touched) {
-                    <div
-                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (passwordControl?.errors?.['required']) {
-                            <span class="text-red-300 text-xs font-medium">Quantum password is required</span>
-                            }
-                            @if (passwordControl?.errors?.['minlength']) {
-                            <span class="text-red-300 text-xs font-medium">Password must be at least 8
-                                characters</span>
-                            }
-                            @if (passwordControl?.errors?.['pattern']) {
-                            <span class="text-red-300 text-xs font-medium">Password must contain uppercase, lowercase,
-                                number & special character</span>
-                            }
-                        </div>
-                    </div>
-                    }
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
+                <app-input [control]="loginForm.get('password')" [label]="'Password'" [type]="!eyeFlag ? 'password' : 'text'" [id]="'password'">
+                    Wrong password format. Password must be at least <span class="font-semibold">8 characters</span>, include <span class="font-semibold">uppercase</span>, <span class="font-semibold">lowercase</span>, <span class="font-semibold">number</span>, and <span class="font-semibold">special character</span>.
+                </app-input>
 
                 <!-- Remember Me & Forgot Password -->
                 <div class="flex items-center justify-between">

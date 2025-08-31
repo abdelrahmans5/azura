@@ -44,187 +44,23 @@
             <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="space-y-6">
 
                 <!-- Name Field -->
-                <div class="relative">
-                    @let nameControl = registerForm.get('name');
-                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="fullName">
-                        <i class="fas fa-user mr-2"></i>Full Name
-                    </label>
-                    <input formControlName="name" type="text"
-                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        [class.border-red-500]="nameControl?.invalid && nameControl?.touched"
-                        [class.border-cyan-400]="!nameControl?.invalid || !nameControl?.touched"
-                        placeholder="Enter your full name" id="fullName">
-
-                    <!-- Validation Alert Messages -->
-                    @if (nameControl?.errors && nameControl?.touched) {
-                    <div
-                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (nameControl?.errors?.['required']) {
-                            <span class="text-red-300 text-xs font-medium">Name is required for quantum access</span>
-                            }
-                            @if (nameControl?.errors?.['minlength']) {
-                            <span class="text-red-300 text-xs font-medium">Name must be at least 3 characters</span>
-                            }
-                        </div>
-                    </div>
-                    }
-
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
+                <app-input [control]="registerForm.get('name')" [label]="'Name'" [type]="'text'" [id]="'fullName'"></app-input>
 
                 <!-- Email Field -->
-                <div class="relative">
-                    @let emailControl = registerForm.get('email');
-                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="email">
-                        <i class="fas fa-envelope mr-2"></i>Email Address
-                    </label>
-                    <input formControlName="email" type="email"
-                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        [class.border-red-500]="emailControl?.invalid && emailControl?.touched"
-                        [class.border-cyan-400]="!emailControl?.invalid || !emailControl?.touched"
-                        placeholder="Enter your email" id="email">
-
-                    <!-- Validation Alert Messages -->
-                    @if (emailControl?.invalid && emailControl?.touched) {
-                    <div
-                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (emailControl?.errors?.['required']) {
-                            <span class="text-red-300 text-xs font-medium">Email is required for nexus
-                                connection</span>
-                            }
-                            @if (emailControl?.errors?.['email']) {
-                            <span class="text-red-300 text-xs font-medium">Please enter a valid email format</span>
-                            }
-                        </div>
-                    </div>
-                    }
-
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
+                <app-input [control]="registerForm.get('email')" [label]="'Email'" [type]="'email'" [id]="'email'"></app-input>
 
                 <!-- Password Field -->
-                <div class="relative">
-                    @let passwordControl = registerForm.get('password');
-                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="password">
-                        <i class="fas fa-lock mr-2"></i>Password
-                    </label>
-                    <input formControlName="password" [type]="eyeFlag ? 'password' : 'text'"
-                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300 pr-12"
-                        [class.border-red-500]="passwordControl?.invalid && passwordControl?.touched"
-                        [class.border-cyan-400]="!passwordControl?.invalid || !passwordControl?.touched"
-                        placeholder="Create a secure password" id="password">
-                    <span (click)="eyeFlag = !eyeFlag"
-                        class="absolute right-4 top-2/3 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-cyan-400 z-10">
-                        @if (!eyeFlag) {
-                        <i class="fas fa-eye"></i>
-                        } @else {
-                        <i class="fas fa-eye-slash"></i>
-                        }
-                    </span>
-                </div>
-
-                    <!-- Validation Alert Messages -->
-                    @if (passwordControl?.invalid && passwordControl?.touched) {
-                    <div
-                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (passwordControl?.errors?.['required']) {
-                            <span class="text-red-300 text-xs font-medium">Quantum password is required</span>
-                            }
-                            @if (passwordControl?.errors?.['minlength']) {
-                            <span class="text-red-300 text-xs font-medium">Password must be at least 8
-                                characters</span>
-                            }
-                            @if (passwordControl?.errors?.['pattern']) {
-                            <span class="text-red-300 text-xs font-medium">Password must contain uppercase, lowercase,
-                                number & special character</span>
-                            }
-                        </div>
-                    </div>
-                    }
-
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    </div>
-
+                <app-input [control]="registerForm.get('password')" [label]="'Password'" [type]="'password'" [id]="'password'">
+                    Password must be at least <span class="font-semibold">8 characters</span>, include <span class="font-semibold">uppercase</span>, <span class="font-semibold">lowercase</span>, <span class="font-semibold">number</span>, and <span class="font-semibold">special character</span>.
+                </app-input>
+                
                 <!-- Confirm Password Field -->
-                <div class="relative">
-                    @let rePasswordControl = registerForm.get('rePassword');
-                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="rePassword">
-                        <i class="fas fa-shield-alt mr-2"></i>Confirm Password
-                    </label>
-                    <input formControlName="rePassword" type="password"
-                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        [class.border-red-500]="rePasswordControl?.invalid && rePasswordControl?.touched"
-                        [class.border-cyan-400]="!rePasswordControl?.invalid || !rePasswordControl?.touched"
-                        placeholder="Confirm your password" id="rePassword">
-
-                    <!-- Validation Alert Messages -->
-                    @if (rePasswordControl?.invalid && rePasswordControl?.touched) {
-                    <div
-                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (rePasswordControl?.errors?.['required']) {
-                            <span class="text-red-300 text-xs font-medium">Password confirmation is required</span>
-                            }
-                            @if (rePasswordControl?.errors?.['mismatch'] ||
-                            registerForm.errors?.['mismatch']) {
-                            <span class="text-red-300 text-xs font-medium">Passwords do not match - quantum sync
-                                failed</span>
-                            }
-                        </div>
-                    </div>
-                    }
-
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
+                <app-input [control]="registerForm.get('rePassword')" [label]="'Confirm Password'" [type]="!eyeFlag ? 'password' : 'text'" [id]="'rePassword'"></app-input>
 
                 <!-- Phone Field -->
-                <div class="relative">
-                    @let phoneControl = registerForm.get('phone');
-                    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="phone">
-                        <i class="fas fa-phone mr-2"></i>Phone Number
-                    </label>
-                    <input formControlName="phone" type="tel"
-                        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
-                        [class.border-red-500]="phoneControl?.invalid && phoneControl?.touched"
-                        [class.border-cyan-400]="!phoneControl?.invalid || !phoneControl?.touched"
-                        placeholder="Enter your phone number" id="phone">
-
-                    <!-- Validation Alert Messages -->
-                    @if (phoneControl?.invalid && phoneControl?.touched) {
-                    <div
-                        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
-                            @if (phoneControl?.errors?.['required']) {
-                            <span class="text-red-300 text-xs font-medium">Phone number is required for nexus
-                                contact</span>
-                            }
-                            @if (phoneControl?.errors?.['pattern']) {
-                            <span class="text-red-300 text-xs font-medium">Please enter a valid Egyptian phone number
-                                (01xxxxxxxxx)</span>
-                            }
-                        </div>
-                    </div>
-                    }
-
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
+                <app-input [control]="registerForm.get('phone')" [label]="'Phone'" [type]="'text'" [id]="'phone'">
+                    Egyptian phone format: <span class="font-semibold">01XXXXXXXXX</span>
+                </app-input>
 
                 <!-- Terms Checkbox -->
                 <div class="flex items-start space-x-3">

@@ -3,10 +3,11 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputComponent } from "../../../shared/components/input/input.component";
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, ReactiveFormsModule, InputComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   msgError: string | null = null;
   isLoading: boolean = false;
   loginForm!: FormGroup;
+  eyeFlag: boolean = true;
 
   initForm() {
     this.loginForm = this.fb.group({

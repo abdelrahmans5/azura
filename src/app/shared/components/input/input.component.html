@@ -1,0 +1,52 @@
+<div class="relative">
+    <label class="block text-cyan-400 text-sm font-semibold mb-2" for="fullName">
+        <i class="fas fa-user mr-2"></i>{{ label }}
+    </label>
+    <input [formControl]="control" [type]="type"
+        class="w-full bg-slate-900/70 border rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none transition-all duration-300"
+        [class.border-red-500]="control?.invalid && control?.touched"
+        [class.border-cyan-400]="!control?.invalid || !control?.touched" placeholder="Enter your full name"
+        [id]="idInput">
+
+    <!-- Validation Alert Messages -->
+    @if (control?.errors && control?.touched) {
+    <div
+        class="mt-2 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-exclamation-triangle text-red-400 text-sm"></i>
+            @if (control?.errors?.['required']) {
+            <span class="text-red-300 text-xs font-medium">Input is required for quantum access</span>
+            }
+            @if (control?.errors?.['minlength']) {
+            <span class="text-red-300 text-xs font-medium">Input must be at least 3 characters</span>
+            }
+            @if (control?.errors?.['email']) {
+            <span class="text-red-300 text-xs font-medium">Please enter a valid email format</span>
+            }
+            @if (control?.errors?.['pattern']) {
+            <span class="text-red-300 text-xs font-medium"><ng-content/></span>
+            }
+            @if (control?.errors?.['mismatch']) {
+            <span class="text-red-300 text-xs font-medium">Passwords do not match - quantum sync
+                failed</span>
+            }
+        </div>
+    </div>
+    }
+
+    @if(idInput === 'password' || idInput === 'rePassword') {
+    <span (click)="eyeFlag = !eyeFlag"
+        class="absolute right-4 top-2/3 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-cyan-400 z-10">
+        @if (!eyeFlag) {
+        <i class="fas fa-eye"></i>
+        } @else {
+        <i class="fas fa-eye-slash"></i>
+        }
+    </span>
+    }
+
+
+    <div
+        class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-purple-400/5 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300">
+    </div>
+</div>
