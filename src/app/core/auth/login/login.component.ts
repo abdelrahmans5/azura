@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
+  subscription: Subscription = new Subscription();
   msgError: string | null = null;
   isLoading: boolean = false;
   loginForm!: FormGroup;
@@ -35,9 +37,10 @@ export class LoginComponent implements OnInit {
 
   submitForm(): void {
     if (this.loginForm.valid) {
+      this.subscription.unsubscribe();
       this.isLoading = true;
 
-      this.authService.loginForm(this.loginForm.value).subscribe({
+      this.subscription = this.authService.loginForm(this.loginForm.value).subscribe({
         next: (response) => {
           if (response.message === 'success') {
             setTimeout(() => {

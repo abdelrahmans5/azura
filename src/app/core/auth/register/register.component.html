@@ -44,21 +44,21 @@
             <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="space-y-6">
 
                 <!-- Name Field -->
-                <app-input [control]="registerForm.get('name')" [label]="'Name'" [type]="'text'" [id]="'fullName'"></app-input>
+                <app-input [control]="registerForm.get('name')" [label]="'Name'" [type]="'text'" [idInput]="'fullName'"></app-input>
 
                 <!-- Email Field -->
-                <app-input [control]="registerForm.get('email')" [label]="'Email'" [type]="'email'" [id]="'email'"></app-input>
+                <app-input [control]="registerForm.get('email')" [label]="'Email'" [type]="'email'" [idInput]="'email'"></app-input>
 
                 <!-- Password Field -->
-                <app-input [control]="registerForm.get('password')" [label]="'Password'" [type]="eyeFlag ? 'password' : 'text'" [id]="'password'">
+                <app-input [control]="registerForm.get('password')" [label]="'Password'" [type]="eyeFlag ? 'password' : 'text'" [idInput]="'password'">
                     Password must be at least <span class="font-semibold">8 characters</span>, include <span class="font-semibold">uppercase</span>, <span class="font-semibold">lowercase</span>, <span class="font-semibold">number</span>, and <span class="font-semibold">special character</span>.
                 </app-input>
                 
                 <!-- Confirm Password Field -->
-                <app-input [control]="registerForm.get('rePassword')" [label]="'Confirm Password'" [type]="eyeFlag ? 'password' : 'text'" [id]="'rePassword'"></app-input>
+                <app-input [control]="registerForm.get('rePassword')" [label]="'Confirm Password'" [type]="eyeFlag ? 'password' : 'text'" [idInput]="'rePassword'"></app-input>
 
                 <!-- Phone Field -->
-                <app-input [control]="registerForm.get('phone')" [label]="'Phone'" [type]="'text'" [id]="'phone'">
+                <app-input [control]="registerForm.get('phone')" [label]="'Phone'" [type]="'text'" [idInput]="'phone'">
                     Egyptian phone format: <span class="font-semibold">01XXXXXXXXX</span>
                 </app-input>
 

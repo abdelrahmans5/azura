@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { InputComponent } from "../../../shared/components/input/input.component";
 import { group } from 'console';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit {
     this.initForm();
   }
 
-
+  subscription: Subscription = new Subscription();
   msgError: string | null = null;
   isLoading: boolean = false;
   eyeFlag: boolean = true;
@@ -50,9 +51,10 @@ export class RegisterComponent implements OnInit {
 
   submitForm(): void {
     if (this.registerForm.valid) {
-
+      
+      this.subscription.unsubscribe();
       this.isLoading = true;
-      this.authService.registerForm(this.registerForm.value).subscribe({
+      this.subscription = this.authService.registerForm(this.registerForm.value).subscribe({
         next: (response) => {
           if (response.message === 'success') {
             setTimeout(() => {
