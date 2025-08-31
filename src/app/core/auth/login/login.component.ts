@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from "../../../shared/components/input/input.component";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   private readonly authService = inject(AuthService)
   private readonly router = inject(Router)
   private readonly fb = inject(FormBuilder)
+  private readonly cookieService = inject(CookieService)
 
   ngOnInit(): void {
     this.initForm();
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           if (response.message === 'success') {
             setTimeout(() => {
+              this.cookieService.set('token', response.token);
               this.router.navigate(['/home']);
             }, 1000);
           }

@@ -12,22 +12,26 @@ import { CategoriesComponent } from './features/categories/categories.component'
 import { NotFoundComponent } from './features/not-found/not-found.component';
 import { BrandsComponent } from './features/brands/brands.component';
 import { AboutComponent } from './features/about/about.component';
+import { ProfileComponent } from './features/profile/profile.component';
+import { authGuard } from './core/guards/auth-guard';
+import { isLoggedGuard } from './core/guards/is-logged-guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     {
-        path: '', component: AuthLayoutComponent, children: [
+        path: '', component: AuthLayoutComponent, canActivate: [isLoggedGuard], children: [
             { path: 'login', component: LoginComponent, title: 'Login' },
             { path: 'register', component: RegisterComponent, title: 'Register' }
         ]
     },
     {
-        path: '', component: BlankLayoutComponent, children: [
+        path: '', component: BlankLayoutComponent, canActivate: [authGuard], children: [
             { path: 'home', component: HomeComponent, title: 'Home' },
             { path: 'products', component: ProductsComponent, title: 'Products' },
             { path: 'brands', component: BrandsComponent, title: 'Brands' },
             { path: 'cart', component: CartComponent, title: 'Cart' },
             { path: 'checkout', component: CheckoutComponent, title: 'Checkout' },
+            { path: 'profile', component: ProfileComponent, title: 'Profile' },
             { path: 'details/:id', component: DetailsComponent, title: 'Details' },
             { path: 'details/:slug/:id', component: DetailsComponent, title: 'Details' },
             { path: 'categories', component: CategoriesComponent, title: 'Categories' },

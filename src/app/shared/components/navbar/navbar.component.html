@@ -251,19 +251,107 @@
                     </button>
                 </div>
 
-                <!-- Futuristic Sign Out Button -->
-                <a routerLink="/login"
-                    class="hidden sm:flex items-center px-6 py-3 text-gray-300 hover:text-red-400 font-medium transition-all duration-300 group relative overflow-hidden">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg">
+                <!-- Profile Dropdown -->
+                <div class="relative">
+                    <!-- Profile Button -->
+                    <button (click)="toggleProfileDropdown()"
+                        class="hidden sm:flex items-center px-4 py-3 text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group relative overflow-hidden rounded-lg">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg">
+                        </div>
+                        <div
+                            class="absolute inset-0 border border-cyan-400/30 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        </div>
+
+                        <!-- Profile Avatar -->
+                        <div
+                            class="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mr-3 relative z-10">
+                            <i class="fas fa-user text-slate-900 text-sm"></i>
+                        </div>
+                        <span class="relative z-10 tracking-wider mr-2">PROFILE</span>
+                        <i class="fas fa-chevron-down relative z-10 text-sm transition-transform duration-300"
+                            [class.rotate-180]="isProfileDropdownOpen"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div [class.opacity-100]="isProfileDropdownOpen" [class.opacity-0]="!isProfileDropdownOpen"
+                        [class.translate-y-0]="isProfileDropdownOpen" [class.translate-y-2]="!isProfileDropdownOpen"
+                        [class.pointer-events-none]="!isProfileDropdownOpen"
+                        class="absolute right-0 top-full mt-2 w-64 bg-gradient-to-br from-slate-800/95 to-blue-900/95 backdrop-blur-xl rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-500/20 transition-all duration-300 transform z-50">
+
+                        <!-- Profile Header -->
+                        <div class="p-4 border-b border-cyan-400/20">
+                            <div class="flex items-center space-x-3">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-slate-900 text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold">Quantum User</h4>
+                                    <p class="text-cyan-400 text-sm">user@nexus.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Menu Items -->
+                        <div class="p-2">
+                            <!-- View Profile -->
+                            <a routerLink="/profile" (click)="closeProfileDropdown()"
+                                class="flex items-center px-4 py-3 text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/10 rounded-lg transition-all duration-300 group">
+                                <div
+                                    class="w-8 h-8 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-user-circle text-cyan-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <span class="font-medium">View Profile</span>
+                                    <p class="text-xs text-gray-500">Manage your account</p>
+                                </div>
+                            </a>
+
+                            <!-- Settings -->
+                            <button
+                                class="w-full flex items-center px-4 py-3 text-gray-300 hover:text-purple-400 hover:bg-purple-400/10 rounded-lg transition-all duration-300 group">
+                                <div
+                                    class="w-8 h-8 bg-gradient-to-r from-purple-400/20 to-pink-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-cog text-purple-400 text-sm"></i>
+                                </div>
+                                <div class="text-left">
+                                    <span class="font-medium">Settings</span>
+                                    <p class="text-xs text-gray-500">Preferences & privacy</p>
+                                </div>
+                            </button>
+
+                            <!-- Orders -->
+                            <button
+                                class="w-full flex items-center px-4 py-3 text-gray-300 hover:text-green-400 hover:bg-green-400/10 rounded-lg transition-all duration-300 group">
+                                <div
+                                    class="w-8 h-8 bg-gradient-to-r from-green-400/20 to-cyan-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-shopping-bag text-green-400 text-sm"></i>
+                                </div>
+                                <div class="text-left">
+                                    <span class="font-medium">My Orders</span>
+                                    <p class="text-xs text-gray-500">Track your purchases</p>
+                                </div>
+                            </button>
+
+                            <!-- Divider -->
+                            <div class="my-2 border-t border-cyan-400/20"></div>
+
+                            <!-- Logout -->
+                            <button (click)="logOut()"
+                                class="w-full flex items-center px-4 py-3 text-gray-300 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all duration-300 group">
+                                <div
+                                    class="w-8 h-8 bg-gradient-to-r from-red-400/20 to-pink-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-sign-out-alt text-red-400 text-sm"></i>
+                                </div>
+                                <div class="text-left">
+                                    <span class="font-medium">Logout</span>
+                                    <p class="text-xs text-gray-500">Sign out of your account</p>
+                                </div>
+                            </button>
+                        </div>
                     </div>
-                    <div
-                        class="absolute inset-0 border border-red-400/30 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    </div>
-                    <i
-                        class="fas fa-sign-out-alt mr-2 relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
-                    <span class="relative z-10 tracking-wider">LOGOUT</span>
-                </a>
+                </div>
             </div>
             }
 
