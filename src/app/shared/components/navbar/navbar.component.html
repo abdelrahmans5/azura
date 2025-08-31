@@ -268,7 +268,7 @@
                             class="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center mr-3 relative z-10">
                             <i class="fas fa-user text-slate-900 text-sm"></i>
                         </div>
-                        <span class="relative z-10 tracking-wider mr-2">PROFILE</span>
+                        <span class="relative z-10 tracking-wider mr-2">{{ userData.name?.slice(0, 10) }}</span>
                         <i class="fas fa-chevron-down relative z-10 text-sm transition-transform duration-300"
                             [class.rotate-180]="isProfileDropdownOpen"></i>
                     </button>
@@ -287,8 +287,8 @@
                                     <i class="fas fa-user text-slate-900 text-lg"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-white font-semibold">Quantum User</h4>
-                                    <p class="text-cyan-400 text-sm">user@nexus.com</p>
+                                    <h4 class="text-white font-semibold">{{ userData.name }}</h4>
+                                    <p class="text-cyan-400 text-sm">{{ userData.email || 'user@nexus.com' }}</p>
                                 </div>
                             </div>
                         </div>

@@ -16,6 +16,7 @@ export class NavbarComponent {
 
   @Input({ required: true }) isLogin!: boolean;
 
+  userData: any = this.authService.decodeToken();
   // Profile dropdown state
   isProfileDropdownOpen: boolean = false;
 
