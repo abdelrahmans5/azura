@@ -50,12 +50,12 @@
                 <app-input [control]="registerForm.get('email')" [label]="'Email'" [type]="'email'" [idInput]="'email'"></app-input>
 
                 <!-- Password Field -->
-                <app-input [control]="registerForm.get('password')" [label]="'Password'" [type]="eyeFlag ? 'password' : 'text'" [idInput]="'password'">
+                <app-input [control]="registerForm.get('password')" [label]="'Password'" [idInput]="'password'">
                     Password must be at least <span class="font-semibold">8 characters</span>, include <span class="font-semibold">uppercase</span>, <span class="font-semibold">lowercase</span>, <span class="font-semibold">number</span>, and <span class="font-semibold">special character</span>.
                 </app-input>
                 
                 <!-- Confirm Password Field -->
-                <app-input [control]="registerForm.get('rePassword')" [label]="'Confirm Password'" [type]="eyeFlag ? 'password' : 'text'" [idInput]="'rePassword'"></app-input>
+                <app-input [control]="registerForm.get('rePassword')" [label]="'Confirm Password'" [idInput]="'rePassword'"></app-input>
 
                 <!-- Phone Field -->
                 <app-input [control]="registerForm.get('phone')" [label]="'Phone'" [type]="'text'" [idInput]="'phone'">

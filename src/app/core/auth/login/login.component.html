@@ -47,7 +47,7 @@
                 <app-input [control]="loginForm.get('email')" [label]="'Email'" [type]="'email'" [idInput]="'email'"></app-input>
 
                 <!-- Password Field -->
-                <app-input [control]="loginForm.get('password')" [label]="'Password'" [type]="!eyeFlag ? 'password' : 'text'" [idInput]="'password'">
+                <app-input [control]="loginForm.get('password')" [label]="'Password'" [idInput]="'password'">
                     Wrong password format. Password must be at least <span class="font-semibold">8 characters</span>, include <span class="font-semibold">uppercase</span>, <span class="font-semibold">lowercase</span>, <span class="font-semibold">number</span>, and <span class="font-semibold">special character</span>.
                 </app-input>
 
