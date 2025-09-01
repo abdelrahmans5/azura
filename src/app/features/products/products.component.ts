@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../../core/services/products/products.service';
 import { Product } from '../../core/models/product.interface';
 import { CardComponent } from "../../shared/components/card/card.component";
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, FormsModule, CardComponent],
+  imports: [CommonModule, FormsModule, CardComponent, NgxPaginationModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -18,7 +20,6 @@ export class ProductsComponent implements OnInit {
   // Data properties
   productsList: Product[] = [];
   filteredProducts: Product[] = [];
-  paginatedProducts: Product[] = [];
   uniqueCategories: string[] = [];
 
   // UI State properties
@@ -29,9 +30,8 @@ export class ProductsComponent implements OnInit {
   sortBy = '';
 
   // Pagination properties
-  currentPage = 1;
-  itemsPerPage = 12;
-  totalPages = 0;
+  currentPage: number = 1;
+  itemsPerPage: number = 12;
 
   ngOnInit(): void {
     this.getAllProductsData();
@@ -46,7 +46,6 @@ export class ProductsComponent implements OnInit {
         this.productsList = response.data;
         this.filteredProducts = [...this.productsList];
         this.extractUniqueCategories();
-        this.updatePagination();
         this.isLoading = false;
       },
       error: (error) => {
@@ -73,7 +72,6 @@ export class ProductsComponent implements OnInit {
     }
 
     this.currentPage = 1;
-    this.updatePagination();
   }
 
   sortProducts(): void {
@@ -95,41 +93,12 @@ export class ProductsComponent implements OnInit {
     }
 
     this.currentPage = 1;
-    this.updatePagination();
   }
 
-  private updatePagination(): void {
-    this.totalPages = Math.ceil(this.filteredProducts.length / this.itemsPerPage);
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.paginatedProducts = this.filteredProducts.slice(startIndex, endIndex);
-  }
-
-  changePage(page: number): void {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      this.updatePagination();
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }
-
-  getPageNumbers(): number[] {
-    const pages: number[] = [];
-    const maxPagesToShow = 5;
-
-    let startPage = Math.max(1, this.currentPage - Math.floor(maxPagesToShow / 2));
-    let endPage = Math.min(this.totalPages, startPage + maxPagesToShow - 1);
-
-    if (endPage - startPage < maxPagesToShow - 1) {
-      startPage = Math.max(1, endPage - maxPagesToShow + 1);
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(i);
-    }
-
-    return pages;
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   clearFilters(): void {
@@ -137,7 +106,6 @@ export class ProductsComponent implements OnInit {
     this.sortBy = '';
     this.filteredProducts = [...this.productsList];
     this.currentPage = 1;
-    this.updatePagination();
   }
 
 }

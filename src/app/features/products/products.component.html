@@ -128,34 +128,20 @@
         @if (!isLoading && !error && filteredProducts.length > 0) {
         <div
             [class]="viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8' : 'space-y-8'">
-            @for (product of paginatedProducts; track product.id) {
+            @for (product of filteredProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };
+            track product.id) {
             @if (viewMode === 'grid') {
             <app-card [product]="product"></app-card>
             }
             }
         </div>
 
-        @if (totalPages > 1) {
-        <div class="flex justify-center items-center mt-16 space-x-2">
-            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"
-                class="w-12 h-12 bg-slate-800/50 border border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10 rounded-xl transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-
-            @for (page of getPageNumbers(); track page) {
-            <button (click)="changePage(page)"
-                [class]="page === currentPage ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-cyan-400' : 'bg-slate-800/50 text-cyan-400 border-cyan-400/30 hover:bg-cyan-400/10'"
-                class="w-12 h-12 border rounded-xl transition-all duration-300 font-medium flex items-center justify-center">
-                {{ page }}
-            </button>
-            }
-
-            <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages"
-                class="w-12 h-12 bg-slate-800/50 border border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10 rounded-xl transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+        <!-- NGX Pagination with Futuristic Styling -->
+        <div class="flex justify-center mt-16">
+            <pagination-controls (pageChange)="onPageChange($event)" [responsive]="true" [autoHide]="true"
+                class="custom-pagination">
+            </pagination-controls>
         </div>
-        }
         }
 
         @if (!isLoading && !error && filteredProducts.length === 0) {

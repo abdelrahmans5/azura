@@ -16,6 +16,118 @@
     transform: scale(1.05);
 }
 
+/* NGX Pagination Custom Styling */
+::ng-deep .custom-pagination .ngx-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+::ng-deep .custom-pagination .ngx-pagination li {
+    list-style: none;
+    margin: 0;
+}
+
+::ng-deep .custom-pagination .ngx-pagination a,
+::ng-deep .custom-pagination .ngx-pagination button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    color: #22d3ee;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    outline: none;
+}
+
+::ng-deep .custom-pagination .ngx-pagination a:hover,
+::ng-deep .custom-pagination .ngx-pagination button:hover {
+    background: rgba(34, 211, 238, 0.1);
+    border-color: #22d3ee;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(34, 211, 238, 0.3);
+}
+
+::ng-deep .custom-pagination .ngx-pagination .current {
+    background: linear-gradient(135deg, #06b6d4, #3b82f6) !important;
+    color: white !important;
+    border-color: #22d3ee !important;
+    box-shadow: 0 4px 15px rgba(34, 211, 238, 0.4);
+}
+
+::ng-deep .custom-pagination .ngx-pagination .disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+::ng-deep .custom-pagination .ngx-pagination .pagination-previous,
+::ng-deep .custom-pagination .ngx-pagination .pagination-next {
+    font-size: 0.875rem;
+}
+
+::ng-deep .custom-pagination .ngx-pagination .pagination-previous a,
+::ng-deep .custom-pagination .ngx-pagination .pagination-next a {
+    font-size: 0;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+::ng-deep .custom-pagination .ngx-pagination .pagination-previous a::before {
+    content: '‹';
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-indent: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+::ng-deep .custom-pagination .ngx-pagination .pagination-next a::before {
+    content: '›';
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-indent: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Add glow effect to active page */
+::ng-deep .custom-pagination .ngx-pagination .current::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    border-radius: 0.75rem;
+    z-index: -1;
+    opacity: 0.3;
+    filter: blur(8px);
+}
+
+/* Responsive pagination */
+@media (max-width: 768px) {
+
+    ::ng-deep .custom-pagination .ngx-pagination a,
+    ::ng-deep .custom-pagination .ngx-pagination button {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 0.875rem;
+    }
+}
+
 /* Line clamp utility for text truncation */
 .line-clamp-2 {
     display: -webkit-box;
