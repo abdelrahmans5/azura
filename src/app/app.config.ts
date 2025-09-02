@@ -1,7 +1,9 @@
 import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withHashLocation, withInMemoryScrolling } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
+import { provideToastr } from 'ngx-toastr';
+
 
 
 
@@ -19,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideAnimations(),
     provideHttpClient(withFetch()),
-    importProvidersFrom(CookieService)
+    importProvidersFrom(CookieService),
+    provideToastr(),
   ]
 };

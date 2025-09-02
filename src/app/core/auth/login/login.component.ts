@@ -45,10 +45,8 @@ export class LoginComponent implements OnInit {
       this.subscription = this.authService.loginForm(this.loginForm.value).subscribe({
         next: (response) => {
           if (response.message === 'success') {
-            setTimeout(() => {
-              this.cookieService.set('token', response.token);
-              this.router.navigate(['/home']);
-            }, 1000);
+            this.cookieService.set('token', response.token);
+            this.router.navigate(['/home']);
           }
           this.isLoading = false;
         },

@@ -42,7 +42,7 @@
             </p>
         </div>
 
-        <!-- Empty Cart State -->
+        @if( cartList.numOfCartItems === 0 ) {
         <div class="text-center py-32">
             <div
                 class="max-w-lg mx-auto bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-16">
@@ -72,30 +72,87 @@
                         class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-1000">
                     </div>
                     <i class="fas fa-rocket mr-3 relative z-10"></i>
-                    <span class="relative z-10">EXPLORE PRODUCTS</span>
+                    <a routerLink="/products" class="relative z-10">EXPLORE PRODUCTS</a>
                 </button>
             </div>
         </div>
-
-        <!-- Cart Items (when cart has items) -->
-        <!-- This section would be populated dynamically when cart has items -->
-        <!-- 
+        } @else {
         <div class="grid lg:grid-cols-3 gap-12">
+            <!-- Cart Items Section -->
             <div class="lg:col-span-2">
-                <div class="bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-8">
+                <div
+                    class="bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-8">
                     <h2 class="text-2xl font-bold text-cyan-400 mb-8">Cart Items</h2>
-                    
+
+                    <ul class="space-y-8">
+                        @for (item of cartList.data.products; track item._id) {
+                        <li
+                            class="flex items-center gap-6 bg-slate-900/60 rounded-xl p-6 shadow-lg border border-cyan-400/10">
+                            <img [src]="item.product.imageCover" alt="{{item.product.title}}"
+                                class="w-24 h-24 object-cover rounded-lg border border-cyan-400/20 bg-slate-800" />
+                            <div class="flex-1">
+                                <h4 class="text-lg font-semibold text-white mb-2">{{item.product.title}}</h4>
+                                <div class="flex items-center gap-4 text-gray-400 text-sm mb-2">
+                                    <span>Price: <span class="text-cyan-400 font-bold">{{item.price |
+                                            currency}}</span></span>
+                                    <span>Quantity: <span class="text-cyan-400 font-bold">{{item.count}}</span></span>
+                                </div>
+                                <div class="flex gap-3 mt-2">
+                                    <button (click)="updateQuantity(item.product._id, item.count - 1)"
+                                        class="px-3 py-1 bg-cyan-700/70 hover:bg-cyan-600 text-white rounded transition cursor-pointer">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button (click)="updateQuantity(item.product._id, item.count + 1)"
+                                        class="px-3 py-1 bg-cyan-700/70 hover:bg-cyan-600 text-white rounded transition cursor-pointer">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <button (click)="removeItem(item.product._id)"
+                                        class="ml-4 px-4 py-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white rounded transition cursor-pointer">
+                                        <i class="fas fa-trash-alt"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                        }
+                    </ul>
                 </div>
             </div>
-            
+
+            <!-- Order Summary Section -->
             <div class="lg:col-span-1">
-                <div class="bg-gradient-to-br from-slate-800/50 to-purple-900/50 backdrop-blur-xl rounded-2xl border border-purple-400/30 p-8 sticky top-8">
+                <div
+                    class="bg-gradient-to-br from-slate-800/50 to-purple-900/50 backdrop-blur-xl rounded-2xl border border-purple-400/30 p-8 sticky top-8">
                     <h3 class="text-2xl font-bold text-purple-400 mb-8">Order Summary</h3>
-                    
+                    <div class="text-lg text-gray-300 mb-4 flex justify-between">
+                        <span>Total Items:</span>
+                        <span class="font-bold text-cyan-400"> {{ cartList.numOfCartItems }}</span>
+                    </div>
+                    <div class="text-lg text-gray-300 mb-4 flex justify-between">
+                        <span>Subtotal:</span>
+                        <span class="font-bold text-cyan-400">{{ cartList.data.totalCartPrice }}</span>
+                    </div>
+                    <div class="text-lg text-gray-300 mb-8 flex justify-between">
+                        <span>Shipping:</span>
+                        <span class="font-bold text-cyan-400">Free</span>
+                    </div>
+                    <div class="text-xl font-bold text-white flex justify-between mb-8">
+                        <span>Total:</span>
+                        <span class="text-purple-400">{{ cartList.data.totalCartPrice }}</span>
+                    </div>
+                    <button
+                        class="w-full py-4 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50">
+                        <i class="fas fa-credit-card mr-2"></i>
+                        Proceed to Checkout
+                    </button>
                 </div>
             </div>
         </div>
-        -->
+        }
+
+
+
+
+
 
     </div>
 </main>
