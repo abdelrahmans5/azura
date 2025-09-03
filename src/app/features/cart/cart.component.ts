@@ -3,7 +3,8 @@ import { CartService } from './services/cart.service';
 import { cart } from './models/cart.interface';
 import { CurrencyPipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-cart',
@@ -14,6 +15,8 @@ import { RouterLink } from '@angular/router';
 export class CartComponent implements OnInit {
   private readonly cartService = inject(CartService);
   private readonly toastrService = inject(ToastrService);
+  private readonly router = inject(Router);
+  private readonly cookieService = inject(CookieService);
 
 
   cartList: cart = {} as cart;
@@ -23,13 +26,28 @@ export class CartComponent implements OnInit {
   }
 
   getLoggedInUser(): void {
+    // Check if user is authenticated before making cart API call
+    const token = this.cookieService.get('token');
+    if (!token) {
+      this.toastrService.error('Please login to view your cart', 'NEXUS');
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.cartService.getCartProducts().subscribe({
       next: (response) => {
-
         this.cartList = response;
       },
       error: (error) => {
-        console.error('Error fetching cart products');
+        console.error('Error fetching cart products:', error);
+
+        // If it's a 401 error, redirect to login
+        if (error.status === 401) {
+          this.toastrService.error('Session expired. Please login again', 'NEXUS');
+          this.router.navigate(['/login']);
+        } else {
+          this.toastrService.error('Error loading cart. Please try again', 'NEXUS');
+        }
       }
     });
   }
@@ -37,9 +55,17 @@ export class CartComponent implements OnInit {
     this.cartService.updateQuantity(id, quantity).subscribe({
       next: (response) => {
         this.cartList = response;
+        this.toastrService.success('Quantity updated successfully', 'NEXUS');
       },
       error: (error) => {
-        console.error('Error updating cart item');
+        console.error('Error updating cart item:', error);
+
+        if (error.status === 401) {
+          this.toastrService.error('Session expired. Please login again', 'NEXUS');
+          this.router.navigate(['/login']);
+        } else {
+          this.toastrService.error('Error updating quantity. Please try again', 'NEXUS');
+        }
       }
     });
   }
@@ -48,10 +74,16 @@ export class CartComponent implements OnInit {
       next: (response) => {
         this.cartList = response;
         this.toastrService.error(`Product removed from cart!`, 'NEXUS');
-
       },
       error: (error) => {
-        console.error('Error removing cart item');
+        console.error('Error removing cart item:', error);
+
+        if (error.status === 401) {
+          this.toastrService.error('Session expired. Please login again', 'NEXUS');
+          this.router.navigate(['/login']);
+        } else {
+          this.toastrService.error('Error removing item. Please try again', 'NEXUS');
+        }
       }
     });
   }

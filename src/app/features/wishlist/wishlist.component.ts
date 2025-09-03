@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { cart } from '../cart/models/cart.interface';
 import { Wishlist } from './models/wishlist.interface';
 import { CartService } from '../cart/services/cart.service';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-wishlist',
@@ -38,7 +39,7 @@ export class WishlistComponent {
       error: (error) => {
         this.error = 'Failed to load wishlist. Please try again later.';
         this.isLoading = false;
-        console.error('Error fetching wishlist products', error);
+        console.error('Error loading wishlist:', error);
       }
     });
   }
@@ -47,11 +48,11 @@ export class WishlistComponent {
     this.wishlistService.removeWishlistItem(id).subscribe({
       next: (response) => {
         this.wishList = response;
-        this.toastrService.info(`Product removed from wishlist!`, 'NEXUS');
+        this.getLoggedInUser();
+        this.toastrService.info(`Product goes!`, 'NEXUS');
       },
       error: (error) => {
         this.toastrService.error('Failed to remove item from wishlist', 'NEXUS');
-        console.error('Error removing wishlist item', error);
       }
     });
   }
@@ -59,27 +60,17 @@ export class WishlistComponent {
   addToCart(productId: string): void {
     this.cartService.addProductToCart(productId).subscribe({
       next: () => {
-        console.log('Product added to cart!', 'NEXUS');
+        this.removeWishlistItem(productId);
       },
-      error: (error) => {
-        console.log('Error adding item to cart', error);
-      }
     });
   }
 
   moveToCart(productId: string): void {
     this.cartService.addProductToCart(productId).subscribe({
       next: () => {
-        console.log('Product added to cart!', 'NEXUS');
+        this.removeWishlistItem(productId);
       },
-      error: (error) => {
-        console.log('Error adding item to cart', error);
-      }
     });
-
-    this.addToCart(productId);
-    this.removeWishlistItem(productId);
-    this.getLoggedInUser();
   }
 
 }
