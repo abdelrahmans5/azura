@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-resetpass',
@@ -15,6 +16,7 @@ export class ResetpassComponent implements OnInit, OnDestroy {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
+  private readonly toastrService = inject(ToastrService);
 
   resetPasswordForm!: FormGroup;
   msgError: string | null = null;
@@ -144,12 +146,9 @@ export class ResetpassComponent implements OnInit, OnDestroy {
         next: (response) => {
           this.isLoading = false;
           if (response.statusMsg === 'success' || response.status === 'Success') {
-            this.msgSuccess = 'Password reset successfully! Redirecting to login...';
+            this.toastrService.success('Password reset successfully!', 'NEXUS');
 
-            // Navigate to login page after 3 seconds
-            setTimeout(() => {
-              this.router.navigate(['/login']);
-            }, 1000);
+            this.router.navigate(['/login']);
           }
         },
         error: (error) => {
