@@ -145,7 +145,7 @@ export class ResetpassComponent implements OnInit, OnDestroy {
       this.subscription = this.authService.resetPassword(formValues.email, formValues.newPassword).subscribe({
         next: (response) => {
           this.isLoading = false;
-          if (response.statusMsg === 'success' || response.status === 'Success') {
+          if (response.statusMsg === 'success') {
             this.toastrService.success('Password reset successfully!', 'NEXUS');
 
             this.router.navigate(['/login']);
