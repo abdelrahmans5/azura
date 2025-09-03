@@ -21,6 +21,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    if (this.cookieService.get('token')) {
+      this.authService.verifyToken().subscribe({
+        next: (response) => {
+          if (response) {
+            this.router.navigate(['/home']);
+          }
+        },
+        error: (error) => {
+          this.cookieService.delete('token');
+        }
+      });
+    }
   }
 
   subscription: Subscription = new Subscription();

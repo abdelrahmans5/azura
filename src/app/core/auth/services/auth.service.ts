@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment.development';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { jwtDecode } from "jwt-decode";
+import { get } from 'http';
 
 
 @Injectable({
@@ -26,14 +27,26 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  decodeToken(){
+  private getHeaders(): object {
+    const token = this.cookieService.get('token');
+    return {
+      headers: {
+        token: token
+      }
+    };
+  }
+
+  decodeToken() {
     let token;
-    try{
+    try {
       token = jwtDecode(this.cookieService.get('token'));
     } catch (error) {
       this.logout();
     }
     return token;
+  }
+  verifyToken() {
+    return this.httpClient.get(environment.baseUrl + 'auth/verifyToken', this.getHeaders());
   }
 
 }
