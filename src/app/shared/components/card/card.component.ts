@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../../features/cart/services/cart.service';
 import { cart } from '../../../features/cart/models/cart.interface';
+import { WishlistService } from '../../../features/wishlist/services/wishlist.service';
 
 @Component({
   selector: 'app-card',
@@ -16,6 +17,7 @@ export class CardComponent {
   private readonly router = inject(Router);
   private readonly toastrService = inject(ToastrService);
   private readonly cartService = inject(CartService)
+  private readonly wishlistService = inject(WishlistService)
 
   cartListData: cart = {} as cart;
 
@@ -29,6 +31,19 @@ export class CardComponent {
       },
       error: (error) => {
         console.error('Error adding product to cart:', error);
+      }
+    });
+  }
+  addProductToWishlist(productId: string) {
+    this.wishlistService.addProductToWishlist(productId).subscribe({
+      next: (response) => {
+        console.log('Product added to wishlist:', response);
+        this.cartListData = response.data.products;
+        this.toastrService.info(`${this.product.title} added to wishlist!`, 'NEXUS');
+
+      },
+      error: (error) => {
+        console.error('Error adding product to wishlist:', error);
       }
     });
   }

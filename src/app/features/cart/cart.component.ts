@@ -43,8 +43,8 @@ export class CartComponent implements OnInit {
       }
     });
   }
-  removeItem(id: string): void {
-    this.cartService.removeItem(id).subscribe({
+  removeCartItem(id: string): void {
+    this.cartService.removeCartItem(id).subscribe({
       next: (response) => {
         this.cartList = response;
         this.toastrService.error(`Product removed from cart!`, 'NEXUS');

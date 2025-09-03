@@ -26,7 +26,7 @@ export class CartService {
   updateQuantity(id: string, quantity: number): Observable<any> {
     return this.httpClient.put(environment.baseUrl + 'cart/' + id, { count: quantity }, this.myHeaders);
   }
-  removeItem(id: string): Observable<any> {
+  removeCartItem(id: string): Observable<any> {
     return this.httpClient.delete(environment.baseUrl + 'cart/' + id, this.myHeaders);
   }
 

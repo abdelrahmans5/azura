@@ -15,6 +15,7 @@ import { AboutComponent } from './features/about/about.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { authGuard } from './core/guards/auth-guard';
 import { isLoggedGuard } from './core/guards/is-logged-guard';
+import { WishlistComponent } from './features/wishlist/wishlist.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,7 +36,8 @@ export const routes: Routes = [
             { path: 'details/:id', component: DetailsComponent, title: 'Details' },
             { path: 'details/:slug/:id', component: DetailsComponent, title: 'Details' },
             { path: 'categories', component: CategoriesComponent, title: 'Categories' },
-            { path: 'about', component: AboutComponent, title: 'About' }
+            { path: 'about', component: AboutComponent, title: 'About' },
+            { path: 'wishlist', component: WishlistComponent, title: 'Wishlist' }
         ]
     },
     { path: '**', component: NotFoundComponent, title: 'Not Found' }
