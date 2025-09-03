@@ -3,6 +3,9 @@ import { AuthLayoutComponent } from './core/layouts/auth-layout/auth-layout.comp
 import { BlankLayoutComponent } from './core/layouts/blank-layout/blank-layout.component';
 import { LoginComponent } from './core/auth/login/login.component';
 import { RegisterComponent } from './core/auth/register/register.component';
+import { ForgetpassComponent } from './core/auth/login/forgotpasswords/forgetpass/forgetpass.component';
+import { VerifycodeComponent } from './core/auth/login/verifycode/verifycode/verifycode.component';
+import { ResetpassComponent } from './core/auth/login/resetpass/resetpass/resetpass.component';
 import { HomeComponent } from './features/home/home.component';
 import { ProductsComponent } from './features/products/products.component';
 import { CartComponent } from './features/cart/cart.component';
@@ -22,7 +25,10 @@ export const routes: Routes = [
     {
         path: '', component: AuthLayoutComponent, canActivate: [isLoggedGuard], children: [
             { path: 'login', component: LoginComponent, title: 'Login' },
-            { path: 'register', component: RegisterComponent, title: 'Register' }
+            { path: 'register', component: RegisterComponent, title: 'Register' },
+            { path: 'forgot-password', component: ForgetpassComponent, title: 'Forgot Password' },
+            { path: 'verify-code', component: VerifycodeComponent, title: 'Verify Code' },
+            { path: 'reset-password', component: ResetpassComponent, title: 'Reset Password' }
         ]
     },
     {

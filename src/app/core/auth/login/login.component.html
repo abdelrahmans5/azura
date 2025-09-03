@@ -44,11 +44,14 @@
             <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="submitForm()">
 
                 <!-- Email Field -->
-                <app-input [control]="loginForm.get('email')" [label]="'Email'" [type]="'email'" [idInput]="'email'"></app-input>
+                <app-input [control]="loginForm.get('email')" [label]="'Email'" [type]="'email'"
+                    [idInput]="'email'"></app-input>
 
                 <!-- Password Field -->
                 <app-input [control]="loginForm.get('password')" [label]="'Password'" [idInput]="'password'">
-                    Wrong password format. Password must be at least <span class="font-semibold">8 characters</span>, include <span class="font-semibold">uppercase</span>, <span class="font-semibold">lowercase</span>, <span class="font-semibold">number</span>, and <span class="font-semibold">special character</span>.
+                    Wrong password format. Password must be at least <span class="font-semibold">8 characters</span>,
+                    include <span class="font-semibold">uppercase</span>, <span class="font-semibold">lowercase</span>,
+                    <span class="font-semibold">number</span>, and <span class="font-semibold">special character</span>.
                 </app-input>
 
                 <!-- Remember Me & Forgot Password -->
@@ -60,7 +63,7 @@
                             Remember me
                         </label>
                     </div>
-                    <a href="#"
+                    <a routerLink="/forgot-password"
                         class="text-cyan-400 hover:text-cyan-300 text-sm font-semibold transition-colors duration-300">
                         Forgot Password?
                     </a>

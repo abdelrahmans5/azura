@@ -1,0 +1,142 @@
+/* Futuristic Forgot Password Component Styles */
+
+/* Custom Glow Animation */
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(34, 211, 238, 0.4), 0 0 20px rgba(34, 211, 238, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 10px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.3);
+    }
+}
+
+/* Input Focus Glow */
+input:focus {
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Button Hover Effects */
+button:hover:not(:disabled) {
+    animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
+/* Particle Animation for Background */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-10px) rotate(120deg);
+    }
+
+    66% {
+        transform: translateY(5px) rotate(240deg);
+    }
+}
+
+/* Enhanced Floating Animation */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Gradient Text Animation */
+@keyframes gradient-shift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.gradient-animate {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+/* Alert Slide In Animation */
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.alert-enter {
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+/* Enhanced Loading Spinner */
+@keyframes cyber-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(90deg) scale(1.1);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(270deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.fa-spinner {
+    animation: cyber-spin 2s linear infinite;
+}
+
+/* Glass Morphism Enhancement */
+.backdrop-blur-xl {
+    backdrop-filter: blur(16px) saturate(180%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #0891b2, #3b82f6);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #0e7490, #2563eb);
+}
+
+/* Responsive Enhancements */
+@media (max-width: 640px) {
+    .text-4xl {
+        font-size: 2.5rem;
+    }
+
+    .p-8 {
+        padding: 1.5rem;
+    }
+}

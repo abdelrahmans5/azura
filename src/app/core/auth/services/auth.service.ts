@@ -49,4 +49,35 @@ export class AuthService {
     return this.httpClient.get(environment.baseUrl + 'auth/verifyToken', this.getHeaders());
   }
 
+  forgotPasswords(email: string): Observable<any> {
+    return this.httpClient.post(environment.baseUrl + 'auth/forgotPasswords', {
+      email: email
+    });
+  }
+  verifyResetCode(code: string): Observable<any> {
+    return this.httpClient.post(environment.baseUrl + 'auth/verifyResetCode', {
+      resetCode: code
+    });
+  }
+  changeMyPassword(currentPassword: string, newPassword: string): Observable<any> {
+    return this.httpClient.put(environment.baseUrl + 'users/changeMyPassword', {
+      currentPassword: currentPassword,
+      password: newPassword,
+      rePassword: newPassword
+    }, this.getHeaders());
+  }
+  resetPassword(email: string, newPassword: string): Observable<any> {
+    return this.httpClient.put(environment.baseUrl + 'auth/resetPassword', {
+      email: email,
+      newPassword: newPassword
+    });
+  }
+  updateMe(name: string, email: string, phone: string): Observable<any> {
+    return this.httpClient.put(environment.baseUrl + 'users/updateMe/',
+      {
+        name: name,
+        email: email,
+        phone: phone
+      }, this.getHeaders());
+  }
 }

@@ -75,5 +75,16 @@ export class LoginComponent implements OnInit {
     }
 
   }
-
+  forgotPasswords(): void {
+    this.authService.forgotPasswords(this.loginForm.value.email).subscribe({
+      next: (response) => {
+        if (response.message === 'success') {
+          this.msgError = 'Please check your email for reset password instructions.';
+        }
+      },
+      error: (error) => {
+        this.msgError = error.error.message;
+      }
+    });
+  }
 }

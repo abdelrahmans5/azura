@@ -1,0 +1,401 @@
+/* Futuristic Reset Password Component Styles */
+
+/* Password Input Styling */
+input[type="password"],
+input[type="text"] {
+    position: relative;
+    caret-color: #22d3ee;
+}
+
+input:focus {
+    animation: input-glow 2s ease-in-out infinite;
+}
+
+/* Custom Glow Animation */
+@keyframes input-glow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 5px rgba(34, 211, 238, 0.4),
+            0 0 20px rgba(34, 211, 238, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 0 10px rgba(34, 211, 238, 0.6),
+            0 0 30px rgba(34, 211, 238, 0.3);
+    }
+}
+
+/* Password Strength Bar Animations */
+.password-strength-bar {
+    transition: all 0.3s ease;
+}
+
+/* Password Match States */
+.border-green-400 {
+    animation: success-pulse 1s ease-in-out;
+}
+
+.border-red-400 {
+    animation: error-shake 0.5s ease-in-out;
+}
+
+@keyframes success-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.7);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+    }
+}
+
+@keyframes error-shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    75% {
+        transform: translateX(3px);
+    }
+}
+
+/* Password Toggle Button */
+button[type="button"]:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 8px currentColor;
+}
+
+/* Enhanced Button Hover */
+button:hover:not(:disabled) {
+    animation: cyber-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes cyber-glow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 5px rgba(34, 211, 238, 0.4),
+            0 0 20px rgba(34, 211, 238, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 0 10px rgba(34, 211, 238, 0.6),
+            0 0 30px rgba(34, 211, 238, 0.3);
+    }
+}
+
+/* Floating Security Elements */
+@keyframes security-float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.5;
+    }
+
+    33% {
+        transform: translateY(-12px) rotate(120deg);
+        opacity: 0.8;
+    }
+
+    66% {
+        transform: translateY(6px) rotate(240deg);
+        opacity: 0.6;
+    }
+}
+
+/* Password Strength Colors */
+.bg-red-500 {
+    background-color: #ef4444;
+}
+
+.bg-orange-500 {
+    background-color: #f97316;
+}
+
+.bg-yellow-500 {
+    background-color: #eab308;
+}
+
+.bg-blue-500 {
+    background-color: #3b82f6;
+}
+
+.bg-green-500 {
+    background-color: #10b981;
+}
+
+/* Loading Spinner Enhancement */
+@keyframes cyber-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(90deg) scale(1.1);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(270deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.fa-spinner {
+    animation: cyber-spin 2s linear infinite;
+}
+
+/* Alert Slide In Animation */
+@keyframes alert-slide-in {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.relative.overflow-hidden {
+    animation: alert-slide-in 0.5s ease-out;
+}
+
+/* Gradient Text Animation */
+@keyframes gradient-shift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.bg-clip-text {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+/* Enhanced Glass Morphism */
+.backdrop-blur-xl {
+    backdrop-filter: blur(16px) saturate(180%);
+    background: rgba(30, 41, 59, 0.3);
+}
+
+/* Form Field Focus States */
+.form-field:focus-within {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+/* Navigation Button Hover Effects */
+button[type="button"]:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px currentColor;
+}
+
+/* Password Requirements Animation */
+.password-requirements {
+    animation: fade-in-up 0.5s ease-out;
+}
+
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Success/Error Icon Animations */
+.fa-check-circle {
+    animation: check-bounce 0.6s ease-in-out;
+}
+
+.fa-times-circle {
+    animation: error-pulse 0.6s ease-in-out;
+}
+
+@keyframes check-bounce {
+
+    0%,
+    20%,
+    60%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    80% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes error-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Focus States for Accessibility */
+input:focus-visible {
+    outline: 2px solid rgba(34, 211, 238, 0.5);
+    outline-offset: 2px;
+}
+
+button:focus-visible {
+    outline: 2px solid rgba(34, 211, 238, 0.5);
+    outline-offset: 2px;
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 640px) {
+    .text-4xl {
+        font-size: 2rem;
+    }
+
+    .p-8 {
+        padding: 1.5rem;
+    }
+
+    .grid-cols-1 {
+        gap: 1rem;
+    }
+
+    input {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    input {
+        border-width: 2px;
+    }
+
+    input:focus {
+        box-shadow: none;
+        border-color: #ffffff;
+    }
+
+    .password-strength-bar {
+        border: 1px solid #ffffff;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    input {
+        animation: none;
+    }
+
+    .fa-spinner {
+        animation: none;
+    }
+
+    button:hover {
+        animation: none;
+    }
+
+    .bg-clip-text {
+        animation: none;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #0891b2, #3b82f6);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #0e7490, #2563eb);
+}
+
+/* Password Strength Indicator Transitions */
+.password-strength-indicator {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Form Validation States */
+.field-valid {
+    border-color: #10b981;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+}
+
+.field-invalid {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(248, 113, 113, 0.1));
+}
+
+/* Enhanced Hover States */
+.hover-lift:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+/* Cyber Grid Enhancement */
+.cyber-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
