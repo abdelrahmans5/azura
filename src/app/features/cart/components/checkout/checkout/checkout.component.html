@@ -1,0 +1,303 @@
+<!-- Nexus Checkout Portal -->
+<main class="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black relative overflow-hidden">
+
+    <!-- Dynamic Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <!-- Subtle Grid -->
+        <div class="absolute inset-0 opacity-[0.03]"
+            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.15) 1px, transparent 0); background-size: 40px 40px;">
+        </div>
+
+        <!-- Glowing Orbs -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+            style="animation-delay: 2s;"></div>
+
+        <!-- Floating Elements -->
+        <div class="absolute top-20 right-20 w-2 h-2 bg-cyan-400/60 rounded-full animate-ping"></div>
+        <div class="absolute bottom-32 left-20 w-1.5 h-1.5 bg-purple-400/60 rounded-full animate-ping"
+            style="animation-delay: 1s;"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Header Section -->
+            <div class="text-center mb-12">
+                <div
+                    class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl mb-6 backdrop-blur-sm border border-cyan-500/30">
+                    <div
+                        class="w-12 h-12 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-shield-alt text-white text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <h1
+                            class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                            Secure Checkout
+                        </h1>
+                        <p class="text-gray-400 text-sm">Complete your purchase safely</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            @if (isLoading) {
+            <div class="flex flex-col items-center justify-center py-20">
+                <div class="relative">
+                    <div class="w-16 h-16 border-4 border-cyan-400/30 rounded-full animate-spin"></div>
+                    <div class="absolute top-2 left-2 w-12 h-12 border-4 border-purple-400/50 rounded-full animate-spin"
+                        style="animation-direction: reverse;"></div>
+                </div>
+                <p class="text-cyan-400 font-medium mt-4 tracking-wide">Processing...</p>
+            </div>
+            }
+
+            <!-- Main Content -->
+            @if (!isLoading) {
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- Left Column: Shipping Form -->
+                <div class="lg:col-span-2 space-y-8">
+
+                    <!-- Shipping Information Card -->
+                    <div class="bg-gray-900/50 backdrop-blur-xl rounded-2xl border border-gray-700/50 p-6 sm:p-8">
+                        <div class="flex items-center mb-6">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center mr-3">
+                                <i class="fas fa-shipping-fast text-white"></i>
+                            </div>
+                            <h2 class="text-xl font-bold text-white">Shipping Information</h2>
+                        </div>
+
+                        <form [formGroup]="checkoutForm" class="space-y-6">
+                            <!-- Delivery Address -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">
+                                    <i class="fas fa-map-marker-alt mr-2 text-cyan-400"></i>
+                                    Delivery Address
+                                </label>
+                                <textarea formControlName="details" rows="3"
+                                    placeholder="Enter your complete delivery address..."
+                                    class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300"
+                                    [class.border-red-500]="isFieldInvalid('details')"
+                                    [class.focus:ring-red-400/50]="isFieldInvalid('details')"
+                                    [class.focus:border-red-400]="isFieldInvalid('details')">
+                                </textarea>
+                                @if (isFieldInvalid('details')) {
+                                <div class="flex items-center mt-2 text-red-400 text-sm">
+                                    <i class="fas fa-exclamation-circle mr-2"></i>
+                                    {{ getFieldError('details') }}
+                                </div>
+                                }
+                            </div>
+
+                            <!-- Phone and City -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        <i class="fas fa-phone mr-2 text-cyan-400"></i>
+                                        Phone Number
+                                    </label>
+                                    <input formControlName="phone" type="tel" placeholder="01012345678"
+                                        class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300"
+                                        [class.border-red-500]="isFieldInvalid('phone')"
+                                        [class.focus:ring-red-400/50]="isFieldInvalid('phone')"
+                                        [class.focus:border-red-400]="isFieldInvalid('phone')" />
+                                    @if (isFieldInvalid('phone')) {
+                                    <div class="flex items-center mt-2 text-red-400 text-sm">
+                                        <i class="fas fa-exclamation-circle mr-2"></i>
+                                        {{ getFieldError('phone') }}
+                                    </div>
+                                    }
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        <i class="fas fa-city mr-2 text-cyan-400"></i>
+                                        City
+                                    </label>
+                                    <input formControlName="city" type="text" placeholder="Enter your city"
+                                        class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300"
+                                        [class.border-red-500]="isFieldInvalid('city')"
+                                        [class.focus:ring-red-400/50]="isFieldInvalid('city')"
+                                        [class.focus:border-red-400]="isFieldInvalid('city')" />
+                                    @if (isFieldInvalid('city')) {
+                                    <div class="flex items-center mt-2 text-red-400 text-sm">
+                                        <i class="fas fa-exclamation-circle mr-2"></i>
+                                        {{ getFieldError('city') }}
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Payment Method Card -->
+                    <div class="bg-gray-900/50 backdrop-blur-xl rounded-2xl border border-gray-700/50 p-6 sm:p-8">
+                        <div class="flex items-center mb-6">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-xl flex items-center justify-center mr-3">
+                                <i class="fas fa-credit-card text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Payment Method</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Cash Payment -->
+                            <div (click)="selectPaymentMethod('cash')"
+                                class="cursor-pointer p-4 rounded-xl border-2 transition-all duration-300 hover:scale-[1.02]"
+                                [class.border-green-400]="selectedPaymentMethod === 'cash'"
+                                [class.bg-green-400/10]="selectedPaymentMethod === 'cash'"
+                                [class.border-gray-600]="selectedPaymentMethod !== 'cash'"
+                                [class.hover:border-green-400/50]="selectedPaymentMethod !== 'cash'">
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center"
+                                        [class.border-green-400]="selectedPaymentMethod === 'cash'"
+                                        [class.bg-green-400]="selectedPaymentMethod === 'cash'"
+                                        [class.border-gray-400]="selectedPaymentMethod !== 'cash'">
+                                        @if (selectedPaymentMethod === 'cash') {
+                                        <i class="fas fa-check text-gray-900 text-xs"></i>
+                                        }
+                                    </div>
+                                    <div class="flex items-center flex-1">
+                                        <div
+                                            class="w-12 h-12 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg flex items-center justify-center mr-4">
+                                            <i class="fas fa-money-bill-wave text-white text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-white font-semibold">Cash on Delivery</h4>
+                                            <p class="text-gray-400 text-sm">Pay when you receive your order</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card Payment -->
+                            <div (click)="selectPaymentMethod('visa')"
+                                class="cursor-pointer p-4 rounded-xl border-2 transition-all duration-300 hover:scale-[1.02]"
+                                [class.border-blue-400]="selectedPaymentMethod === 'visa'"
+                                [class.bg-blue-400/10]="selectedPaymentMethod === 'visa'"
+                                [class.border-gray-600]="selectedPaymentMethod !== 'visa'"
+                                [class.hover:border-blue-400/50]="selectedPaymentMethod !== 'visa'">
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center"
+                                        [class.border-blue-400]="selectedPaymentMethod === 'visa'"
+                                        [class.bg-blue-400]="selectedPaymentMethod === 'visa'"
+                                        [class.border-gray-400]="selectedPaymentMethod !== 'visa'">
+                                        @if (selectedPaymentMethod === 'visa') {
+                                        <i class="fas fa-check text-white text-xs"></i>
+                                        }
+                                    </div>
+                                    <div class="flex items-center flex-1">
+                                        <div
+                                            class="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg flex items-center justify-center mr-4">
+                                            <i class="fab fa-cc-visa text-white text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-white font-semibold">Credit/Debit Card</h4>
+                                            <p class="text-gray-400 text-sm">Secure payment with Stripe</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Order Summary -->
+                <div class="lg:col-span-1">
+                    <div class="bg-gray-900/50 backdrop-blur-xl rounded-2xl border border-gray-700/50 p-6 sticky top-8">
+                        <div class="flex items-center mb-6">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-r from-purple-400 to-cyan-500 rounded-xl flex items-center justify-center mr-3">
+                                <i class="fas fa-receipt text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Order Summary</h3>
+                        </div>
+
+                        <div class="space-y-4 mb-6">
+                            <!-- Items -->
+                            <div class="flex justify-between items-center py-3 px-4 bg-gray-800/30 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-box text-cyan-400 mr-3"></i>
+                                    <span class="text-gray-300">Items ({{ getItemsCount() }})</span>
+                                </div>
+                                <span class="text-white font-semibold">${{ getTotalPrice() }}</span>
+                            </div>
+
+                            <!-- Shipping -->
+                            <div class="flex justify-between items-center py-3 px-4 bg-gray-800/30 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-shipping-fast text-green-400 mr-3"></i>
+                                    <span class="text-gray-300">Shipping</span>
+                                </div>
+                                <span class="text-green-400 font-semibold">FREE</span>
+                            </div>
+
+                            <!-- Tax -->
+                            <div class="flex justify-between items-center py-3 px-4 bg-gray-800/30 rounded-lg">
+                                <div class="flex items-center">
+                                    <i class="fas fa-percentage text-gray-400 mr-3"></i>
+                                    <span class="text-gray-300">Tax</span>
+                                </div>
+                                <span class="text-gray-400">Included</span>
+                            </div>
+                        </div>
+
+                        <!-- Total -->
+                        <div class="border-t border-gray-700 pt-4 mb-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-white">Total</span>
+                                <span
+                                    class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                                    ${{ getTotalPrice() }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="space-y-4">
+                            <!-- Place Order Button -->
+                            <button (click)="proceedToPayment()"
+                                [disabled]="isProcessingPayment || checkoutForm.invalid"
+                                class="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg hover:shadow-xl">
+                                @if (!isProcessingPayment) {
+                                <div class="flex items-center justify-center">
+                                    @if (selectedPaymentMethod === 'cash') {
+                                    <i class="fas fa-money-bill-wave mr-3"></i>
+                                    <span>Place Order (Cash)</span>
+                                    } @else if (selectedPaymentMethod === 'visa') {
+                                    <i class="fab fa-cc-visa mr-3"></i>
+                                    <span>Place Order (Card)</span>
+                                    } @else {
+                                    <i class="fas fa-shopping-cart mr-3"></i>
+                                    <span>Place Order</span>
+                                    }
+                                </div>
+                                } @else {
+                                <div class="flex items-center justify-center">
+                                    <div
+                                        class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-3">
+                                    </div>
+                                    <span>Processing...</span>
+                                </div>
+                                }
+                            </button>
+
+                            <!-- Back to Cart Button -->
+                            <button (click)="goBackToCart()"
+                                class="w-full bg-gray-700/50 hover:bg-gray-600/50 border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300">
+                                <div class="flex items-center justify-center">
+                                    <i class="fas fa-arrow-left mr-3"></i>
+                                    <span>Back to Cart</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</main>

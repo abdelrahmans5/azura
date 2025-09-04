@@ -1,0 +1,105 @@
+/* Checkout Component Clean Styles */
+
+/* Basic styling without animations */
+.container {
+    padding: 1rem;
+}
+
+/* Card hover effects - simplified */
+.bg-white\/10:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transition: background 0.2s ease;
+}
+
+/* Form input styling */
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
+    transition: box-shadow 0.2s ease;
+}
+
+/* Payment method cards - no animations */
+.payment-card {
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.payment-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Button styling - clean */
+button {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+/* Loading spinner - simple */
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Card form specific styles */
+.card-form-container {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+/* Order summary styles */
+.order-summary {
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    input,
+    textarea {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+    }
+
+    .grid {
+        gap: 1rem;
+    }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #06b6d4;
+    outline-offset: 2px;
+}
+
+/* Card input formatting */
+.card-input {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+}
+
+/* Sticky order summary */
+.sticky-summary {
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+}

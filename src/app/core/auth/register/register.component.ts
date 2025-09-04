@@ -1,10 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule, AbstractControl, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, ReactiveFormsModule, AbstractControl, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { InputComponent } from "../../../shared/components/input/input.component";
-import { group } from 'console';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -43,7 +42,7 @@ export class RegisterComponent implements OnInit {
   passwordMatchValidator(control: AbstractControl) {
     if (control.get('password')?.value === control.get('rePassword')?.value) {
       return null;
-    }else{
+    } else {
       control.get('rePassword')?.setErrors({ mismatch: true });
       return { mismatch: true };
     }
@@ -51,7 +50,7 @@ export class RegisterComponent implements OnInit {
 
   submitForm(): void {
     if (this.registerForm.valid) {
-      
+
       this.subscription.unsubscribe();
       this.isLoading = true;
       this.subscription = this.authService.registerForm(this.registerForm.value).subscribe({

@@ -88,4 +88,19 @@ export class CartComponent implements OnInit {
     });
   }
 
+  proceedToCheckout(): void {
+    if (!this.cartList.cartId) {
+      this.toastrService.error('Cart ID not found. Please refresh and try again', 'NEXUS');
+      return;
+    }
+
+    if (this.cartList.numOfCartItems === 0) {
+      this.toastrService.warning('Your cart is empty. Add items before checkout', 'NEXUS');
+      return;
+    }
+
+    // Navigate to checkout with cart ID
+    this.router.navigate(['/checkout', this.cartList.cartId]);
+  }
+
 }

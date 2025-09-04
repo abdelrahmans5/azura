@@ -57,17 +57,10 @@ export class WishlistComponent {
     });
   }
 
-  addToCart(productId: string): void {
-    this.cartService.addProductToCart(productId).subscribe({
-      next: () => {
-        this.removeWishlistItem(productId);
-      },
-    });
-  }
-
   moveToCart(productId: string): void {
     this.cartService.addProductToCart(productId).subscribe({
       next: () => {
+        this.cartService.addProductToCart(productId);
         this.removeWishlistItem(productId);
       },
     });

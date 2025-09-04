@@ -9,7 +9,7 @@ import { ResetpassComponent } from './core/auth/login/resetpass/resetpass/resetp
 import { HomeComponent } from './features/home/home.component';
 import { ProductsComponent } from './features/products/products.component';
 import { CartComponent } from './features/cart/cart.component';
-import { CheckoutComponent } from './features/checkout/checkout.component';
+import { CheckoutComponent } from './features/cart/components/checkout/checkout/checkout.component';
 import { DetailsComponent } from './features/details/details.component';
 import { CategoriesComponent } from './features/categories/categories.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
@@ -18,6 +18,7 @@ import { AboutComponent } from './features/about/about.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { authGuard } from './core/guards/auth-guard';
 import { isLoggedGuard } from './core/guards/is-logged-guard';
+import { OrdersComponent } from './features/orders/orders.component';
 import { WishlistComponent } from './features/wishlist/wishlist.component';
 
 export const routes: Routes = [
@@ -37,7 +38,8 @@ export const routes: Routes = [
             { path: 'products', component: ProductsComponent, title: 'Products' },
             { path: 'brands', component: BrandsComponent, title: 'Brands' },
             { path: 'cart', component: CartComponent, title: 'Cart' },
-            { path: 'checkout', component: CheckoutComponent, title: 'Checkout' },
+            { path: 'checkout/:id', component: CheckoutComponent, title: 'Checkout' },
+            { path: 'orders', component: OrdersComponent, title: 'My Orders' },
             { path: 'profile', component: ProfileComponent, title: 'Profile' },
             { path: 'details/:id', component: DetailsComponent, title: 'Details' },
             { path: 'details/:slug/:id', component: DetailsComponent, title: 'Details' },

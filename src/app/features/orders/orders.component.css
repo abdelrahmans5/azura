@@ -1,0 +1,68 @@
+/* Orders Component Styles */
+
+/* Clean transitions without heavy animations */
+.container {
+    padding: 1rem;
+}
+
+/* Basic hover effects */
+.bg-white\/10:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transition: background 0.2s ease;
+}
+
+/* Loading spinner */
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Button effects */
+button {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+/* Order card effects */
+.order-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Status badges */
+.status-badge {
+    transition: all 0.2s ease;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .grid {
+        gap: 0.5rem;
+    }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible {
+    outline: 2px solid #06b6d4;
+    outline-offset: 2px;
+}
