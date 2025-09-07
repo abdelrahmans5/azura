@@ -1,3 +1,4 @@
+import { ShippingAddress } from './../../../../../core/models/order.interface';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -27,15 +28,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   checkoutForm: FormGroup = this.fb.group({
-    details: ['', [Validators.required, Validators.minLength(10)]],
-    phone: ['', [Validators.required, Validators.pattern(/^(\+2|002)?01[0125][0-9]{8}$/)]],
-    city: ['', [Validators.required, Validators.minLength(2)]]
+    ShippingAddress: this.fb.group({
+      details: ['', [Validators.required, Validators.minLength(10)]],
+      phone: ['', [Validators.required, Validators.pattern(/^(\+2|002)?01[0125][0-9]{8}$/)]],
+      city: ['', [Validators.required, Validators.minLength(2)]]
+    })
   });
 
   cartId: string = '';
   cartData: Data | null = null;
   selectedPaymentMethod: PaymentMethod = 'cash';
-  isLoading: boolean = false;
   isProcessingPayment: boolean = false;
 
   ngOnInit(): void {
@@ -53,7 +55,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   loadCartData(): void {
-    this.isLoading = true;
     const cartSub = this.cartService.getCartProducts().subscribe({
       next: (response: cart) => {
         if (response.status === 'success' && response.data) {
@@ -62,13 +63,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           this.toastr.error('Failed to load cart data', 'Error');
           this.router.navigate(['/cart']);
         }
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Error loading cart:', error);
-        this.toastr.error('Failed to load cart data', 'Error');
-        this.router.navigate(['/cart']);
-        this.isLoading = false;
       }
     });
     this.subscriptions.push(cartSub);
@@ -78,13 +72,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.selectedPaymentMethod = method;
   }
 
-  isFieldInvalid(fieldName: string): boolean {
-    const field = this.checkoutForm.get(fieldName);
-    return !!(field && field.invalid && (field.dirty || field.touched));
-  }
-
   getFieldError(fieldName: string): string {
-    const field = this.checkoutForm.get(fieldName);
+    const field = this.checkoutForm.get(`ShippingAddress.${fieldName}`);
     if (field && field.errors && (field.dirty || field.touched)) {
       if (field.errors['required']) return `${fieldName} is required`;
       if (field.errors['minlength']) return `${fieldName} is too short`;
@@ -98,57 +87,41 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   proceedToPayment(): void {
     if (this.checkoutForm.invalid) {
-      Object.keys(this.checkoutForm.controls).forEach(key => {
-        this.checkoutForm.get(key)?.markAsTouched();
-      });
-      this.toastr.error('Please fill in all required shipping information', 'Validation Error');
+      this.checkoutForm.markAllAsTouched();
+      this.toastr.error('Please fill in all required fields correctly', 'Error');
       return;
     }
 
-    const formValue = this.checkoutForm.value;
+    const shippingAddress = this.checkoutForm.get('ShippingAddress')?.value;
     this.isProcessingPayment = true;
 
     if (this.selectedPaymentMethod === 'cash') {
-      this.processCashOrder(formValue);
+      this.processCashOrder(this.cartId, shippingAddress);
     } else {
-      this.processVisaOrder(formValue);
+      this.processVisaOrder(this.cartId, shippingAddress);
     }
   }
 
-  private processCashOrder(formValue: any): void {
-    const orderSub = this.checkoutService.createCashOrder(
-      this.cartId,
-      formValue.details,
-      formValue.phone,
-      formValue.city
+  private processCashOrder(cartId: string, shippingAddress: object): void {
+    this.checkoutService.createCashOrder(
+      cartId,
+      shippingAddress
     ).subscribe({
       next: (response) => {
         if (response.status === 'success') {
           this.toastr.success('Cash order placed successfully!', 'Success');
-          this.router.navigate(['/orders']);
+          this.router.navigate(['/allorders']);
         } else {
           this.toastr.error('Failed to place cash order', 'Error');
           this.router.navigate(['/cart']);
         }
         this.isProcessingPayment = false;
-      },
-      error: (error) => {
-        console.error('Error placing cash order:', error);
-        this.toastr.error('Failed to place cash order. Please try again.', 'Error');
-        this.router.navigate(['/cart']);
-        this.isProcessingPayment = false;
       }
     });
-    this.subscriptions.push(orderSub);
   }
 
-  private processVisaOrder(formValue: any): void {
-    const orderSub = this.checkoutService.createVisaOrder(
-      this.cartId,
-      formValue.details,
-      formValue.phone,
-      formValue.city
-    ).subscribe({
+  private processVisaOrder(cartId: string, shippingAddress: object): void {
+    const orderSub = this.checkoutService.createVisaOrder(cartId, shippingAddress).subscribe({
       next: (response) => {
         if (response.status === 'success' && response.session && response.session.url) {
           this.toastr.success('Redirecting to Stripe payment...', 'Success');
@@ -157,12 +130,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           this.toastr.error('Failed to create payment session', 'Error');
           this.router.navigate(['/cart']);
         }
-        this.isProcessingPayment = false;
-      },
-      error: (error) => {
-        console.error('Error placing visa order:', error);
-        this.toastr.error('Failed to create visa payment. Please try again.', 'Error');
-        this.router.navigate(['/cart']);
         this.isProcessingPayment = false;
       }
     });

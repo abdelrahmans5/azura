@@ -47,13 +47,6 @@ export class CardComponent implements OnInit {
     this.wishlistService.getWishlistProducts().subscribe({
       next: (response) => {
         this.wishListData = response;
-      },
-      error: (error) => {
-        console.error('Error loading wishlist:', error);
-        // Don't show error toast for wishlist loading failure when not authenticated
-        if (error.status !== 401) {
-          this.toastrService.error('Error loading wishlist', 'NEXUS');
-        }
       }
     });
   }
@@ -77,16 +70,6 @@ export class CardComponent implements OnInit {
         console.log('Product added to cart:', response);
         this.cartListData = response.data.products;
         this.toastrService.success(`${this.product.title} added to cart!`, 'NEXUS');
-      },
-      error: (error) => {
-        console.error('Error adding product to cart:', error);
-
-        if (error.status === 401) {
-          this.toastrService.error('Session expired. Please login again', 'NEXUS');
-          this.router.navigate(['/login']);
-        } else {
-          this.toastrService.error('Error adding product to cart', 'NEXUS');
-        }
       }
     });
   }
@@ -102,16 +85,6 @@ export class CardComponent implements OnInit {
       next: (response) => {
         this.loadWishlist();
         this.toastrService.info(`${this.product.title} added to wishlist!`, 'NEXUS');
-      },
-      error: (error) => {
-        console.error('Error adding product to wishlist:', error);
-
-        if (error.status === 401) {
-          this.toastrService.error('Session expired. Please login again', 'NEXUS');
-          this.router.navigate(['/login']);
-        } else {
-          this.toastrService.error('Error adding product to wishlist', 'NEXUS');
-        }
       }
     });
   }
@@ -127,16 +100,6 @@ export class CardComponent implements OnInit {
       next: (response) => {
         this.loadWishlist(); // Reload wishlist to update UI
         this.toastrService.info(`${this.product.title} removed from wishlist!`, 'NEXUS');
-      },
-      error: (error) => {
-        console.error('Error removing product from wishlist:', error);
-
-        if (error.status === 401) {
-          this.toastrService.error('Session expired. Please login again', 'NEXUS');
-          this.router.navigate(['/login']);
-        } else {
-          this.toastrService.error('Error removing product from wishlist', 'NEXUS');
-        }
       }
     });
   }

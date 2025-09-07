@@ -20,7 +20,6 @@ export class WishlistComponent {
   private readonly cartService = inject(CartService);
 
   wishList: Wishlist = {} as Wishlist;
-  isLoading = false;
   error: string | null = null;
 
   ngOnInit() {
@@ -28,18 +27,11 @@ export class WishlistComponent {
   }
 
   getLoggedInUser(): void {
-    this.isLoading = true;
     this.error = null;
 
     this.wishlistService.getWishlistProducts().subscribe({
       next: (response) => {
         this.wishList = response;
-        this.isLoading = false;
-      },
-      error: (error) => {
-        this.error = 'Failed to load wishlist. Please try again later.';
-        this.isLoading = false;
-        console.error('Error loading wishlist:', error);
       }
     });
   }
@@ -50,9 +42,6 @@ export class WishlistComponent {
         this.wishList = response;
         this.getLoggedInUser();
         this.toastrService.info(`Product goes!`, 'NEXUS');
-      },
-      error: (error) => {
-        this.toastrService.error('Failed to remove item from wishlist', 'NEXUS');
       }
     });
   }

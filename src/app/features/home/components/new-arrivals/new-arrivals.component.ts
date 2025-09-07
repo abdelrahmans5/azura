@@ -25,9 +25,6 @@ export class NewArrivalsComponent implements OnInit {
         console.log('Product added to cart:', response);
         this.toastrService.success(`${this.productsList[0].title} added to cart!`, 'NEXUS');
 
-      },
-      error: (error) => {
-        console.error('Error adding product to cart:', error);
       }
     });
   }

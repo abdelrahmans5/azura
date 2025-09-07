@@ -12,15 +12,11 @@
             <div class="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-600 mx-auto rounded-full"></div>
         </div>
 
-        <!-- Loading State -->
-        <div *ngIf="isLoading" class="flex justify-center items-center min-h-[400px]">
-            <div class="w-16 h-16 border-4 border-purple-600/30 border-t-cyan-400 rounded-full animate-spin"></div>
-        </div>
-
         <!-- Orders List -->
-        <div *ngIf="!isLoading && orders.length > 0" class="space-y-6">
-            <div *ngFor="let order of orders"
-                class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl">
+        @if (orders && orders.length > 0) {
+        <div class="space-y-6">
+            @for (order of orders; track order._id) {
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl">
 
                 <!-- Order Header -->
                 <div
@@ -49,8 +45,8 @@
                 <div class="mb-6">
                     <h4 class="text-lg font-semibold text-cyan-400 mb-4">Order Items</h4>
                     <div class="grid gap-4">
-                        <div *ngFor="let item of order.cartItems"
-                            class="flex items-center space-x-4 p-3 bg-white/5 rounded-lg border border-white/10">
+                        @for (item of order.cartItems; track item._id) {
+                        <div class="flex items-center space-x-4 p-3 bg-white/5 rounded-lg border border-white/10">
                             <img [src]="item.product.imageCover" [alt]="item.product.title"
                                 class="w-16 h-16 object-cover rounded-lg"
                                 (error)="$event.target.src='/images/placeholder-product.jpg'">
@@ -62,6 +58,7 @@
                                 {{ item.price | currency:'EGP':'symbol':'1.0-0' }}
                             </div>
                         </div>
+                        }
                     </div>
                 </div>
 
@@ -79,10 +76,13 @@
                     </div>
                 </div>
             </div>
+            }
         </div>
+        }
 
         <!-- Empty State -->
-        <div *ngIf="!isLoading && orders.length === 0" class="text-center py-16">
+        @if (!orders || orders.length === 0) {
+        <div class="text-center py-16">
             <div class="max-w-lg mx-auto bg-white/10 backdrop-blur-lg rounded-2xl p-12 border border-white/20">
                 <div
                     class="w-24 h-24 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 opacity-50">
@@ -98,10 +98,11 @@
                 </button>
             </div>
         </div>
+        }
 
         <!-- Back Button -->
         <div class="mt-8 text-center">
-            <button
+            <button (click)="goBack()"
                 class="px-6 py-3 bg-transparent border-2 border-white/30 text-white font-medium rounded-xl hover:border-white/50 hover:bg-white/10 transition-all duration-300">
                 <i class="fas fa-arrow-left mr-2"></i>
                 Back

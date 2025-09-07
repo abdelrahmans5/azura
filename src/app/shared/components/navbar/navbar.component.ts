@@ -53,11 +53,6 @@ export class NavbarComponent implements OnInit {
     this.cartService.getCartProducts().subscribe({
       next: (response) => {
         this.cartCount = response.numOfCartItems;
-      },
-      error: (error) => {
-        console.error('Error loading cart count:', error);
-        // Reset cart count on error (likely means user is not authenticated)
-        this.cartCount = 0;
       }
     });
   }

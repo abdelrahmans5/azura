@@ -18,8 +18,8 @@ import { AboutComponent } from './features/about/about.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { authGuard } from './core/guards/auth-guard';
 import { isLoggedGuard } from './core/guards/is-logged-guard';
-import { OrdersComponent } from './features/orders/orders.component';
 import { WishlistComponent } from './features/wishlist/wishlist.component';
+import { AllordersComponent } from './features/allorders/allorders.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -39,7 +39,7 @@ export const routes: Routes = [
             { path: 'brands', component: BrandsComponent, title: 'Brands' },
             { path: 'cart', component: CartComponent, title: 'Cart' },
             { path: 'checkout/:id', component: CheckoutComponent, title: 'Checkout' },
-            { path: 'orders', component: OrdersComponent, title: 'My Orders' },
+            { path: 'allorders', component: AllordersComponent, title: 'All Orders' },
             { path: 'profile', component: ProfileComponent, title: 'Profile' },
             { path: 'details/:id', component: DetailsComponent, title: 'Details' },
             { path: 'details/:slug/:id', component: DetailsComponent, title: 'Details' },

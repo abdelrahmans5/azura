@@ -23,7 +23,6 @@ export class ProductsComponent implements OnInit {
   uniqueCategories: string[] = [];
 
   // UI State properties
-  isLoading = false;
   error: string | null = null;
   viewMode: 'grid' | 'list' = 'grid';
   selectedCategory = 'all';
@@ -38,7 +37,6 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllProductsData(): void {
-    this.isLoading = true;
     this.error = null;
 
     this.productsService.getAllProducts().subscribe({
@@ -46,11 +44,6 @@ export class ProductsComponent implements OnInit {
         this.productsList = response.data;
         this.filteredProducts = [...this.productsList];
         this.extractUniqueCategories();
-        this.isLoading = false;
-      },
-      error: (error) => {
-        this.error = 'Failed to load products. Please try again later.';
-        this.isLoading = false;
       }
     });
   }

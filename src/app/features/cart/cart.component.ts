@@ -37,17 +37,6 @@ export class CartComponent implements OnInit {
     this.cartService.getCartProducts().subscribe({
       next: (response) => {
         this.cartList = response;
-      },
-      error: (error) => {
-        console.error('Error fetching cart products:', error);
-
-        // If it's a 401 error, redirect to login
-        if (error.status === 401) {
-          this.toastrService.error('Session expired. Please login again', 'NEXUS');
-          this.router.navigate(['/login']);
-        } else {
-          this.toastrService.error('Error loading cart. Please try again', 'NEXUS');
-        }
       }
     });
   }
@@ -56,16 +45,6 @@ export class CartComponent implements OnInit {
       next: (response) => {
         this.cartList = response;
         this.toastrService.success('Quantity updated successfully', 'NEXUS');
-      },
-      error: (error) => {
-        console.error('Error updating cart item:', error);
-
-        if (error.status === 401) {
-          this.toastrService.error('Session expired. Please login again', 'NEXUS');
-          this.router.navigate(['/login']);
-        } else {
-          this.toastrService.error('Error updating quantity. Please try again', 'NEXUS');
-        }
       }
     });
   }
@@ -74,16 +53,6 @@ export class CartComponent implements OnInit {
       next: (response) => {
         this.cartList = response;
         this.toastrService.error(`Product removed from cart!`, 'NEXUS');
-      },
-      error: (error) => {
-        console.error('Error removing cart item:', error);
-
-        if (error.status === 401) {
-          this.toastrService.error('Session expired. Please login again', 'NEXUS');
-          this.router.navigate(['/login']);
-        } else {
-          this.toastrService.error('Error removing item. Please try again', 'NEXUS');
-        }
       }
     });
   }
@@ -99,7 +68,6 @@ export class CartComponent implements OnInit {
       return;
     }
 
-    // Navigate to checkout with cart ID
     this.router.navigate(['/checkout', this.cartList.cartId]);
   }
 

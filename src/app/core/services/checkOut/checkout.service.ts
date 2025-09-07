@@ -10,15 +10,6 @@ export interface ShippingAddress {
   city: string;
 }
 
-export interface OrderResponse {
-  status: string;
-  message?: string;
-  data?: any;
-  session?: {
-    url: string;
-    id: string;
-  };
-}
 
 @Injectable({
   providedIn: 'root'
@@ -27,47 +18,23 @@ export class CheckoutService {
   private readonly httpClient = inject(HttpClient);
   private readonly cookieService = inject(CookieService);
 
-  private getHeaders(): object {
-    const token = this.cookieService.get('token');
-    return {
-      headers: {
-        token: token
-      }
-    };
-  }
 
-  createCashOrder(cartId: string, details: string, phone: string, city: string): Observable<OrderResponse> {
-    const shippingAddress: ShippingAddress = {
-      details,
-      phone,
-      city
-    };
 
-    return this.httpClient.post<OrderResponse>(
+  createCashOrder(cartId: string, shippingAddress: object): Observable<any> {
+    return this.httpClient.post<any>(
       `${environment.baseUrl}orders/${cartId}`,
-      { shippingAddress },
-      this.getHeaders()
+      shippingAddress
     );
   }
 
-  createVisaOrder(cartId: string, details: string, phone: string, city: string): Observable<OrderResponse> {
-    const shippingAddress: ShippingAddress = {
-      details,
-      phone,
-      city
-    };
-    return this.httpClient.post<OrderResponse>(
-      `${environment.baseUrl}orders/checkout-session/${cartId}`,
-      { shippingAddress },
-      this.getHeaders()
+  createVisaOrder(cartId: string, shippingAddress: object): Observable<any> {
+    return this.httpClient.post<any>(environment.baseUrl + `orders/checkout-session/${cartId}?url=http://localhost:4200`,
+      shippingAddress
     );
   }
 
 
-  getUserOrders(): Observable<any> {
-    return this.httpClient.get(
-      `${environment.baseUrl}orders/user`,
-      this.getHeaders()
-    );
+  getUserOrders(id: string): Observable<any> {
+    return this.httpClient.get(environment.baseUrl + `orders/user/${id}`);
   }
 }

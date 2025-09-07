@@ -87,21 +87,6 @@
             </div>
         </div>
 
-        <!-- Loading and Error States -->
-        @if (isLoading) {
-        <div class="flex justify-center items-center py-32">
-            <div class="relative">
-                <div class="w-16 h-16 border-4 border-cyan-400/30 border-t-cyan-400 rounded-full animate-spin"></div>
-                <div class="absolute inset-0 w-16 h-16 border-4 border-purple-400/30 border-b-purple-400 rounded-full animate-spin"
-                    style="animation-direction: reverse; animation-duration: 1.5s;"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-4 h-4 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full animate-pulse"></div>
-                </div>
-            </div>
-            <span class="ml-4 text-cyan-400 font-medium tracking-wider">LOADING QUANTUM DATA...</span>
-        </div>
-        }
-
         @if (error) {
         <div class="text-center py-32">
             <div
@@ -125,7 +110,7 @@
         }
 
         <!-- Products Display -->
-        @if (!isLoading && !error && filteredProducts.length > 0) {
+        @if (!error && filteredProducts.length > 0) {
         <div
             [class]="viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8' : 'space-y-8'">
             @for (product of filteredProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };
@@ -144,7 +129,7 @@
         </div>
         }
 
-        @if (!isLoading && !error && filteredProducts.length === 0) {
+        @if (!error && filteredProducts.length === 0) {
         <div class="text-center py-32">
             <div
                 class="max-w-lg mx-auto bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-12">

@@ -39,9 +39,6 @@ export class BrandsComponent implements OnInit {
     this.brandsService.getAllBrands().subscribe({
       next: (response) => {
         this.brandsList = response.data;
-      },
-      error: (error) => {
-        console.log(error);
       }
     });
   }

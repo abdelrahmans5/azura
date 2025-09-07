@@ -36,8 +36,6 @@
                 Your <span class="text-cyan-400 font-semibold">quantum collection</span> of desired items
             </p>
 
-            <!-- Wishlist Stats -->
-            @if (!isLoading) {
             <div
                 class="inline-flex items-center gap-4 bg-gradient-to-r from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 px-8 py-4">
                 <div class="flex items-center gap-2">
@@ -46,23 +44,7 @@
                     <span class="text-gray-400 text-sm">Items in Wishlist</span>
                 </div>
             </div>
-            }
         </div>
-
-        <!-- Loading State -->
-        @if (isLoading) {
-        <div class="flex justify-center items-center py-32">
-            <div class="relative">
-                <div class="w-16 h-16 border-4 border-cyan-400/30 border-t-cyan-400 rounded-full animate-spin"></div>
-                <div class="absolute inset-0 w-16 h-16 border-4 border-purple-400/30 border-b-purple-400 rounded-full animate-spin"
-                    style="animation-direction: reverse; animation-duration: 1.5s;"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-4 h-4 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full animate-pulse"></div>
-                </div>
-            </div>
-            <span class="ml-4 text-cyan-400 font-medium tracking-wider">LOADING WISHLIST...</span>
-        </div>
-        }
 
         <!-- Error State -->
         @if (error) {
@@ -88,7 +70,7 @@
         }
 
         <!-- Wishlist Items -->
-        @if (!isLoading && wishList.data.length > 0) {
+        @if (wishList.data && wishList.data.length > 0) {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             @for (item of wishList.data; track item._id) {
             <div
@@ -198,7 +180,7 @@
         }
 
         <!-- Empty Wishlist State -->
-        @if (!isLoading && wishList.data.length === 0) {
+        @if (wishList.data && wishList.data.length === 0) {
         <div class="text-center py-32">
             <div
                 class="max-w-lg mx-auto bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-12">
@@ -224,7 +206,7 @@
         }
 
         <!-- Floating Action Button -->
-        @if (!isLoading && wishList.data.length > 0) {
+        @if (wishList.data && wishList.data.length > 0) {
         <div class="fixed bottom-8 right-8">
             <a [routerLink]="['/products']"
                 class="group w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 rounded-full flex items-center justify-center text-white shadow-2xl shadow-cyan-500/25 transition-all duration-300 transform hover:scale-110">
