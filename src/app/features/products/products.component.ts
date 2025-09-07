@@ -1,10 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, Router } from '@angular/router';
 import { ProductsService } from '../../core/services/products/products.service';
 import { Product } from '../../core/models/product.interface';
 import { CardComponent } from "../../shared/components/card/card.component";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CartService } from '../cart/services/cart.service';
+import { WishlistService } from '../wishlist/services/wishlist.service';
+import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -16,6 +21,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 export class ProductsComponent implements OnInit {
 
   private readonly productsService = inject(ProductsService);
+  private readonly cartService = inject(CartService);
+  private readonly wishlistService = inject(WishlistService);
+  private readonly toastr = inject(ToastrService);
+  private readonly router = inject(Router);
+  private readonly cookieService = inject(CookieService);
 
   // Data properties
   productsList: Product[] = [];
@@ -31,6 +41,10 @@ export class ProductsComponent implements OnInit {
   // Pagination properties
   currentPage: number = 1;
   itemsPerPage: number = 12;
+
+  get adjustedItemsPerPage(): number {
+    return this.viewMode === 'list' ? 6 : 12;
+  }
 
   ngOnInit(): void {
     this.getAllProductsData();
@@ -98,6 +112,28 @@ export class ProductsComponent implements OnInit {
     this.selectedCategory = 'all';
     this.sortBy = '';
     this.filteredProducts = [...this.productsList];
+    this.currentPage = 1;
+  }
+
+  // Cart and Wishlist Methods for List View
+  addToCart(productId: string, productTitle: string): void {
+    this.cartService.addProductToCart(productId).subscribe({
+      next: (response) => {
+        this.toastr.success(`${productTitle} added to cart!`, 'NEXUS');
+      }
+    });
+  }
+
+  addToWishlist(productId: string, productTitle: string): void {
+    this.wishlistService.addProductToWishlist(productId).subscribe({
+      next: (response) => {
+        this.toastr.info(`${productTitle} added to wishlist!`, 'NEXUS');
+      }
+    });
+  }
+
+  setViewMode(mode: 'grid' | 'list'): void {
+    this.viewMode = mode;
     this.currentPage = 1;
   }
 

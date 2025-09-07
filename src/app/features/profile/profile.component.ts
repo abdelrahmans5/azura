@@ -1,10 +1,12 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Order } from './../../core/models/order.interface';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { CheckoutService } from '../../core/services/checkOut/checkout.service';
 
 interface UserProfile {
   name: string;
@@ -19,10 +21,11 @@ interface UserProfile {
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly fb = inject(FormBuilder);
   private readonly toastrService = inject(ToastrService);
+  private readonly checkoutService = inject(CheckoutService);
 
   userData: any;
   userProfile: UserProfile = {
@@ -48,6 +51,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   passwordError: string | null = null;
   passwordSuccess: string | null = null;
 
+  Orders: Order[] = [];
+
   // Subscriptions
   private subscription = new Subscription();
 
@@ -55,10 +60,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.userData = this.authService.decodeToken();
     this.initializeForms();
     this.loadUserProfile();
+
+    // Load user orders if user is authenticated
+    if (this.userData && this.userData.id) {
+      this.getOrders(this.userData.id);
+    }
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  getOrders(id: string): void {
+    this.checkoutService.getUserOrders(id).subscribe({
+      next: (response) => {
+        this.Orders = response;
+      }
+    });
   }
 
   initializeForms(): void {

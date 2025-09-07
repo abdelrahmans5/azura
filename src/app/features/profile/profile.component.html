@@ -195,6 +195,84 @@
                         <!-- Orders Tab -->
                         @if (activeTab === 'orders') {
                         <div class="space-y-4">
+                            <!-- Orders List -->
+                            @if (Orders && Orders.length > 0) {
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h3 class="text-xl font-bold text-white">
+                                        <i class="fas fa-shopping-bag text-cyan-400 mr-2"></i>
+                                        My Orders ({{ Orders.length }})
+                                    </h3>
+                                    <a routerLink="/allorders"
+                                        class="text-cyan-400 hover:text-cyan-300 text-sm font-medium transition-colors duration-300">
+                                        <i class="fas fa-external-link-alt mr-1"></i>
+                                        View All Orders
+                                    </a>
+                                </div>
+
+                                @for (order of Orders.slice(0, 3); track order._id) {
+                                <div
+                                    class="bg-gradient-to-r from-slate-800/30 to-blue-900/30 backdrop-blur-sm rounded-xl border border-cyan-400/20 p-4 hover:border-cyan-400/40 transition-all duration-300">
+                                    <!-- Order Header -->
+                                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                                        <div>
+                                            <h4 class="text-white font-semibold">Order #{{ order._id.slice(-8) }}</h4>
+                                            <p class="text-gray-400 text-sm">{{ order.createdAt | date:'medium' }}</p>
+                                        </div>
+                                        <div class="flex flex-wrap gap-2 mt-2 sm:mt-0">
+                                            <span class="px-2 py-1 rounded-full text-xs font-medium"
+                                                [class]="order.isPaid ? 'bg-green-500/20 text-green-400 border border-green-400/30' : 'bg-red-500/20 text-red-400 border border-red-400/30'">
+                                                {{ order.isPaid ? 'Paid' : 'Pending' }}
+                                            </span>
+                                            <span class="px-2 py-1 rounded-full text-xs font-medium"
+                                                [class]="order.isDelivered ? 'bg-green-500/20 text-green-400 border border-green-400/30' : 'bg-yellow-500/20 text-yellow-400 border border-yellow-400/30'">
+                                                {{ order.isDelivered ? 'Delivered' : 'Processing' }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Order Items Preview -->
+                                    <div class="mb-4">
+                                        <div class="flex items-center space-x-2 mb-2">
+                                            @for (item of order.cartItems.slice(0, 3); track item._id) {
+                                            <img [src]="item.product.imageCover" [alt]="item.product.title"
+                                                class="w-10 h-10 object-cover rounded-lg border border-cyan-400/20"
+                                                (error)="$event.target.src='/images/placeholder-product.jpg'">
+                                            }
+                                            @if (order.cartItems.length > 3) {
+                                            <div
+                                                class="w-10 h-10 bg-slate-700/50 rounded-lg border border-cyan-400/20 flex items-center justify-center">
+                                                <span class="text-cyan-400 text-xs font-semibold">+{{
+                                                    order.cartItems.length - 3 }}</span>
+                                            </div>
+                                            }
+                                        </div>
+                                        <p class="text-gray-400 text-sm">
+                                            {{ order.cartItems.length }} item{{ order.cartItems.length > 1 ? 's' : '' }}
+                                        </p>
+                                    </div>
+
+                                    <!-- Order Total -->
+                                    <div class="flex items-center justify-between pt-4 border-t border-gray-700/50">
+                                        <span class="text-gray-400 text-sm">Total Amount:</span>
+                                        <span class="text-cyan-400 font-bold">{{ order.totalOrderPrice |
+                                            currency:'EGP':'symbol':'1.0-0' }}</span>
+                                    </div>
+                                </div>
+                                }
+
+                                @if (Orders.length > 3) {
+                                <div class="text-center pt-4">
+                                    <a routerLink="/allorders"
+                                        class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 text-cyan-400 rounded-lg hover:bg-cyan-500/30 transition-all duration-300">
+                                        <i class="fas fa-plus mr-2"></i>
+                                        View {{ Orders.length - 3 }} More Orders
+                                    </a>
+                                </div>
+                                }
+                            </div>
+                            } @else {
+                            <!-- Empty Orders State -->
                             <div class="text-center py-12">
                                 <div
                                     class="w-16 h-16 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -207,6 +285,7 @@
                                     <i class="fas fa-rocket mr-2"></i>Start Shopping
                                 </button>
                             </div>
+                            }
                         </div>
                         }
 
