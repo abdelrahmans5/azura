@@ -31,23 +31,33 @@
                 </div>
             </div>
 
-            <p class="text-gray-300 text-xl mb-12 max-w-3xl mx-auto">
-                Discover <span class="text-cyan-400 font-semibold">quantum-enhanced products</span> from the future
+            <p
+                [class]="themeService.isLight() ? 'text-gray-700 text-xl mb-12 max-w-3xl mx-auto' : 'text-gray-300 text-xl mb-12 max-w-3xl mx-auto'">
+                Discover <span
+                    [class]="themeService.isLight() ? 'text-blue-600 font-semibold' : 'text-cyan-400 font-semibold'">
+                    quantum-enhanced products
+                </span> from the future
             </p>
 
             <!-- Futuristic Filter and Sort Controls -->
             <div
-                class="bg-gradient-to-r from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-8">
+                [class]="themeService.isLight() 
+                    ? 'bg-gradient-to-r from-white/90 to-gray-50/90 backdrop-blur-xl rounded-2xl border border-gray-200/50 p-8'
+                    : 'bg-gradient-to-r from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-8'">
                 <!-- Filter Categories -->
                 <div class="flex flex-wrap justify-center gap-3 mb-8">
                     <button (click)="filterByCategory('all')"
-                        [class]="selectedCategory === 'all' ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-cyan-400' : 'bg-slate-800/50 text-gray-300 border-gray-600 hover:border-cyan-400/50 hover:text-cyan-400'"
+                        [class]="selectedCategory === 'all' 
+                            ? (themeService.isLight() ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-400' : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-cyan-400')
+                            : (themeService.isLight() ? 'bg-white/70 text-gray-700 border-gray-300 hover:border-blue-400/50 hover:text-blue-600' : 'bg-slate-800/50 text-gray-300 border-gray-600 hover:border-cyan-400/50 hover:text-cyan-400')"
                         class="px-6 py-3 rounded-xl border transition-all duration-300 font-medium backdrop-blur-sm">
                         <i class="fas fa-globe mr-2"></i>All Products
                     </button>
                     @for (category of uniqueCategories; track category) {
                     <button (click)="filterByCategory(category)"
-                        [class]="selectedCategory === category ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-cyan-400' : 'bg-slate-800/50 text-gray-300 border-gray-600 hover:border-cyan-400/50 hover:text-cyan-400'"
+                        [class]="selectedCategory === category 
+                            ? (themeService.isLight() ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-400' : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-cyan-400')
+                            : (themeService.isLight() ? 'bg-white/70 text-gray-700 border-gray-300 hover:border-blue-400/50 hover:text-blue-600' : 'bg-slate-800/50 text-gray-300 border-gray-600 hover:border-cyan-400/50 hover:text-cyan-400')"
                         class="px-6 py-3 rounded-xl border transition-all duration-300 font-medium backdrop-blur-sm">
                         {{ category }}
                     </button>
@@ -59,7 +69,9 @@
                     <!-- Sort Dropdown -->
                     <div class="relative">
                         <select [(ngModel)]="sortBy" (change)="sortProducts()"
-                            class="appearance-none bg-gradient-to-r from-slate-800/70 to-blue-900/70 border border-cyan-400/30 text-gray-300 px-6 py-3 pr-12 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent backdrop-blur-sm font-medium">
+                            [class]="themeService.isLight() 
+                                ? 'appearance-none bg-gradient-to-r from-white/80 to-gray-50/80 border border-gray-300 text-gray-700 px-6 py-3 pr-12 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm font-medium'
+                                : 'appearance-none bg-gradient-to-r from-slate-800/70 to-blue-900/70 border border-cyan-400/30 text-gray-300 px-6 py-3 pr-12 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent backdrop-blur-sm font-medium'">
                             <option value="">Sort by</option>
                             <option value="price-low">💰 Price: Low to High</option>
                             <option value="price-high">💎 Price: High to Low</option>
@@ -67,18 +79,26 @@
                             <option value="newest">🚀 Latest Arrivals</option>
                         </select>
                         <i
-                            class="fas fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-cyan-400 pointer-events-none"></i>
+                            [class]="themeService.isLight() 
+                                ? 'fas fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-blue-600 pointer-events-none'
+                                : 'fas fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-cyan-400 pointer-events-none'"></i>
                     </div>
 
                     <!-- View Mode Toggle -->
-                    <div class="flex items-center bg-slate-800/50 rounded-xl border border-gray-600 p-1">
+                    <div [class]="themeService.isLight() 
+                            ? 'flex items-center bg-white/70 rounded-xl border border-gray-300 p-1'
+                            : 'flex items-center bg-slate-800/50 rounded-xl border border-gray-600 p-1'">
                         <button (click)="viewMode = 'grid'"
-                            [class]="viewMode === 'grid' ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white' : 'text-gray-400 hover:text-cyan-400'"
+                            [class]="viewMode === 'grid' 
+                                ? (themeService.isLight() ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white' : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white')
+                                : (themeService.isLight() ? 'text-gray-600 hover:text-blue-600' : 'text-gray-400 hover:text-cyan-400')"
                             class="p-3 rounded-lg transition-all duration-300">
                             <i class="fas fa-th-large"></i>
                         </button>
                         <button (click)="viewMode = 'list'"
-                            [class]="viewMode === 'list' ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white' : 'text-gray-400 hover:text-cyan-400'"
+                            [class]="viewMode === 'list' 
+                                ? (themeService.isLight() ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white' : 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white')
+                                : (themeService.isLight() ? 'text-gray-600 hover:text-blue-600' : 'text-gray-400 hover:text-cyan-400')"
                             class="p-3 rounded-lg transition-all duration-300">
                             <i class="fas fa-list"></i>
                         </button>
@@ -112,11 +132,14 @@
         <!-- Products Display -->
         @if (!error && filteredProducts.length > 0) {
         <div
-            [class]="viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8' : 'space-y-8'">
-            @for (product of filteredProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };
+            [class]="viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8' : 'space-y-6'">
+            @for (product of filteredProducts | paginate: { itemsPerPage: adjustedItemsPerPage, currentPage: currentPage
+            };
             track product.id) {
             @if (viewMode === 'grid') {
             <app-card [product]="product"></app-card>
+            } @else {
+            <app-list-card [product]="product"></app-list-card>
             }
             }
         </div>
@@ -132,17 +155,29 @@
         @if (!error && filteredProducts.length === 0) {
         <div class="text-center py-32">
             <div
-                class="max-w-lg mx-auto bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-12">
+                [class]="themeService.isLight() 
+                    ? 'max-w-lg mx-auto bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-xl rounded-2xl border border-gray-200/50 p-12'
+                    : 'max-w-lg mx-auto bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-12'">
                 <div
-                    class="w-24 h-24 bg-gradient-to-r from-gray-500 to-gray-600 rounded-full flex items-center justify-center mx-auto mb-8 opacity-50">
-                    <i class="fas fa-search text-white text-3xl"></i>
+                    [class]="themeService.isLight() 
+                        ? 'w-24 h-24 bg-gradient-to-r from-gray-300 to-gray-400 rounded-full flex items-center justify-center mx-auto mb-8 opacity-60'
+                        : 'w-24 h-24 bg-gradient-to-r from-gray-500 to-gray-600 rounded-full flex items-center justify-center mx-auto mb-8 opacity-50'">
+                    <i
+                        [class]="themeService.isLight() ? 'fas fa-search text-gray-700 text-3xl' : 'fas fa-search text-white text-3xl'">
+                    </i>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-300 mb-4">No Products Found</h3>
-                <p class="text-gray-400 mb-8 leading-relaxed">
+                <h3
+                    [class]="themeService.isLight() ? 'text-2xl font-bold text-gray-800 mb-4' : 'text-2xl font-bold text-gray-300 mb-4'">
+                    No Products Found
+                </h3>
+                <p
+                    [class]="themeService.isLight() ? 'text-gray-600 mb-8 leading-relaxed' : 'text-gray-400 mb-8 leading-relaxed'">
                     The quantum search didn't return any results. Try adjusting your filters or search terms.
                 </p>
                 <button (click)="clearFilters()"
-                    class="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 overflow-hidden">
+                    [class]="themeService.isLight() 
+                        ? 'group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 overflow-hidden'
+                        : 'group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 overflow-hidden'">
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-1000">
                     </div>

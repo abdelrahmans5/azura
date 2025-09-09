@@ -5,6 +5,7 @@ import { CurrencyPipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { RouterLink, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { ThemeService } from '../../core/services/theme.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +18,7 @@ export class CartComponent implements OnInit {
   private readonly toastrService = inject(ToastrService);
   private readonly router = inject(Router);
   private readonly cookieService = inject(CookieService);
-
+  protected readonly themeService = inject(ThemeService);
 
   cartList: cart = {} as cart;
 
