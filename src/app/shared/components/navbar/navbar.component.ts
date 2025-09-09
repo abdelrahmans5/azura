@@ -8,10 +8,14 @@ import { AuthService } from '../../../core/auth/services/auth.service';
 import { CartService } from '../../../features/cart/services/cart.service';
 import { CartComponent } from '../../../features/cart/cart.component';
 import { WishlistService } from '../../../features/wishlist/services/wishlist.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OutpopComponent } from './outpop/outpop.component';
+import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
+import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, ThemeToggleComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -19,6 +23,18 @@ export class NavbarComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly cartService = inject(CartService);
   private readonly wishlistService = inject(WishlistService);
+  private readonly dialog = inject(MatDialog);
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(OutpopComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
+
+
   constructor(private flowbiteService: FlowbiteService) { }
 
   @Input({ required: true }) isLogin!: boolean;
@@ -55,11 +71,6 @@ export class NavbarComponent implements OnInit {
         this.cartCount = response.numOfCartItems;
       }
     });
-  }
-
-  logOut(): void {
-    this.authService.logout();
-    this.closeProfileDropdown();
   }
 
   toggleProfileDropdown(): void {

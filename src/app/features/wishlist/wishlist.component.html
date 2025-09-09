@@ -1,5 +1,5 @@
 <!-- Futuristic Wishlist Page -->
-<main class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
+<main class="min-h-screen azura-gradient-bg relative overflow-hidden">
 
     <!-- Animated Background Elements -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -7,7 +7,7 @@
         <div class="absolute inset-0 opacity-5">
             <div class="grid grid-cols-12 h-full">
                 @for (i of [1,2,3,4,5,6,7,8,9,10,11,12]; track i) {
-                <div class="border-r border-cyan-400/20"></div>
+                <div class="border-r azura-border"></div>
                 }
             </div>
         </div>
@@ -32,16 +32,16 @@
                 </div>
             </div>
 
-            <p class="text-gray-300 text-xl mb-8 max-w-3xl mx-auto">
+            <p class="azura-text-secondary text-xl mb-8 max-w-3xl mx-auto">
                 Your <span class="text-cyan-400 font-semibold">quantum collection</span> of desired items
             </p>
 
             <div
-                class="inline-flex items-center gap-4 bg-gradient-to-r from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 px-8 py-4">
+                class="inline-flex items-center gap-4 azura-bg-secondary backdrop-blur-xl rounded-2xl azura-border px-8 py-4">
                 <div class="flex items-center gap-2">
                     <i class="fas fa-heart text-pink-400 text-xl"></i>
-                    <span class="text-gray-300 font-medium">{{ wishList.data.length }}</span>
-                    <span class="text-gray-400 text-sm">Items in Wishlist</span>
+                    <span class="azura-text-primary font-medium">{{ wishList.data.length }}</span>
+                    <span class="azura-text-muted text-sm">Items in Wishlist</span>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             @for (item of wishList.data; track item._id) {
             <div
-                class="group relative bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl overflow-hidden border border-cyan-400/30 hover:border-cyan-400/60 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/25 transform hover:-translate-y-2">
+                class="group relative azura-card rounded-2xl overflow-hidden azura-border hover:border-opacity-80 transition-all duration-500 azura-shadow hover:shadow-2xl transform hover:-translate-y-2">
 
                 <!-- Background Animation -->
                 <div
@@ -129,12 +129,12 @@
                     <div class="flex items-center justify-between mb-3">
                         <span class="text-xs text-cyan-400 font-bold uppercase tracking-wider">{{
                             item.category.name }}</span>
-                        <span class="text-xs text-gray-500">{{ item.brand.name }}</span>
+                        <span class="text-xs azura-text-muted">{{ item.brand.name }}</span>
                     </div>
 
                     <!-- Product Title -->
                     <h3
-                        class="font-bold text-gray-200 mb-3 line-clamp-2 group-hover:text-cyan-400 transition-colors duration-300">
+                        class="font-bold azura-text-primary mb-3 line-clamp-2 group-hover:text-cyan-400 transition-colors duration-300">
                         {{ item.title }}
                     </h3>
 

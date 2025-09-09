@@ -1,0 +1,52 @@
+/* Azura Dialog - Material Override + Theme Support */
+:host ::ng-deep .mat-mdc-dialog-container {
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 1rem !important;
+}
+
+:host ::ng-deep .mat-mdc-dialog-surface {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Light Mode Styles */
+:host-context(html.light) .azura-tooltip {
+    background: #ffffff !important;
+    color: #1e40af !important;
+    border: 2px solid #3b82f6 !important;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Dark Mode Styles */
+:host-context(html.dark) .azura-tooltip {
+    background: #1e40af !important;
+    color: #ffffff !important;
+    border: 2px solid rgba(59, 130, 246, 0.3) !important;
+    box-shadow: 0 4px 20px #3b82f6;
+}
+
+/* Enhanced Button Animations */
+.group button {
+    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover button {
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+}
+
+/* Tooltip Animation */
+.azura-tooltip {
+    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .azura-tooltip {
+    transform: translateX(-50%) translateY(-2px);
+}
+
+/* Focus states for accessibility */
+button:focus-visible {
+    outline: 2px solid var(--azura-accent);
+    outline-offset: 2px;
+}

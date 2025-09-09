@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
     // Check if user is authenticated before making cart API call
     const token = this.cookieService.get('token');
     if (!token) {
-      this.toastrService.error('Please login to view your cart', 'NEXUS');
+      this.toastrService.error('Please login to view your cart', 'AZURA');
       this.router.navigate(['/login']);
       return;
     }
@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
     this.cartService.updateQuantity(id, quantity).subscribe({
       next: (response) => {
         this.cartList = response;
-        this.toastrService.success('Quantity updated successfully', 'NEXUS');
+        this.toastrService.success('Quantity updated successfully', 'AZURA');
       }
     });
   }
@@ -52,19 +52,19 @@ export class CartComponent implements OnInit {
     this.cartService.removeCartItem(id).subscribe({
       next: (response) => {
         this.cartList = response;
-        this.toastrService.error(`Product removed from cart!`, 'NEXUS');
+        this.toastrService.error(`Product removed from cart!`, 'AZURA');
       }
     });
   }
 
   proceedToCheckout(): void {
     if (!this.cartList.cartId) {
-      this.toastrService.error('Cart ID not found. Please refresh and try again', 'NEXUS');
+      this.toastrService.error('Cart ID not found. Please refresh and try again', 'AZURA');
       return;
     }
 
     if (this.cartList.numOfCartItems === 0) {
-      this.toastrService.warning('Your cart is empty. Add items before checkout', 'NEXUS');
+      this.toastrService.warning('Your cart is empty. Add items before checkout', 'AZURA');
       return;
     }
 

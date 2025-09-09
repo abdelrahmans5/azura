@@ -41,7 +41,7 @@ export class WishlistComponent {
       next: (response) => {
         this.wishList = response;
         this.getLoggedInUser();
-        this.toastrService.info(`Product goes!`, 'NEXUS');
+        this.toastrService.info(`Product goes!`, 'AZURA');
       }
     });
   }

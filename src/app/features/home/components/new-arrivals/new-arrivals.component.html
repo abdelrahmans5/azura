@@ -1,15 +1,14 @@
 <div class="max-w-7xl mx-auto px-4 relative my-10">
     <!-- Section Header -->
     <div class="text-center mb-16">
-        <div
-            class="inline-flex items-center px-6 py-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full border border-cyan-400/30 mb-6">
-            <i class="fas fa-sparkles text-cyan-400 mr-2"></i>
-            <span class="text-cyan-400 font-medium tracking-wider">LATEST DROPS</span>
+        <div class="inline-flex items-center px-6 py-2 azura-bg-secondary rounded-full azura-border mb-6">
+            <i class="fas fa-sparkles azura-text-secondary mr-2"></i>
+            <span class="azura-text-secondary font-medium tracking-wider">LATEST DROPS</span>
         </div>
         <h2 class="text-5xl font-black bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
             New Arrivals
         </h2>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        <p class="azura-text-muted text-lg max-w-2xl mx-auto">
             Discover the latest tech-enhanced products from the future
         </p>
     </div>
@@ -22,11 +21,11 @@
                 <div class="group relative">
                     <!-- Holographic Card -->
                     <div
-                        class="relative bg-gradient-to-br from-slate-800 to-blue-900 backdrop-blur-xl rounded-2xl overflow-hidden border border-cyan-400/30 hover:border-cyan-400/60 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/25 transform hover:-translate-y-2">
-                        <!-- Glow Effect -->
+                        class="relative azura-card rounded-2xl overflow-hidden azura-border hover:border-opacity-80 transition-all duration-500 azura-shadow hover:shadow-2xl transform hover:-translate-y-2 bg-azura-secondary">
                         <div
                             class="absolute inset-0 bg-gradient-to-br from-cyan-400/5 via-transparent to-purple-400/5 opacity-0 group-hover:opacity-100 transition-all duration-500">
                         </div>
+
 
                         <!-- Product Image -->
                         <div class="relative overflow-hidden">
@@ -46,13 +45,13 @@
                         <!-- Product Info -->
                         <div class="p-6">
                             <h3
-                                class="font-bold text-gray-200 mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                                class="font-bold azura-text-primary mb-2 group-hover:text-cyan-400 transition-colors duration-300">
                                 {{product.title}}
                             </h3>
                             <div class="flex items-center justify-between">
                                 <p
                                     class="text-2xl font-black text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text">
-                                    {{product.price}} <span class="text-gray-400 text-base">USD</span>
+                                    {{product.price}} <span class="azura-text-muted text-base">USD</span>
                                 </p>
                                 <button (click)="addProductToCart(product.id)"
                                     class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform scale-0 group-hover:scale-100 transition-all duration-300 hover:scale-110">

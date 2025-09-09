@@ -1,14 +1,36 @@
-/* Orders Component Styles */
+/* Orders Component Theme-Aware Styles */
+
+/* Light Mode Styles */
+:host-context(html.light) {
+    .order-card {
+        background: var(--azura-light-surface);
+        border: 1px solid var(--azura-light-border);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+    }
+
+    .order-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+    }
+}
+
+/* Dark Mode Styles */
+:host-context(html.dark) {
+    .order-card {
+        background: var(--azura-dark-surface);
+        border: 1px solid var(--azura-dark-border);
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+    }
+
+    .order-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+    }
+}
 
 /* Clean transitions without heavy animations */
 .container {
     padding: 1rem;
-}
-
-/* Basic hover effects */
-.bg-white\/10:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transition: background 0.2s ease;
 }
 
 /* Loading spinner */
@@ -40,11 +62,6 @@ button:hover {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.order-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
 /* Status badges */
 .status-badge {
     transition: all 0.2s ease;
@@ -59,10 +76,69 @@ button:hover {
     .grid {
         gap: 0.5rem;
     }
+
+    .order-card {
+        padding: 1rem;
+    }
+
+    .order-card .flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
 }
 
 /* Focus styles for accessibility */
 button:focus-visible {
-    outline: 2px solid #06b6d4;
+    outline: 2px solid var(--azura-accent);
     outline-offset: 2px;
+}
+
+/* Order status animations */
+.azura-status-success {
+    animation: pulse-success 2s infinite;
+}
+
+.azura-status-warning {
+    animation: pulse-warning 2s infinite;
+}
+
+.azura-status-error {
+    animation: pulse-error 2s infinite;
+}
+
+@keyframes pulse-success {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes pulse-warning {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes pulse-error {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
 }

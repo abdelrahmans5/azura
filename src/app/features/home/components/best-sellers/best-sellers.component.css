@@ -1,0 +1,89 @@
+/* Best Sellers Component Theme Styles */
+
+/* Light Mode - Soft Light Blue Theme */
+:host-context(html.light) .group .azura-card {
+    background: linear-gradient(135deg,
+            rgba(248, 251, 255, 0.95),
+            rgba(240, 248, 255, 0.95),
+            rgba(251, 113, 133, 0.1));
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+}
+
+:host-context(html.light) .group:hover .azura-card {
+    border-color: rgba(249, 115, 22, 0.4);
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15);
+}
+
+:host-context(html.light) .azura-bg-secondary {
+    background: linear-gradient(to right,
+            rgba(249, 115, 22, 0.1),
+            rgba(239, 68, 68, 0.1));
+}
+
+:host-context(html.light) .azura-border {
+    border-color: rgba(249, 115, 22, 0.2);
+}
+
+:host-context(html.light) .azura-text-secondary {
+    color: #ea580c !important;
+}
+
+/* Dark Mode - Purple-Blue Theme with Orange Accents */
+:host-context(html.dark) .group .azura-card {
+    background: linear-gradient(135deg,
+            rgba(26, 11, 46, 0.8),
+            rgba(22, 33, 62, 0.8),
+            rgba(154, 52, 18, 0.2));
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    box-shadow: 0 8px 32px rgba(249, 115, 22, 0.2);
+}
+
+:host-context(html.dark) .group:hover .azura-card {
+    border-color: rgba(251, 146, 60, 0.5);
+    box-shadow: 0 25px 50px rgba(249, 115, 22, 0.3);
+}
+
+:host-context(html.dark) .azura-bg-secondary {
+    background: linear-gradient(to right,
+            rgba(249, 115, 22, 0.2),
+            rgba(239, 68, 68, 0.2));
+}
+
+:host-context(html.dark) .azura-border {
+    border-color: rgba(249, 115, 22, 0.4);
+}
+
+:host-context(html.dark) .azura-text-secondary {
+    color: #fb923c !important;
+}
+
+/* Best Seller Badge Enhancements */
+.bg-gradient-to-r.from-red-500.to-orange-500 {
+    background: linear-gradient(to right, #ef4444, #f97316);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+.bg-gradient-to-r.from-yellow-400.to-orange-500 {
+    background: linear-gradient(to right, #facc15, #f97316);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+}
+
+/* Hover Effects */
+.group:hover .bg-gradient-to-b.from-transparent.via-orange-400\/20 {
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(249, 115, 22, 0.2),
+            transparent);
+}
+
+/* Card Animation Improvements */
+.group .azura-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .azura-card {
+    transform: translateY(-8px) rotateY(1deg);
+}

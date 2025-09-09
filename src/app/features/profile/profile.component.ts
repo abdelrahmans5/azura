@@ -147,7 +147,7 @@ export class ProfileComponent implements OnInit {
             this.isUpdatingProfile = false;
             if (response.message === 'success' || response.status === 'success') {
               this.profileSuccess = 'Profile updated successfully!';
-              this.toastrService.success('Profile updated successfully!', 'NEXUS');
+              this.toastrService.success('Profile updated successfully!', 'AZURA');
 
               // Update local user data
               this.userProfile = {
@@ -161,7 +161,7 @@ export class ProfileComponent implements OnInit {
           error: (error) => {
             this.isUpdatingProfile = false;
             this.profileError = error.error.message || 'Failed to update profile. Please try again.';
-            this.toastrService.error(this.profileError || 'Failed to update profile', 'NEXUS');
+            this.toastrService.error(this.profileError || 'Failed to update profile', 'AZURA');
           }
         })
       );
@@ -184,14 +184,14 @@ export class ProfileComponent implements OnInit {
             this.isUpdatingPassword = false;
             if (response.message === 'success' || response.status === 'success') {
               this.passwordSuccess = 'Password updated successfully!';
-              this.toastrService.success('Password updated successfully!', 'NEXUS');
+              this.toastrService.success('Password updated successfully!', 'AZURA');
               this.passwordForm.reset();
             }
           },
           error: (error) => {
             this.isUpdatingPassword = false;
             this.passwordError = error.error.message || 'Failed to update password. Please try again.';
-            this.toastrService.error(this.passwordError || 'Failed to update password', 'NEXUS');
+            this.toastrService.error(this.passwordError || 'Failed to update password', 'AZURA');
           }
         })
       );

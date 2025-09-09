@@ -1,6 +1,5 @@
 <!-- Futuristic Register Component -->
-<main
-    class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden flex items-center justify-center">
+<main class="min-h-screen relative overflow-hidden flex items-center justify-center azura-gradient-bg">
 
     <!-- Animated Background Elements -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -44,18 +43,23 @@
             <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="space-y-6">
 
                 <!-- Name Field -->
-                <app-input [control]="registerForm.get('name')" [label]="'Name'" [type]="'text'" [idInput]="'fullName'"></app-input>
+                <app-input [control]="registerForm.get('name')" [label]="'Name'" [type]="'text'"
+                    [idInput]="'fullName'"></app-input>
 
                 <!-- Email Field -->
-                <app-input [control]="registerForm.get('email')" [label]="'Email'" [type]="'email'" [idInput]="'email'"></app-input>
+                <app-input [control]="registerForm.get('email')" [label]="'Email'" [type]="'email'"
+                    [idInput]="'email'"></app-input>
 
                 <!-- Password Field -->
                 <app-input [control]="registerForm.get('password')" [label]="'Password'" [idInput]="'password'">
-                    Password must be at least <span class="font-semibold">8 characters</span>, include <span class="font-semibold">uppercase</span>, <span class="font-semibold">lowercase</span>, <span class="font-semibold">number</span>, and <span class="font-semibold">special character</span>.
+                    Password must be at least <span class="font-semibold">8 characters</span>, include <span
+                        class="font-semibold">uppercase</span>, <span class="font-semibold">lowercase</span>, <span
+                        class="font-semibold">number</span>, and <span class="font-semibold">special character</span>.
                 </app-input>
-                
+
                 <!-- Confirm Password Field -->
-                <app-input [control]="registerForm.get('rePassword')" [label]="'Confirm Password'" [idInput]="'rePassword'"></app-input>
+                <app-input [control]="registerForm.get('rePassword')" [label]="'Confirm Password'"
+                    [idInput]="'rePassword'"></app-input>
 
                 <!-- Phone Field -->
                 <app-input [control]="registerForm.get('phone')" [label]="'Phone'" [type]="'text'" [idInput]="'phone'">

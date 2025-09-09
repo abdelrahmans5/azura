@@ -1,3 +1,58 @@
+/* Wishlist Component Theme Styles */
+
+/* Light Mode - Soft Light Blue Theme */
+:host-context(html.light) {
+    --wishlist-bg-primary: rgba(248, 251, 255, 0.95);
+    --wishlist-bg-secondary: rgba(240, 248, 255, 0.95);
+    --wishlist-bg-tertiary: rgba(230, 243, 255, 0.95);
+    --wishlist-border-color: rgba(59, 130, 246, 0.2);
+    --wishlist-shadow: rgba(59, 130, 246, 0.1);
+}
+
+:host-context(html.light) .azura-gradient-bg {
+    background: linear-gradient(135deg,
+            var(--wishlist-bg-primary) 0%,
+            var(--wishlist-bg-secondary) 50%,
+            var(--wishlist-bg-tertiary) 100%) !important;
+}
+
+:host-context(html.light) .azura-card {
+    background: var(--wishlist-bg-primary);
+    border-color: var(--wishlist-border-color);
+    box-shadow: 0 8px 32px var(--wishlist-shadow);
+}
+
+:host-context(html.light) .azura-card:hover {
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
+/* Dark Mode - Purple-Blue Theme */
+:host-context(html.dark) {
+    --wishlist-bg-primary: rgba(26, 11, 46, 0.8);
+    --wishlist-bg-secondary: rgba(22, 33, 62, 0.8);
+    --wishlist-bg-tertiary: rgba(45, 27, 105, 0.8);
+    --wishlist-border-color: rgba(139, 92, 246, 0.3);
+    --wishlist-shadow: rgba(139, 92, 246, 0.2);
+}
+
+:host-context(html.dark) .azura-gradient-bg {
+    background: linear-gradient(135deg,
+            var(--wishlist-bg-primary) 0%,
+            var(--wishlist-bg-secondary) 40%,
+            var(--wishlist-bg-tertiary) 80%,
+            rgba(124, 58, 237, 0.9) 100%) !important;
+}
+
+:host-context(html.dark) .azura-card {
+    background: var(--wishlist-bg-secondary);
+    border-color: var(--wishlist-border-color);
+    box-shadow: 0 8px 32px var(--wishlist-shadow);
+}
+
+:host-context(html.dark) .azura-card:hover {
+    box-shadow: 0 25px 50px rgba(139, 92, 246, 0.3);
+}
+
 /* Futuristic Wishlist Styling */
 
 /* Enhanced Product Cards */

@@ -1,6 +1,8 @@
 <!-- Futuristic Navbar Component -->
-<nav
-    class="bg-gradient-to-r from-slate-900/95 via-blue-900/95 to-purple-900/95 backdrop-blur-xl border-b border-cyan-400/20 sticky top-0 z-50 transition-all duration-500 shadow-2xl shadow-cyan-500/10">
+<nav class="backdrop-blur-xl border-b sticky top-0 z-50 transition-all duration-500 shadow-2xl"
+    [style.background]="'linear-gradient(to right, var(--bg-primary), var(--bg-secondary), var(--bg-accent))'"
+    [style.border-color]="'var(--border-color)'" [style.box-shadow]="'0 25px 50px -12px var(--shadow-color)'">
+
     <!-- Animated Background Lines -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -34,8 +36,8 @@
                     </div>
                     <div class="flex flex-col">
                         <span
-                            class="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent tracking-wider">NEXUS</span>
-                        <span class="text-xs text-cyan-400/80 font-mono">COMMERCE</span>
+                            class="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent tracking-wider">AZURA</span>
+                        <span class="text-xs font-mono" [style.color]="'var(--text-accent)'">COMMERCE</span>
                     </div>
                 </a>
             </div>
@@ -44,7 +46,8 @@
             @if (isLogin === true) {
             <div class="hidden lg:flex items-center space-x-8">
                 <a routerLink="/home" routerLinkActive="text-cyan-400"
-                    class="relative text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group cyber-link">
+                    class="relative font-medium transition-all duration-300 group cyber-link hover:text-cyan-400"
+                    [style.color]="'var(--text-secondary)'">
                     <span class="relative z-10">Home</span>
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-x-0 group-hover:scale-x-100">
@@ -57,7 +60,8 @@
                 <!-- Futuristic Categories Dropdown -->
                 <div class="relative group">
                     <a routerLink="/categories" routerLinkActive="text-cyan-400"
-                        class="flex items-center text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 cyber-link">
+                        class="flex items-center font-medium transition-all duration-300 cyber-link hover:text-cyan-400"
+                        [style.color]="'var(--text-secondary)'">
                         <a routerLink="/categories" routerLinkActive="text-cyan-400"
                             class="relative z-10">Categories</a>
                         <i
@@ -67,8 +71,10 @@
                         </div>
                     </a>
                     <!-- Futuristic Dropdown Menu -->
-                    <div
-                        class="absolute top-full left-0 mt-4 w-80 bg-gradient-to-br from-slate-900/95 to-blue-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-cyan-400/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    <div class="absolute top-full left-0 mt-4 w-80 backdrop-blur-xl rounded-2xl shadow-2xl border opacity-0 invisible group-hover:opacity-100 group-hover:visible transform translate-y-4 group-hover:translate-y-0 transition-all duration-500"
+                        [style.background]="'linear-gradient(to bottom right, var(--bg-card), var(--bg-secondary))'"
+                        [style.border-color]="'var(--border-color)'"
+                        [style.box-shadow]="'0 25px 50px -12px var(--shadow-color)'">
                         <!-- Glowing border effect -->
                         <div
                             class="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-cyan-400/20 rounded-2xl animate-pulse">
@@ -128,7 +134,8 @@
                 </div>
 
                 <a routerLink="/products" routerLinkActive="text-cyan-400"
-                    class="relative text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group cyber-link">
+                    class="relative font-medium transition-all duration-300 group cyber-link hover:text-cyan-400"
+                    [style.color]="'var(--text-secondary)'">
                     <span class="relative z-10">Products</span>
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-x-0 group-hover:scale-x-100">
@@ -139,7 +146,8 @@
                 </a>
 
                 <a routerLink="/brands" routerLinkActive="text-cyan-400"
-                    class="relative text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group cyber-link">
+                    class="relative font-medium transition-all duration-300 group cyber-link hover:text-cyan-400"
+                    [style.color]="'var(--text-secondary)'">
                     <span class="relative z-10">Brands</span>
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-x-0 group-hover:scale-x-100">
@@ -150,7 +158,8 @@
                 </a>
 
                 <a routerLink="/about" routerLinkActive="text-cyan-400"
-                    class="relative text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group cyber-link">
+                    class="relative font-medium transition-all duration-300 group cyber-link hover:text-cyan-400"
+                    [style.color]="'var(--text-secondary)'">
                     <span class="relative z-10">About</span>
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-x-0 group-hover:scale-x-100">
@@ -166,9 +175,12 @@
             <!-- Futuristic Right Section (Auth/Actions) -->
             @if (isLogin===false) {
             <div class="flex items-center space-x-4">
+                <!-- Theme Toggle -->
+                <app-theme-toggle></app-theme-toggle>
+
                 <!-- Search Icon with glow effect -->
-                <button
-                    class="lg:hidden relative p-3 text-gray-400 hover:text-cyan-400 transition-all duration-300 group">
+                <button class="lg:hidden relative p-3 hover:text-cyan-400 transition-all duration-300 group"
+                    [style.color]="'var(--text-muted)'">
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
                     </div>
@@ -177,7 +189,8 @@
 
                 <!-- Futuristic Login Button -->
                 <a routerLink="/login" routerLinkActive="text-cyan-400"
-                    class="hidden sm:flex items-center px-6 py-3 text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group relative overflow-hidden">
+                    class="hidden sm:flex items-center px-6 py-3 hover:text-cyan-400 font-medium transition-all duration-300 group relative overflow-hidden"
+                    [style.color]="'var(--text-secondary)'">
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg">
                     </div>
@@ -218,9 +231,13 @@
             @else {
             <!-- Futuristic Cart & Actions -->
             <div class="flex items-center space-x-4">
+                <!-- Theme Toggle -->
+                <app-theme-toggle></app-theme-toggle>
+
                 <!-- Cart Icon with holographic effect -->
                 <div class="flex space-x-3">
-                    <button class="relative p-3 text-gray-400 hover:text-cyan-400 transition-all duration-300 group">
+                    <button class="relative p-3 hover:text-cyan-400 transition-all duration-300 group"
+                        [style.color]="'var(--text-muted)'">
                         <a routerLink="/cart" routerLinkActive="text-cyan-400" class="relative">
                             <div
                                 class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -240,7 +257,8 @@
                     </button>
 
                     <!-- Wishlist Icon -->
-                    <button class="relative p-3 text-gray-400 hover:text-red-400 transition-all duration-300 group">
+                    <button class="relative p-3 hover:text-red-400 transition-all duration-300 group"
+                        [style.color]="'var(--text-muted)'">
                         <a routerLink="/wishlist" routerLinkActive="text-red-400" class="relative">
                             <div
                                 class="absolute inset-0 bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -256,7 +274,8 @@
                 <div class="relative">
                     <!-- Profile Button -->
                     <button (click)="toggleProfileDropdown()"
-                        class="hidden sm:flex items-center px-4 py-3 text-gray-300 hover:text-cyan-400 font-medium transition-all duration-300 group relative overflow-hidden rounded-lg">
+                        class="hidden sm:flex items-center px-4 py-3 hover:text-cyan-400 font-medium transition-all duration-300 group relative overflow-hidden rounded-lg"
+                        [style.color]="'var(--text-secondary)'">
                         <div
                             class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg">
                         </div>
@@ -278,7 +297,10 @@
                     <div [class.opacity-100]="isProfileDropdownOpen" [class.opacity-0]="!isProfileDropdownOpen"
                         [class.translate-y-0]="isProfileDropdownOpen" [class.translate-y-2]="!isProfileDropdownOpen"
                         [class.pointer-events-none]="!isProfileDropdownOpen"
-                        class="absolute right-0 top-full mt-2 w-64 bg-gradient-to-br from-slate-800/95 to-blue-900/95 backdrop-blur-xl rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-500/20 transition-all duration-300 transform z-50">
+                        class="absolute right-0 top-full mt-2 w-64 backdrop-blur-xl rounded-2xl border shadow-2xl transition-all duration-300 transform z-50"
+                        [style.background]="'linear-gradient(to bottom right, var(--bg-card), var(--bg-secondary))'"
+                        [style.border-color]="'var(--border-color)'"
+                        [style.box-shadow]="'0 25px 50px -12px var(--shadow-color)'">
 
                         <!-- Profile Header -->
                         <div class="p-4 border-b border-cyan-400/20">
@@ -289,7 +311,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-white font-semibold">{{ userData.name }}</h4>
-                                    <p class="text-cyan-400 text-sm">{{ userData.email || 'user@nexus.com' }}</p>
+                                    <p class="text-cyan-400 text-sm">{{ userData.email || 'user@azura.com' }}</p>
                                 </div>
                             </div>
                         </div>
@@ -339,7 +361,7 @@
                             <div class="my-2 border-t border-cyan-400/20"></div>
 
                             <!-- Logout -->
-                            <button (click)="logOut()"
+                            <button matButton="elevated" (click)="openDialog('0ms', '0ms')"
                                 class="w-full flex items-center px-4 py-3 text-gray-300 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all duration-300 group">
                                 <div
                                     class="w-8 h-8 bg-gradient-to-r from-red-400/20 to-pink-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
@@ -384,7 +406,7 @@
                 <div class="flex justify-between items-center mb-8">
                     <h3
                         class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent tracking-wider">
-                        NEXUS MENU
+                        AZURA MENU
                     </h3>
                     <button class="relative p-3 text-gray-400 hover:text-cyan-400 transition-all duration-300 group">
                         <div

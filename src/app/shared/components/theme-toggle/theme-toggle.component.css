@@ -1,0 +1,46 @@
+/* Theme Toggle Component Styles */
+
+.theme-toggle-btn {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(34, 211, 238, 0.3);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+/* Focus states */
+.theme-toggle-btn:focus-visible {
+    outline: 2px solid rgba(34, 211, 238, 0.5);
+    outline-offset: 2px;
+}
+
+/* Animation for icon change */
+.theme-toggle-btn mat-icon {
+    transition: all 0.3s ease;
+}
+
+/* Light mode specific styles */
+:host-context(.light) .theme-toggle-btn {
+    color: #374151;
+}
+
+:host-context(.light) .theme-toggle-btn:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode specific styles */
+:host-context(.dark) .theme-toggle-btn {
+    color: #e2e8f0;
+}
+
+:host-context(.dark) .theme-toggle-btn:hover {
+    box-shadow: 0 10px 25px rgba(34, 211, 238, 0.3);
+}

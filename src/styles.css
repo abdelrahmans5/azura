@@ -4,22 +4,490 @@
 /* Import Flowbite theme */
 @import "flowbite/src/themes/default";
 
+/* Azura Theme Variables */
+:root {
+    /* Light theme colors - Soft Light Blue Theme */
+    --bg-primary-light: #f8fbff;
+    --bg-secondary-light: #f0f8ff;
+    --bg-tertiary-light: #e6f3ff;
+    --text-primary-light: #1e3a8a;
+    --text-secondary-light: #3b82f6;
+    --text-muted-light: #6b7280;
+    --border-light: #e0e7ff;
+    --border-accent-light: #c7d2fe;
+    --shadow-light: rgba(59, 130, 246, 0.1);
+    --card-light: #ffffff;
+    --surface-light: #fafbff;
+
+    /* Dark theme colors - Purple-Blue Gradient Theme */
+    --bg-primary-dark: #1a0b2e;
+    --bg-secondary-dark: #16213e;
+    --bg-tertiary-dark: #2d1b69;
+    --text-primary-dark: #ffffff;
+    --text-secondary-dark: #e2e8f0;
+    --text-muted-dark: #cbd5e1;
+    --border-dark: rgba(139, 92, 246, 0.4);
+    --border-accent-dark: rgba(167, 139, 250, 0.5);
+    --shadow-dark: rgba(139, 92, 246, 0.3);
+    --card-dark: rgba(22, 33, 62, 0.8);
+    --surface-dark: #1a0b2e;
+
+    /* Azura brand colors - consistent across themes */
+    --azura-cyan: #22d3ee;
+    --azura-cyan-light: #67e8f9;
+    --azura-cyan-dark: #0891b2;
+    --azura-blue: #3b82f6;
+    --azura-blue-light: #60a5fa;
+    --azura-blue-dark: #1d4ed8;
+    --azura-purple: #8b5cf6;
+    --azura-purple-light: #a78bfa;
+    --azura-purple-dark: #7c3aed;
+}
+
+/* Theme-aware CSS variables */
+html.light {
+    --bg-primary: var(--bg-primary-light);
+    --bg-secondary: var(--bg-secondary-light);
+    --bg-tertiary: var(--bg-tertiary-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --text-muted: var(--text-muted-light);
+    --border-color: var(--border-light);
+    --border-accent: var(--border-accent-light);
+    --shadow-color: var(--shadow-light);
+    --bg-card: var(--card-light);
+    --bg-surface: var(--surface-light);
+}
+
+html.dark {
+    --bg-primary: var(--bg-primary-dark);
+    --bg-secondary: var(--bg-secondary-dark);
+    --bg-tertiary: var(--bg-tertiary-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --text-muted: var(--text-muted-dark);
+    --border-color: var(--border-dark);
+    --border-accent: var(--border-accent-dark);
+    --shadow-color: var(--shadow-dark);
+    --bg-card: var(--card-dark);
+    --bg-surface: var(--surface-dark);
+}
+
 /* Custom base styles for better performance */
 * {
     box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html,
+body {
+    height: 100%;
 }
 
 body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* Light theme styles - Soft Light Blue Design */
+html.light {
+    background-color: var(--bg-primary-light);
+    color: var(--text-primary-light);
+}
+
+html.light body {
+    background: linear-gradient(135deg,
+            #f8fbff 0%,
+            #f0f8ff 25%,
+            #e6f3ff 50%,
+            #dbeafe 100%);
+    color: var(--text-primary-light);
+}
+
+/* Dark theme styles - Dark Blue Theme */
+html.dark {
+    background-color: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
+}
+
+html.dark body {
+    background: linear-gradient(135deg,
+            #1a0b2e 0%,
+            #16213e 20%,
+            #2d1b69 40%,
+            #3730a3 60%,
+            #5b21b6 80%,
+            #7c3aed 100%);
+    color: var(--text-primary-dark);
+}
+
+/* Light mode component overrides - Soft Light Blue */
+html.light .bg-slate-900 {
+    background: linear-gradient(to right,
+            rgba(248, 251, 255, 0.95),
+            rgba(240, 248, 255, 0.95),
+            rgba(230, 243, 255, 0.95)) !important;
+}
+
+html.light .bg-slate-900\/95 {
+    background: linear-gradient(to bottom right,
+            rgba(248, 251, 255, 0.95),
+            rgba(240, 248, 255, 0.95),
+            rgba(230, 243, 255, 0.95)) !important;
+}
+
+html.light .text-white {
+    color: var(--text-primary-light) !important;
+}
+
+html.light .text-gray-300 {
+    color: var(--text-secondary-light) !important;
+}
+
+html.light .text-gray-400 {
+    color: var(--text-muted-light) !important;
+}
+
+html.light .text-slate-300 {
+    color: var(--text-secondary-light) !important;
+}
+
+html.light .border-cyan-400 {
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+html.light .border-purple-500 {
+    border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+html.light .shadow-cyan-500 {
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.2) !important;
+}
+
+html.light .shadow-purple-500 {
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Light mode border and accent overrides */
+html.light .border-cyan-400\/20 {
+    border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+html.light .border-cyan-400\/30 {
+    border-color: rgba(59, 130, 246, 0.25) !important;
+}
+
+html.light .bg-gradient-to-r.from-slate-800\/50 {
+    background: linear-gradient(to right,
+            rgba(248, 251, 255, 0.8),
+            rgba(240, 248, 255, 0.8)) !important;
+}
+
+html.light .bg-gradient-to-br.from-slate-800\/50 {
+    background: linear-gradient(to bottom right,
+            rgba(248, 251, 255, 0.8),
+            rgba(240, 248, 255, 0.8)) !important;
+}
+
+/* Additional soft light theme enhancements */
+html.light .azura-gradient-bg {
+    background: linear-gradient(135deg,
+            #f8fbff 0%,
+            #f0f8ff 25%,
+            #e6f3ff 50%,
+            #dbeafe 75%,
+            #bfdbfe 100%) !important;
+}
+
+/* Enhanced purple-blue mode gradients */
+html.dark .azura-gradient-bg {
+    background: linear-gradient(135deg,
+            #1a0b2e 0%,
+            #16213e 20%,
+            #2d1b69 40%,
+            #3730a3 60%,
+            #5b21b6 80%,
+            #7c3aed 100%) !important;
+}
+
+/* Dark mode component overrides - Purple-Blue Theme */
+html.dark .bg-slate-900 {
+    background: linear-gradient(135deg,
+            rgba(26, 11, 46, 0.95),
+            rgba(22, 33, 62, 0.95),
+            rgba(45, 27, 105, 0.95)) !important;
+}
+
+html.dark .bg-slate-900\/95 {
+    background: linear-gradient(135deg,
+            rgba(26, 11, 46, 0.95),
+            rgba(22, 33, 62, 0.95),
+            rgba(45, 27, 105, 0.95)) !important;
+}
+
+html.dark .bg-gradient-to-r.from-slate-800\/50 {
+    background: linear-gradient(to right,
+            rgba(26, 11, 46, 0.8),
+            rgba(45, 27, 105, 0.8)) !important;
+}
+
+html.dark .bg-gradient-to-br.from-slate-800\/50 {
+    background: linear-gradient(to bottom right,
+            rgba(26, 11, 46, 0.8),
+            rgba(45, 27, 105, 0.8)) !important;
+}
+
+/* Azura Theme Helper Classes */
+.azura-text-primary {
+    color: var(--text-primary);
+}
+
+.azura-text-secondary {
+    color: var(--text-secondary);
+}
+
+.azura-text-muted {
+    color: var(--text-muted);
+}
+
+.azura-bg-primary {
+    background-color: var(--bg-primary);
+}
+
+.azura-bg-secondary {
+    background-color: var(--bg-secondary);
+}
+
+.azura-bg-card {
+    background-color: var(--bg-card);
+}
+
+.azura-border {
+    border-color: var(--border-color);
+}
+
+.azura-shadow {
+    box-shadow: 0 25px 50px -12px var(--shadow-color);
+}
+
+.azura-gradient-bg {
+    background: linear-gradient(to bottom right, var(--bg-primary), var(--bg-secondary), var(--bg-tertiary));
+    transition: background 0.5s ease-in-out;
+}
+
+.azura-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.azura-card:hover {
+    box-shadow: 0 25px 50px -12px var(--shadow-color);
+    transform: translateY(-2px);
 }
 
 /* Custom container utility */
 .container {
     margin-inline: auto;
+}
+
+/* New Arrivals Component - Light Mode Overrides */
+html.light app-new-arrivals .bg-gradient-to-br.from-slate-800.to-blue-900 {
+    background: linear-gradient(135deg,
+            rgba(248, 251, 255, 0.95),
+            rgba(240, 248, 255, 0.95),
+            rgba(230, 243, 255, 0.95)) !important;
+}
+
+html.light app-new-arrivals .text-gray-200 {
+    color: var(--text-primary-light) !important;
+}
+
+html.light app-new-arrivals .text-gray-400 {
+    color: var(--text-muted-light) !important;
+}
+
+html.light app-new-arrivals .border-cyan-400\/30 {
+    border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+html.light app-new-arrivals .hover\:border-cyan-400\/60:hover {
+    border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+html.light app-new-arrivals .hover\:shadow-cyan-500\/25:hover {
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.15) !important;
+}
+
+/* New Arrivals Component - Dark Mode Enhancements */
+html.dark app-new-arrivals .bg-gradient-to-br.from-slate-800.to-blue-900 {
+    background: linear-gradient(135deg,
+            rgba(26, 11, 46, 0.8),
+            rgba(22, 33, 62, 0.8),
+            rgba(45, 27, 105, 0.8)) !important;
+}
+
+html.dark app-new-arrivals .border-cyan-400\/30 {
+    border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+html.dark app-new-arrivals .hover\:border-cyan-400\/60:hover {
+    border-color: rgba(167, 139, 250, 0.5) !important;
+}
+
+html.dark app-new-arrivals .hover\:shadow-cyan-500\/25:hover {
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Best Sellers Component - Global Theme Overrides */
+html.light app-best-sellers .bg-gradient-to-br.from-slate-800\/50 {
+    background: linear-gradient(135deg,
+            rgba(248, 251, 255, 0.95),
+            rgba(240, 248, 255, 0.95),
+            rgba(251, 113, 133, 0.1)) !important;
+}
+
+html.dark app-best-sellers .bg-gradient-to-br.from-slate-800\/50 {
+    background: linear-gradient(135deg,
+            rgba(26, 11, 46, 0.8),
+            rgba(22, 33, 62, 0.8),
+            rgba(154, 52, 18, 0.2)) !important;
+}
+
+/* Wishlist Component - Global Theme Overrides */
+html.light app-wishlist .bg-gradient-to-br.from-slate-800\/50 {
+    background: linear-gradient(135deg,
+            rgba(248, 251, 255, 0.95),
+            rgba(240, 248, 255, 0.95),
+            rgba(230, 243, 255, 0.95)) !important;
+}
+
+html.dark app-wishlist .bg-gradient-to-br.from-slate-800\/50 {
+    background: linear-gradient(135deg,
+            rgba(26, 11, 46, 0.8),
+            rgba(22, 33, 62, 0.8),
+            rgba(45, 27, 105, 0.8)) !important;
+}
+
+/* Checkout Component - Global Theme Overrides */
+html.light .bg-gray-900\/50 {
+    background: rgba(248, 251, 255, 0.95) !important;
+}
+
+html.light .bg-gray-800\/50 {
+    background: rgba(240, 248, 255, 0.95) !important;
+}
+
+html.light .bg-gray-800\/30 {
+    background: rgba(230, 243, 255, 0.95) !important;
+}
+
+html.light .border-gray-700\/50 {
+    border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+html.light .border-gray-600 {
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+html.dark .bg-gray-900\/50 {
+    background: rgba(22, 33, 62, 0.8) !important;
+}
+
+html.dark .bg-gray-800\/50 {
+    background: rgba(45, 27, 105, 0.8) !important;
+}
+
+html.dark .bg-gray-800\/30 {
+    background: rgba(26, 11, 46, 0.8) !important;
+}
+
+html.dark .border-gray-700\/50 {
+    border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+html.dark .border-gray-600 {
+    border-color: rgba(167, 139, 250, 0.4) !important;
+}
+
+/* Allorders Component - Global Theme Overrides */
+html.light app-allorders .azura-status-success {
+    background: rgba(34, 197, 94, 0.1) !important;
+    color: #16a34a !important;
+    border-color: rgba(34, 197, 94, 0.3) !important;
+}
+
+html.light app-allorders .azura-status-warning {
+    background: rgba(251, 191, 36, 0.1) !important;
+    color: #d97706 !important;
+    border-color: rgba(251, 191, 36, 0.3) !important;
+}
+
+html.light app-allorders .azura-status-error {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #dc2626 !important;
+    border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+html.light app-allorders .azura-status-info {
+    background: rgba(59, 130, 246, 0.1) !important;
+    color: #2563eb !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+html.dark app-allorders .azura-status-success {
+    background: rgba(34, 197, 94, 0.2) !important;
+    color: #4ade80 !important;
+    border-color: rgba(34, 197, 94, 0.4) !important;
+}
+
+html.dark app-allorders .azura-status-warning {
+    background: rgba(251, 191, 36, 0.2) !important;
+    color: #fbbf24 !important;
+    border-color: rgba(251, 191, 36, 0.4) !important;
+}
+
+html.dark app-allorders .azura-status-error {
+    background: rgba(239, 68, 68, 0.2) !important;
+    color: #f87171 !important;
+    border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+html.dark app-allorders .azura-status-info {
+    background: rgba(139, 92, 246, 0.2) !important;
+    color: #a78bfa !important;
+    border-color: rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Outpop Component - Global Theme Overrides */
+html.light app-outpop .azura-tooltip {
+    background: #ffffff !important;
+    color: #1e40af !important;
+    border: 2px solid #3b82f6 !important;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3) !important;
+}
+
+html.dark app-outpop .azura-tooltip {
+    background: #1e1b4b !important;
+    color: #a78bfa !important;
+    border: 2px solid #8b5cf6 !important;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Dialog backdrop theming */
+html.light .cdk-overlay-backdrop {
+    background: rgba(248, 251, 255, 0.6) !important;
+}
+
+html.dark .cdk-overlay-backdrop {
+    background: rgba(15, 23, 42, 0.8) !important;
 }

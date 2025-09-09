@@ -1,3 +1,94 @@
+/* Checkout Component Theme Styles */
+
+/* Light Mode - Soft Light Blue Theme */
+:host-context(html.light) {
+    --checkout-bg-primary: rgba(248, 251, 255, 0.95);
+    --checkout-bg-secondary: rgba(240, 248, 255, 0.95);
+    --checkout-bg-tertiary: rgba(230, 243, 255, 0.95);
+    --checkout-border-color: rgba(59, 130, 246, 0.2);
+    --checkout-shadow: rgba(59, 130, 246, 0.1);
+}
+
+:host-context(html.light) .azura-gradient-bg {
+    background: linear-gradient(135deg,
+            var(--checkout-bg-primary) 0%,
+            var(--checkout-bg-secondary) 50%,
+            var(--checkout-bg-tertiary) 100%) !important;
+}
+
+:host-context(html.light) .azura-card {
+    background: var(--checkout-bg-primary);
+    border-color: var(--checkout-border-color);
+    box-shadow: 0 8px 32px var(--checkout-shadow);
+}
+
+:host-context(html.light) .azura-bg-tertiary {
+    background: var(--checkout-bg-tertiary) !important;
+}
+
+:host-context(html.light) input,
+:host-context(html.light) textarea {
+    background: var(--checkout-bg-tertiary) !important;
+    color: var(--text-primary-light) !important;
+}
+
+:host-context(html.light) input::placeholder,
+:host-context(html.light) textarea::placeholder {
+    color: var(--text-muted-light) !important;
+}
+
+/* Dark Mode - Purple-Blue Theme */
+:host-context(html.dark) {
+    --checkout-bg-primary: rgba(26, 11, 46, 0.8);
+    --checkout-bg-secondary: rgba(22, 33, 62, 0.8);
+    --checkout-bg-tertiary: rgba(45, 27, 105, 0.8);
+    --checkout-border-color: rgba(139, 92, 246, 0.3);
+    --checkout-shadow: rgba(139, 92, 246, 0.2);
+}
+
+:host-context(html.dark) .azura-gradient-bg {
+    background: linear-gradient(135deg,
+            var(--checkout-bg-primary) 0%,
+            var(--checkout-bg-secondary) 40%,
+            var(--checkout-bg-tertiary) 80%,
+            rgba(124, 58, 237, 0.9) 100%) !important;
+}
+
+:host-context(html.dark) .azura-card {
+    background: var(--checkout-bg-secondary);
+    border-color: var(--checkout-border-color);
+    box-shadow: 0 8px 32px var(--checkout-shadow);
+}
+
+:host-context(html.dark) .azura-bg-tertiary {
+    background: var(--checkout-bg-tertiary) !important;
+}
+
+:host-context(html.dark) input,
+:host-context(html.dark) textarea {
+    background: var(--checkout-bg-tertiary) !important;
+    color: var(--text-primary-dark) !important;
+}
+
+/* Payment Method Cards Theme Support */
+:host-context(html.light) .payment-card {
+    background: var(--checkout-bg-secondary);
+    border-color: var(--checkout-border-color);
+}
+
+:host-context(html.light) .payment-card:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+:host-context(html.dark) .payment-card {
+    background: var(--checkout-bg-tertiary);
+    border-color: var(--checkout-border-color);
+}
+
+:host-context(html.dark) .payment-card:hover {
+    background: rgba(139, 92, 246, 0.2);
+}
+
 /* Checkout Component Clean Styles */
 
 /* Basic styling without animations */

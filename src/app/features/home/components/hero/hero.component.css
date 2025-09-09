@@ -1,0 +1,102 @@
+/* Hero Component - Full Height Styling */
+
+:host {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* Ensure hero container takes full viewport height */
+.hero-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background layer styling */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Content layer styling */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Theme-specific enhancements for light mode */
+:host-context(html.light) .hero-background .azura-gradient-bg {
+    background: linear-gradient(135deg,
+            rgba(248, 251, 255, 0.9) 0%,
+            rgba(240, 248, 255, 0.8) 25%,
+            rgba(230, 243, 255, 0.7) 50%,
+            rgba(219, 234, 254, 0.8) 75%,
+            rgba(191, 219, 254, 0.9) 100%);
+}
+
+:host-context(html.light) .text-gray-400 {
+    color: var(--text-muted-light) !important;
+}
+
+/* Theme-specific enhancements for dark mode */
+:host-context(html.dark) .hero-background .azura-gradient-bg {
+    background: linear-gradient(135deg,
+            rgba(26, 11, 46, 0.9) 0%,
+            rgba(22, 33, 62, 0.8) 20%,
+            rgba(45, 27, 105, 0.7) 40%,
+            rgba(55, 48, 163, 0.8) 60%,
+            rgba(91, 33, 182, 0.9) 80%,
+            rgba(124, 58, 237, 0.9) 100%);
+}
+
+:host-context(html.dark) .text-gray-400 {
+    color: var(--text-muted-dark) !important;
+}
+
+/* Responsive adjustments */
+@media (max-height: 600px) {
+    :host {
+        height: 100vh;
+        min-height: 600px;
+    }
+
+    .hero-container {
+        height: 100vh;
+        min-height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        padding: 0 1.5rem;
+    }
+}
+
+/* Enhanced background image positioning */
+.bg-cover {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Ensure all child elements respect the full height */
+.h-screen {
+    height: 100vh !important;
+    min-height: 100vh !important;
+}

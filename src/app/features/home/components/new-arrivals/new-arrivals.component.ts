@@ -23,7 +23,7 @@ export class NewArrivalsComponent implements OnInit {
     this.cartService.addProductToCart(productId).subscribe({
       next: (response) => {
         console.log('Product added to cart:', response);
-        this.toastrService.success(`${this.productsList[0].title} added to cart!`, 'NEXUS');
+        this.toastrService.success(`${this.productsList[0].title} added to cart!`, 'AZURA');
 
       }
     });

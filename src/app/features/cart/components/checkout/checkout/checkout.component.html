@@ -1,5 +1,5 @@
-<!-- Nexus Checkout Portal -->
-<main class="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black relative overflow-hidden">
+<!-- Azura Checkout Portal -->
+<main class="min-h-screen azura-gradient-bg relative overflow-hidden">
 
     <!-- Dynamic Background -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -48,47 +48,47 @@
                 <div class="lg:col-span-2 space-y-8">
 
                     <!-- Shipping Information Card -->
-                    <div class="bg-gray-900/50 backdrop-blur-xl rounded-2xl border border-gray-700/50 p-6 sm:p-8">
+                    <div class="azura-card rounded-2xl azura-border p-6 sm:p-8">
                         <div class="flex items-center mb-6">
                             <div
                                 class="w-10 h-10 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center mr-3">
                                 <i class="fas fa-shipping-fast text-white"></i>
                             </div>
-                            <h2 class="text-xl font-bold text-white">Shipping Information</h2>
+                            <h2 class="text-xl font-bold azura-text-primary">Shipping Information</h2>
                         </div>
 
                         <form [formGroup]="checkoutForm" class="space-y-6">
                             <div formGroupName="ShippingAddress">
                                 <!-- Delivery Address -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-300 mb-2">
+                                    <label class="block text-sm font-medium azura-text-secondary mb-2">
                                         <i class="fas fa-map-marker-alt mr-2 text-cyan-400"></i>
                                         Delivery Address
                                     </label>
                                     <textarea formControlName="details" rows="3"
                                         placeholder="Enter your complete delivery address..."
-                                        class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300">
+                                        class="w-full px-4 py-3 azura-bg-tertiary azura-border rounded-xl azura-text-primary placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300">
                                     </textarea>
                                 </div>
 
                                 <!-- Phone and City -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        <label class="block text-sm font-medium azura-text-secondary mb-2">
                                             <i class="fas fa-phone mr-2 text-cyan-400"></i>
                                             Phone Number
                                         </label>
                                         <input formControlName="phone" type="tel" placeholder="01012345678"
-                                            class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300" />
+                                            class="w-full px-4 py-3 azura-bg-tertiary azura-border rounded-xl azura-text-primary placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300" />
                                     </div>
 
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-300 mb-2">
+                                        <label class="block text-sm font-medium azura-text-secondary mb-2">
                                             <i class="fas fa-city mr-2 text-cyan-400"></i>
                                             City
                                         </label>
                                         <input formControlName="city" type="text" placeholder="Enter your city"
-                                            class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300" />
+                                            class="w-full px-4 py-3 azura-bg-tertiary azura-border rounded-xl azura-text-primary placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300" />
                                     </div>
                                 </div>
                             </div>
@@ -96,13 +96,13 @@
                     </div>
 
                     <!-- Payment Method Card -->
-                    <div class="bg-gray-900/50 backdrop-blur-xl rounded-2xl border border-gray-700/50 p-6 sm:p-8">
+                    <div class="azura-card rounded-2xl azura-border p-6 sm:p-8">
                         <div class="flex items-center mb-6">
                             <div
                                 class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-xl flex items-center justify-center mr-3">
                                 <i class="fas fa-credit-card text-white"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-white">Payment Method</h3>
+                            <h3 class="text-xl font-bold azura-text-primary">Payment Method</h3>
                         </div>
 
                         <div class="space-y-4">
@@ -128,8 +128,8 @@
                                             <i class="fas fa-money-bill-wave text-white text-lg"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-white font-semibold">Cash on Delivery</h4>
-                                            <p class="text-gray-400 text-sm">Pay when you receive your order</p>
+                                            <h4 class="azura-text-primary font-semibold">Cash on Delivery</h4>
+                                            <p class="azura-text-muted text-sm">Pay when you receive your order</p>
                                         </div>
                                     </div>
                                 </div>
@@ -157,8 +157,8 @@
                                             <i class="fab fa-cc-visa text-white text-lg"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-white font-semibold">Credit/Debit Card</h4>
-                                            <p class="text-gray-400 text-sm">Secure payment with Stripe</p>
+                                            <h4 class="azura-text-primary font-semibold">Credit/Debit Card</h4>
+                                            <p class="azura-text-muted text-sm">Secure payment with Stripe</p>
                                         </div>
                                     </div>
                                 </div>
@@ -169,48 +169,48 @@
 
                 <!-- Right Column: Order Summary -->
                 <div class="lg:col-span-1">
-                    <div class="bg-gray-900/50 backdrop-blur-xl rounded-2xl border border-gray-700/50 p-6 sticky top-8">
+                    <div class="azura-card rounded-2xl azura-border p-6 sticky top-8">
                         <div class="flex items-center mb-6">
                             <div
                                 class="w-10 h-10 bg-gradient-to-r from-purple-400 to-cyan-500 rounded-xl flex items-center justify-center mr-3">
                                 <i class="fas fa-receipt text-white"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-white">Order Summary</h3>
+                            <h3 class="text-xl font-bold azura-text-primary">Order Summary</h3>
                         </div>
 
                         <div class="space-y-4 mb-6">
                             <!-- Items -->
-                            <div class="flex justify-between items-center py-3 px-4 bg-gray-800/30 rounded-lg">
+                            <div class="flex justify-between items-center py-3 px-4 azura-bg-tertiary rounded-lg">
                                 <div class="flex items-center">
                                     <i class="fas fa-box text-cyan-400 mr-3"></i>
-                                    <span class="text-gray-300">Items ({{ getItemsCount() }})</span>
+                                    <span class="azura-text-secondary">Items ({{ getItemsCount() }})</span>
                                 </div>
-                                <span class="text-white font-semibold">${{ getTotalPrice() }}</span>
+                                <span class="azura-text-primary font-semibold">${{ getTotalPrice() }}</span>
                             </div>
 
                             <!-- Shipping -->
-                            <div class="flex justify-between items-center py-3 px-4 bg-gray-800/30 rounded-lg">
+                            <div class="flex justify-between items-center py-3 px-4 azura-bg-tertiary rounded-lg">
                                 <div class="flex items-center">
                                     <i class="fas fa-shipping-fast text-green-400 mr-3"></i>
-                                    <span class="text-gray-300">Shipping</span>
+                                    <span class="azura-text-secondary">Shipping</span>
                                 </div>
                                 <span class="text-green-400 font-semibold">FREE</span>
                             </div>
 
                             <!-- Tax -->
-                            <div class="flex justify-between items-center py-3 px-4 bg-gray-800/30 rounded-lg">
+                            <div class="flex justify-between items-center py-3 px-4 azura-bg-tertiary rounded-lg">
                                 <div class="flex items-center">
-                                    <i class="fas fa-percentage text-gray-400 mr-3"></i>
-                                    <span class="text-gray-300">Tax</span>
+                                    <i class="fas fa-percentage azura-text-muted mr-3"></i>
+                                    <span class="azura-text-secondary">Tax</span>
                                 </div>
-                                <span class="text-gray-400">Included</span>
+                                <span class="azura-text-muted">Included</span>
                             </div>
                         </div>
 
                         <!-- Total -->
-                        <div class="border-t border-gray-700 pt-4 mb-6">
+                        <div class="border-t azura-border pt-4 mb-6">
                             <div class="flex justify-between items-center">
-                                <span class="text-xl font-bold text-white">Total</span>
+                                <span class="text-xl font-bold azura-text-primary">Total</span>
                                 <span
                                     class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                                     ${{ getTotalPrice() }}
@@ -249,7 +249,7 @@
 
                             <!-- Back to Cart Button -->
                             <button (click)="goBackToCart()"
-                                class="w-full bg-gray-700/50 hover:bg-gray-600/50 border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300">
+                                class="w-full azura-bg-secondary hover:azura-bg-tertiary azura-border hover:border-opacity-70 azura-text-secondary hover:azura-text-primary font-semibold py-3 px-6 rounded-xl transition-all duration-300">
                                 <div class="flex items-center justify-center">
                                     <i class="fas fa-arrow-left mr-3"></i>
                                     <span>Back to Cart</span>

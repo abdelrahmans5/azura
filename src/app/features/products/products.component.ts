@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, Router } from '@angular/router';
 import { ProductsService } from '../../core/services/products/products.service';
 import { Product } from '../../core/models/product.interface';
 import { CardComponent } from "../../shared/components/card/card.component";
@@ -9,7 +8,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CartService } from '../cart/services/cart.service';
 import { WishlistService } from '../wishlist/services/wishlist.service';
 import { ToastrService } from 'ngx-toastr';
-import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -24,8 +22,6 @@ export class ProductsComponent implements OnInit {
   private readonly cartService = inject(CartService);
   private readonly wishlistService = inject(WishlistService);
   private readonly toastr = inject(ToastrService);
-  private readonly router = inject(Router);
-  private readonly cookieService = inject(CookieService);
 
   // Data properties
   productsList: Product[] = [];
@@ -119,7 +115,7 @@ export class ProductsComponent implements OnInit {
   addToCart(productId: string, productTitle: string): void {
     this.cartService.addProductToCart(productId).subscribe({
       next: (response) => {
-        this.toastr.success(`${productTitle} added to cart!`, 'NEXUS');
+        this.toastr.success(`${productTitle} added to cart!`, 'AZURA');
       }
     });
   }
@@ -127,7 +123,7 @@ export class ProductsComponent implements OnInit {
   addToWishlist(productId: string, productTitle: string): void {
     this.wishlistService.addProductToWishlist(productId).subscribe({
       next: (response) => {
-        this.toastr.info(`${productTitle} added to wishlist!`, 'NEXUS');
+        this.toastr.info(`${productTitle} added to wishlist!`, 'AZURA');
       }
     });
   }
