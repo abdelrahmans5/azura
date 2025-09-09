@@ -4,15 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../../core/services/products/products.service';
 import { Product } from '../../core/models/product.interface';
 import { CardComponent } from "../../shared/components/card/card.component";
+import { ListCardComponent } from "../../shared/components/list-card/list-card.component";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartService } from '../cart/services/cart.service';
 import { WishlistService } from '../wishlist/services/wishlist.service';
 import { ToastrService } from 'ngx-toastr';
+import { ThemeService } from '../../core/services/theme.service';
 
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, FormsModule, CardComponent, NgxPaginationModule],
+  imports: [CommonModule, FormsModule, CardComponent, ListCardComponent, NgxPaginationModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -22,6 +24,7 @@ export class ProductsComponent implements OnInit {
   private readonly cartService = inject(CartService);
   private readonly wishlistService = inject(WishlistService);
   private readonly toastr = inject(ToastrService);
+  protected readonly themeService = inject(ThemeService);
 
   // Data properties
   productsList: Product[] = [];

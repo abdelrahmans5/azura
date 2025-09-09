@@ -7,6 +7,7 @@ import { AuthService } from '../../core/auth/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscription } from 'rxjs';
 import { CheckoutService } from '../../core/services/checkOut/checkout.service';
+import { ThemeService } from '../../core/services/theme.service';
 
 interface UserProfile {
   name: string;
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly toastrService = inject(ToastrService);
   private readonly checkoutService = inject(CheckoutService);
+  protected readonly themeService = inject(ThemeService);
 
   userData: any;
   userProfile: UserProfile = {

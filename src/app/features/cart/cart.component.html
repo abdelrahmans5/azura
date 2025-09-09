@@ -45,7 +45,9 @@
         @if( cartList.numOfCartItems === 0 ) {
         <div class="text-center py-32">
             <div
-                class="max-w-lg mx-auto bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-16">
+                [class]="themeService.isLight() 
+                    ? 'max-w-lg mx-auto bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-xl rounded-2xl border border-gray-200/50 p-16'
+                    : 'max-w-lg mx-auto bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-16'">
                 <!-- Holographic Cart Icon -->
                 <div class="relative w-32 h-32 mx-auto mb-8">
                     <div
@@ -60,8 +62,12 @@
                     </div>
                 </div>
 
-                <h3 class="text-3xl font-bold text-gray-300 mb-6">Cart Matrix Empty</h3>
-                <p class="text-gray-400 mb-12 leading-relaxed text-lg">
+                <h3
+                    [class]="themeService.isLight() ? 'text-3xl font-bold text-gray-800 mb-6' : 'text-3xl font-bold text-gray-300 mb-6'">
+                    Cart Matrix Empty
+                </h3>
+                <p
+                    [class]="themeService.isLight() ? 'text-gray-600 mb-12 leading-relaxed text-lg' : 'text-gray-400 mb-12 leading-relaxed text-lg'">
                     Your quantum shopping cart is currently in a null state. Initialize your shopping experience by
                     adding products to your matrix.
                 </p>
@@ -81,29 +87,50 @@
             <!-- Cart Items Section -->
             <div class="lg:col-span-2">
                 <div
-                    class="bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-8">
-                    <h2 class="text-2xl font-bold text-cyan-400 mb-8">Cart Items</h2>
+                    [class]="themeService.isLight() 
+                        ? 'bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-xl rounded-2xl border border-gray-200/50 p-8'
+                        : 'bg-gradient-to-br from-slate-800/50 to-blue-900/50 backdrop-blur-xl rounded-2xl border border-cyan-400/30 p-8'">
+                    <h2
+                        [class]="themeService.isLight() ? 'text-2xl font-bold text-blue-600 mb-8' : 'text-2xl font-bold text-cyan-400 mb-8'">
+                        Cart Items
+                    </h2>
 
                     <ul class="space-y-8">
                         @for (item of cartList.data.products; track item._id) {
                         <li
-                            class="flex items-center gap-6 bg-slate-900/60 rounded-xl p-6 shadow-lg border border-cyan-400/10">
-                            <img [src]="item.product.imageCover" alt="{{item.product.title}}"
-                                class="w-24 h-24 object-cover rounded-lg border border-cyan-400/20 bg-slate-800" />
+                            [class]="themeService.isLight() 
+                                ? 'flex items-center gap-6 bg-white/80 rounded-xl p-6 shadow-lg border border-gray-200/40'
+                                : 'flex items-center gap-6 bg-slate-900/60 rounded-xl p-6 shadow-lg border border-cyan-400/10'">
+                            <img [src]="item.product.imageCover" alt="{{item.product.title}}" [class]="themeService.isLight() 
+                                    ? 'w-24 h-24 object-cover rounded-lg border border-gray-200/40 bg-gray-50'
+                                    : 'w-24 h-24 object-cover rounded-lg border border-cyan-400/20 bg-slate-800'" />
                             <div class="flex-1">
-                                <h4 class="text-lg font-semibold text-white mb-2">{{item.product.title}}</h4>
-                                <div class="flex items-center gap-4 text-gray-400 text-sm mb-2">
-                                    <span>Price: <span class="text-cyan-400 font-bold">{{item.price |
-                                            currency}}</span></span>
-                                    <span>Quantity: <span class="text-cyan-400 font-bold">{{item.count}}</span></span>
+                                <h4
+                                    [class]="themeService.isLight() ? 'text-lg font-semibold text-gray-800 mb-2' : 'text-lg font-semibold text-white mb-2'">
+                                    {{item.product.title}}
+                                </h4>
+                                <div
+                                    [class]="themeService.isLight() ? 'flex items-center gap-4 text-gray-600 text-sm mb-2' : 'flex items-center gap-4 text-gray-400 text-sm mb-2'">
+                                    <span>Price: <span
+                                            [class]="themeService.isLight() ? 'text-blue-600 font-bold' : 'text-cyan-400 font-bold'">
+                                            {{item.price | currency}}
+                                        </span></span>
+                                    <span>Quantity: <span
+                                            [class]="themeService.isLight() ? 'text-blue-600 font-bold' : 'text-cyan-400 font-bold'">
+                                            {{item.count}}
+                                        </span></span>
                                 </div>
                                 <div class="flex gap-3 mt-2">
                                     <button (click)="updateQuantity(item.product._id, item.count - 1)"
-                                        class="px-3 py-1 bg-cyan-700/70 hover:bg-cyan-600 text-white rounded transition cursor-pointer">
+                                        [class]="themeService.isLight() 
+                                            ? 'px-3 py-1 bg-blue-500/80 hover:bg-blue-600 text-white rounded transition cursor-pointer'
+                                            : 'px-3 py-1 bg-cyan-700/70 hover:bg-cyan-600 text-white rounded transition cursor-pointer'">
                                         <i class="fas fa-minus"></i>
                                     </button>
                                     <button (click)="updateQuantity(item.product._id, item.count + 1)"
-                                        class="px-3 py-1 bg-cyan-700/70 hover:bg-cyan-600 text-white rounded transition cursor-pointer">
+                                        [class]="themeService.isLight() 
+                                            ? 'px-3 py-1 bg-blue-500/80 hover:bg-blue-600 text-white rounded transition cursor-pointer'
+                                            : 'px-3 py-1 bg-cyan-700/70 hover:bg-cyan-600 text-white rounded transition cursor-pointer'">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                     <button (click)="removeCartItem(item.product._id)"
@@ -121,23 +148,40 @@
             <!-- Order Summary Section -->
             <div class="lg:col-span-1">
                 <div
-                    class="bg-gradient-to-br from-slate-800/50 to-purple-900/50 backdrop-blur-xl rounded-2xl border border-purple-400/30 p-8 sticky top-8">
-                    <h3 class="text-2xl font-bold text-purple-400 mb-8">Order Summary</h3>
-                    <div class="text-lg text-gray-300 mb-4 flex justify-between">
+                    [class]="themeService.isLight() 
+                        ? 'bg-gradient-to-br from-white/90 to-blue-50/90 backdrop-blur-xl rounded-2xl border border-blue-200/50 p-8 sticky top-8'
+                        : 'bg-gradient-to-br from-slate-800/50 to-purple-900/50 backdrop-blur-xl rounded-2xl border border-purple-400/30 p-8 sticky top-8'">
+                    <h3
+                        [class]="themeService.isLight() ? 'text-2xl font-bold text-blue-600 mb-8' : 'text-2xl font-bold text-purple-400 mb-8'">
+                        Order Summary
+                    </h3>
+                    <div
+                        [class]="themeService.isLight() ? 'text-lg text-gray-700 mb-4 flex justify-between' : 'text-lg text-gray-300 mb-4 flex justify-between'">
                         <span>Total Items:</span>
-                        <span class="font-bold text-cyan-400"> {{ cartList.numOfCartItems }}</span>
+                        <span [class]="themeService.isLight() ? 'font-bold text-blue-600' : 'font-bold text-cyan-400'">
+                            {{ cartList.numOfCartItems }}
+                        </span>
                     </div>
-                    <div class="text-lg text-gray-300 mb-4 flex justify-between">
+                    <div
+                        [class]="themeService.isLight() ? 'text-lg text-gray-700 mb-4 flex justify-between' : 'text-lg text-gray-300 mb-4 flex justify-between'">
                         <span>Subtotal:</span>
-                        <span class="font-bold text-cyan-400">{{ cartList.data.totalCartPrice }}</span>
+                        <span [class]="themeService.isLight() ? 'font-bold text-blue-600' : 'font-bold text-cyan-400'">
+                            {{ cartList.data.totalCartPrice }}
+                        </span>
                     </div>
-                    <div class="text-lg text-gray-300 mb-8 flex justify-between">
+                    <div
+                        [class]="themeService.isLight() ? 'text-lg text-gray-700 mb-8 flex justify-between' : 'text-lg text-gray-300 mb-8 flex justify-between'">
                         <span>Shipping:</span>
-                        <span class="font-bold text-cyan-400">Free</span>
+                        <span [class]="themeService.isLight() ? 'font-bold text-blue-600' : 'font-bold text-cyan-400'">
+                            Free
+                        </span>
                     </div>
-                    <div class="text-xl font-bold text-white flex justify-between mb-8">
+                    <div
+                        [class]="themeService.isLight() ? 'text-xl font-bold text-gray-800 flex justify-between mb-8' : 'text-xl font-bold text-white flex justify-between mb-8'">
                         <span>Total:</span>
-                        <span class="text-purple-400">{{ cartList.data.totalCartPrice }}</span>
+                        <span [class]="themeService.isLight() ? 'text-blue-600' : 'text-purple-400'">
+                            {{ cartList.data.totalCartPrice }}
+                        </span>
                     </div>
                     <button (click)="proceedToCheckout()"
                         class="w-full py-4 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50">
