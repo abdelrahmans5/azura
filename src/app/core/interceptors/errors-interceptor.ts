@@ -34,7 +34,7 @@ export const errorsInterceptor: HttpInterceptorFn = (req, next) => {
     const shouldShowError = !silentEndpoints.some(endpoint => req.url.includes(endpoint)) || error.status !== 401;
 
     if (shouldShowError) {
-      toastrService.error(errorMessage, 'Error');
+      console.log(errorMessage);
     }
 
     return throwError(() => error);
