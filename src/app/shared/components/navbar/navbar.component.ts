@@ -2,6 +2,7 @@ import { Wishlist } from './../../../features/wishlist/models/wishlist.interface
 import { cart } from './../../../features/cart/models/cart.interface';
 import { Component, inject, Input, OnInit, OnChanges } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { FlowbiteService } from '../../../core/services/flowbite.service';
 import { initFlowbite } from 'flowbite';
 import { AuthService } from '../../../core/auth/services/auth.service';
@@ -15,7 +16,7 @@ import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive, ThemeToggleComponent],
+  imports: [RouterLink, RouterLinkActive, CommonModule, ThemeToggleComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit {
   private readonly cartService = inject(CartService);
   private readonly wishlistService = inject(WishlistService);
   private readonly dialog = inject(MatDialog);
+  private readonly themeService = inject(ThemeService);
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(OutpopComponent, {
@@ -49,6 +51,15 @@ export class NavbarComponent implements OnInit {
 
   get userDisplayEmail(): string {
     return this.userData?.email || 'user@azura.com';
+  }
+
+  // Theme-aware getters for styling
+  get isLightMode(): boolean {
+    return this.themeService.isLight();
+  }
+
+  get isDarkMode(): boolean {
+    return this.themeService.isDark();
   }
 
   ngOnInit(): void {
