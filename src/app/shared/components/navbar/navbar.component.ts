@@ -33,8 +33,6 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-
-
   constructor(private flowbiteService: FlowbiteService) { }
 
   @Input({ required: true }) isLogin!: boolean;
@@ -43,6 +41,15 @@ export class NavbarComponent implements OnInit {
   userData: any = this.authService.decodeToken();
   WishlistNumber: number = 0;
   isProfileDropdownOpen: boolean = false;
+  isMobileMenuOpen: boolean = false;
+
+  get userDisplayName(): string {
+    return this.userData?.name || 'User';
+  }
+
+  get userDisplayEmail(): string {
+    return this.userData?.email || 'user@azura.com';
+  }
 
   ngOnInit(): void {
     if (this.isLogin) {
@@ -53,6 +60,7 @@ export class NavbarComponent implements OnInit {
       initFlowbite();
     });
   }
+
   wishlistCount(): void {
     this.wishlistService.getWishlistProducts().subscribe({
       next: (response) => {
@@ -60,6 +68,7 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
+
   cartCountData() {
     if (!this.isLogin) {
       this.cartCount = 0;
@@ -81,4 +90,28 @@ export class NavbarComponent implements OnInit {
     this.isProfileDropdownOpen = false;
   }
 
+  toggleMobileMenu(): void {
+    console.log('Mobile menu toggle clicked, current state:', this.isMobileMenuOpen);
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    console.log('New mobile menu state:', this.isMobileMenuOpen);
+
+    // Add body scroll lock when menu is open
+    if (this.isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  closeMobileMenu(): void {
+    console.log('Closing mobile menu');
+    this.isMobileMenuOpen = false;
+    document.body.style.overflow = '';
+  }
+
+  // Close mobile menu when clicking on a link
+  onMobileMenuLinkClick(): void {
+    console.log('Mobile menu link clicked, closing menu');
+    this.closeMobileMenu();
+  }
 }
