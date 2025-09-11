@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ProductsService } from '../../../../core/services/products/products.service';
 import { Product } from '../../../../core/models/product.interface';
+import { CartService } from '../../../cart/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-best-sellers',
@@ -11,6 +13,8 @@ import { Product } from '../../../../core/models/product.interface';
 export class BestSellersComponent {
 
   private readonly productsService = inject(ProductsService)
+  private readonly cartService = inject(CartService)
+  private readonly toastrService = inject(ToastrService)
 
   bestsellers: Product[] = [];
 
@@ -23,6 +27,13 @@ export class BestSellersComponent {
       next: (products) => {
         // Sort products by 'sold' property in descending order and select the top ones
         this.bestsellers = products.data.sort((a: Product, b: Product) => (b.sold ?? 0) - (a.sold ?? 0)).slice(0, 4);
+      }
+    });
+  }
+  addToCart(productId: string) {
+    this.cartService.addProductToCart(productId).subscribe({
+      next: () => {
+        this.toastrService.success('Product added to cart!');
       }
     });
   }

@@ -3,6 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import { GoogleAuthService } from '../services/google-auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from "../../../shared/components/input/input.component";
 import { CookieService } from 'ngx-cookie-service';
@@ -15,13 +16,24 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginComponent implements OnInit {
   private readonly authService = inject(AuthService)
+  private readonly googleAuthService = inject(GoogleAuthService)
   private readonly router = inject(Router)
   private readonly fb = inject(FormBuilder)
   private readonly cookieService = inject(CookieService)
 
   ngOnInit(): void {
     this.initForm();
-    if (this.cookieService.get('token')) {
+    const token = this.cookieService.get('token');
+
+    if (token) {
+      // Check if it's a Google token
+      if (token.startsWith('google_')) {
+        console.log('Google token detected, navigating to home without verification');
+        this.router.navigate(['/home']);
+        return;
+      }
+
+      // Regular token - verify with backend
       this.authService.verifyToken().subscribe({
         next: (response) => {
           if (response) {
@@ -86,5 +98,26 @@ export class LoginComponent implements OnInit {
         this.msgError = error.error.message;
       }
     });
+  }
+
+  /**
+   * Handle Google Sign-In
+   */
+  async signInWithGoogle(): Promise<void> {
+    this.isLoading = true;
+    this.msgError = null;
+
+    try {
+      console.log('Initiating Google sign-in...');
+      await this.googleAuthService.signInWithGoogle();
+    } catch (error) {
+      console.error('Google sign-in error:', error);
+      this.msgError = 'Google sign-in failed. Please try again.';
+    } finally {
+      // Set loading to false after a delay to allow for the authentication flow
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000);
+    }
   }
 }

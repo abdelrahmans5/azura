@@ -46,7 +46,7 @@ export class AuthService {
     return token;
   }
   verifyToken() {
-    return this.httpClient.get(environment.baseUrl + 'auth/verifyToken', this.getHeaders());
+    return this.httpClient.get(environment.baseUrl + 'auth/verifyToken');
   }
 
   forgotPasswords(email: string): Observable<any> {
@@ -64,7 +64,7 @@ export class AuthService {
       currentPassword: currentPassword,
       password: newPassword,
       rePassword: newPassword
-    }, this.getHeaders());
+    });
   }
   resetPassword(email: string, newPassword: string): Observable<any> {
     return this.httpClient.put(environment.baseUrl + 'auth/resetPassword', {
@@ -78,6 +78,10 @@ export class AuthService {
         name: name,
         email: email,
         phone: phone
-      }, this.getHeaders());
+      });
+  }
+
+  googleLogin(googleData: object): Observable<any> {
+    return this.httpClient.post(environment.baseUrl + 'auth/google-login', googleData);
   }
 }

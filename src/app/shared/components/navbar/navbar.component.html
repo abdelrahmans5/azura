@@ -311,7 +311,9 @@
                                 </div>
                                 <div>
                                     <h4 class="text-white font-semibold">{{ userData.name }}</h4>
-                                    <p class="text-cyan-400 text-sm">{{ userData.email || 'user@azura.com' }}</p>
+                                    <p class="text-cyan-400 text-sm">{{ userData.email.slice(0, 15) + '...' ||
+                                        'user@azura.com'
+                                        }}</p>
                                 </div>
                             </div>
                         </div>

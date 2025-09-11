@@ -23,6 +23,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(withFetch(), withInterceptors([headersInterceptor, errorsInterceptor, loadingInterceptor])),
     importProvidersFrom(CookieService, NgxSpinnerModule),
-    provideToastr(),
+    provideToastr()
   ]
 };

@@ -14,7 +14,6 @@ export const errorsInterceptor: HttpInterceptorFn = (req, next) => {
     // Handle specific error status codes
     switch (error.status) {
       case 401:
-        errorMessage = 'Session expired. Please login again';
         router.navigate(['/login']);
         break;
       case 403:
