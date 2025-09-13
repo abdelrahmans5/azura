@@ -6,7 +6,15 @@ export const authGuard: CanActivateFn = (route, state) => {
   const cookieService = inject(CookieService);
   const router = inject(Router);
 
-  if (cookieService.get('token')) {
+  const token = cookieService.get('token');
+
+  if (token) {
+    // Check if it's a Google token (special handling)
+    if (token.startsWith('google_')) {
+      console.log('Google authentication detected, allowing access');
+      return true;
+    }
+    // Regular token
     return true;
   }
   else {

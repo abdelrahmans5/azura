@@ -14,7 +14,6 @@ export const errorsInterceptor: HttpInterceptorFn = (req, next) => {
     // Handle specific error status codes
     switch (error.status) {
       case 401:
-        errorMessage = 'Session expired. Please login again';
         router.navigate(['/login']);
         break;
       case 403:
@@ -35,7 +34,7 @@ export const errorsInterceptor: HttpInterceptorFn = (req, next) => {
     const shouldShowError = !silentEndpoints.some(endpoint => req.url.includes(endpoint)) || error.status !== 401;
 
     if (shouldShowError) {
-      toastrService.error(errorMessage, 'Error');
+      console.log(errorMessage);
     }
 
     return throwError(() => error);

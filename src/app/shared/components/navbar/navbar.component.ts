@@ -2,6 +2,7 @@ import { Wishlist } from './../../../features/wishlist/models/wishlist.interface
 import { cart } from './../../../features/cart/models/cart.interface';
 import { Component, inject, Input, OnInit, OnChanges } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { FlowbiteService } from '../../../core/services/flowbite.service';
 import { initFlowbite } from 'flowbite';
 import { AuthService } from '../../../core/auth/services/auth.service';
@@ -15,7 +16,7 @@ import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive, ThemeToggleComponent],
+  imports: [RouterLink, RouterLinkActive, CommonModule, ThemeToggleComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit {
   private readonly cartService = inject(CartService);
   private readonly wishlistService = inject(WishlistService);
   private readonly dialog = inject(MatDialog);
+  private readonly themeService = inject(ThemeService);
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(OutpopComponent, {
@@ -33,8 +35,6 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-
-
   constructor(private flowbiteService: FlowbiteService) { }
 
   @Input({ required: true }) isLogin!: boolean;
@@ -43,6 +43,24 @@ export class NavbarComponent implements OnInit {
   userData: any = this.authService.decodeToken();
   WishlistNumber: number = 0;
   isProfileDropdownOpen: boolean = false;
+  isMobileMenuOpen: boolean = false;
+
+  get userDisplayName(): string {
+    return this.userData?.name || 'User';
+  }
+
+  get userDisplayEmail(): string {
+    return this.userData?.email || 'user@azura.com';
+  }
+
+  // Theme-aware getters for styling
+  get isLightMode(): boolean {
+    return this.themeService.isLight();
+  }
+
+  get isDarkMode(): boolean {
+    return this.themeService.isDark();
+  }
 
   ngOnInit(): void {
     if (this.isLogin) {
@@ -53,6 +71,7 @@ export class NavbarComponent implements OnInit {
       initFlowbite();
     });
   }
+
   wishlistCount(): void {
     this.wishlistService.getWishlistProducts().subscribe({
       next: (response) => {
@@ -60,6 +79,7 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
+
   cartCountData() {
     if (!this.isLogin) {
       this.cartCount = 0;
@@ -81,4 +101,28 @@ export class NavbarComponent implements OnInit {
     this.isProfileDropdownOpen = false;
   }
 
+  toggleMobileMenu(): void {
+    console.log('Mobile menu toggle clicked, current state:', this.isMobileMenuOpen);
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    console.log('New mobile menu state:', this.isMobileMenuOpen);
+
+    // Add body scroll lock when menu is open
+    if (this.isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  closeMobileMenu(): void {
+    console.log('Closing mobile menu');
+    this.isMobileMenuOpen = false;
+    document.body.style.overflow = '';
+  }
+
+  // Close mobile menu when clicking on a link
+  onMobileMenuLinkClick(): void {
+    console.log('Mobile menu link clicked, closing menu');
+    this.closeMobileMenu();
+  }
 }
